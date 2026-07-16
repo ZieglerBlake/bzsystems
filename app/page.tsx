@@ -1,10 +1,41 @@
 import Image from "next/image";
-import BootSequence from "@/components/BootSequence";
 import ContactForm from "@/components/ContactForm";
+import PhasedBuildIntro from "@/components/PhasedBuildIntro";
 import Reveal from "@/components/Reveal";
 import SystemMap from "@/components/SystemMap";
 
 const LINKEDIN = "https://www.linkedin.com/in/blakerobertziegler/";
+
+/* Self-drawing schematic marks for the build principles */
+function Glyph({ variant }: { variant: number }) {
+  const stroke = { stroke: "currentColor", strokeWidth: 1.5, fill: "none" } as const;
+  return (
+    <svg aria-hidden viewBox="0 0 56 56" className="glyph h-14 w-14 text-ink">
+      {variant === 0 && (
+        <>
+          <path {...stroke} d="M8 8 H48 V48 H8 Z" />
+          <path {...stroke} d="M20 20 H36 V36 H20 Z" stroke="var(--color-signal)" />
+          <line {...stroke} x1="8" y1="8" x2="20" y2="20" />
+          <line {...stroke} x1="48" y1="48" x2="36" y2="36" />
+        </>
+      )}
+      {variant === 1 && (
+        <>
+          <circle {...stroke} cx="28" cy="28" r="19" strokeDasharray="2 5" />
+          <circle {...stroke} cx="28" cy="28" r="6" stroke="var(--color-signal)" />
+          <line {...stroke} x1="28" y1="3" x2="28" y2="12" />
+        </>
+      )}
+      {variant === 2 && (
+        <>
+          <path {...stroke} d="M8 40 A22 22 0 0 1 48 40" />
+          <line {...stroke} x1="28" y1="40" x2="42" y2="24" stroke="var(--color-signal)" />
+          <line {...stroke} x1="8" y1="46" x2="48" y2="46" />
+        </>
+      )}
+    </svg>
+  );
+}
 
 function SectionRule({
   sec,
@@ -46,7 +77,7 @@ function SectionRule({
 export default function Home() {
   return (
     <>
-      <BootSequence />
+      <PhasedBuildIntro />
       {/* Nav */}
       <header className="fixed inset-x-0 top-0 z-40 border-b border-line-soft bg-void/85 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
@@ -78,37 +109,26 @@ export default function Home() {
       </header>
 
       <main id="top">
-        {/* Hero: the slab film. Text sits on the dark region, scrim guarantees it. */}
-        <section className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-ink">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/hero-poster.webp"
-            aria-hidden
-            className="absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/hero.mp4" type="video/mp4" />
-          </video>
+        {/* Hero: calm live map behind the text */}
+        <section className="relative flex min-h-svh flex-col justify-end overflow-hidden">
+          <div className="absolute inset-0">
+            <SystemMap />
+          </div>
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to top right, rgb(10 12 11 / 0.82) 25%, rgb(10 12 11 / 0.25) 55%, transparent 75%)",
-            }}
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-64"
+            style={{ background: "linear-gradient(to top, #f7f8f6 20%, transparent)" }}
           />
           <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-40 lg:px-12 lg:pb-24">
-            <p className="rise-in caret font-mono text-label uppercase text-void/70">
+            <p className="rise-in caret font-mono text-label uppercase text-ink-dim">
               BZ SYSTEMS LLC / TECH BUILDING COMPANY / ALL SYSTEMS NOMINAL
             </p>
-            <h1 className="rise-in rise-in-delay-1 type-extended mt-6 max-w-5xl text-display uppercase text-void">
+            <h1 className="rise-in rise-in-delay-1 type-extended mt-6 max-w-5xl text-display uppercase">
               One company.
               <br />
-              <span className="text-[#5B9BE8]">Many machines.</span>
+              <span className="text-signal-bright">Many machines.</span>
             </h1>
-            <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-void/75">
+            <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
               BZ Systems is a technology building company in Ohio. We design,
               build, and operate our own software ventures. Each one ships on
               its own domain, under its own name.
@@ -117,13 +137,28 @@ export default function Home() {
               {["Ohio LLC", "Self-operated", "Always building"].map((f) => (
                 <li
                   key={f}
-                  className="rounded-sm border border-void/25 px-4 py-2 font-mono text-label uppercase text-void/60"
+                  className="rounded-sm border border-line px-4 py-2 font-mono text-label uppercase text-ink-faint"
                 >
                   {f}
                 </li>
               ))}
             </ul>
           </div>
+        </section>
+
+        {/* The slab film: full-bleed, no text, pure theme */}
+        <section aria-hidden className="relative h-[42vh] overflow-hidden bg-ink lg:h-[52vh]">
+          <div className="absolute inset-x-0 top-0 z-10 h-[2px] bg-signal shadow-glow" />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/hero-poster.webp"
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src="/hero.mp4" type="video/mp4" />
+          </video>
         </section>
 
         {/* SEC.01: Ventures. The black slab band. No names, ever. */}
@@ -193,11 +228,6 @@ export default function Home() {
                     A building company is a system of bets, and the system
                     itself is the product that compounds.
                   </p>
-                  <p>
-                    No agencies. No outsourcing. No invented metrics or
-                    manufactured social proof. A system either works or it
-                    doesn&rsquo;t, and we say which.
-                  </p>
                 </div>
                 <p className="font-mono text-label uppercase">
                   <a
@@ -223,10 +253,70 @@ export default function Home() {
           </Reveal>
         </section>
 
-        {/* SEC.03: Contact */}
+        {/* SEC.03: How we build */}
+        <section className="relative overflow-hidden">
+          <Image
+            src="/tex/blueprint.webp"
+            alt=""
+            aria-hidden
+            fill
+            sizes="100vw"
+            className="pointer-events-none object-cover opacity-[0.05]"
+          />
+          <Reveal className="relative mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-36">
+            <SectionRule sec="SEC.03" title="How we build" />
+            <div className="mt-14 grid gap-12 lg:grid-cols-3">
+              {[
+                {
+                  n: "01",
+                  title: "Built in-house, end to end",
+                  body: "Every layer is authored inside the company, from the interface down to the infrastructure. Nothing is assembled from parts we don't understand.",
+                },
+                {
+                  n: "02",
+                  title: "Ships standalone",
+                  body: "Each venture gets its own name, its own domain, and its own brand. It has to survive on its own merits, without the parent holding its hand.",
+                },
+                {
+                  n: "03",
+                  title: "Truth over theater",
+                  body: "No invented metrics, no manufactured social proof. If a system works, we say so. If it doesn't, it gets rebuilt or retired.",
+                },
+              ].map((p, i) => (
+                <div key={p.n} className="flex flex-col gap-4 border-t border-line pt-6">
+                  <div className="flex items-center justify-between">
+                    <Glyph variant={i} />
+                    <span className="font-mono text-label text-signal-bright">{p.n}</span>
+                  </div>
+                  <h3 className="type-semi-extended text-h3 uppercase">{p.title}</h3>
+                  <p className="text-ink-dim">{p.body}</p>
+                </div>
+              ))}
+            </div>
+            <ul className="mt-16 flex flex-wrap gap-3">
+              {[
+                "AI systems",
+                "Web platforms",
+                "APIs",
+                "Automation",
+                "Data pipelines",
+                "Operations",
+              ].map((c) => (
+                <li
+                  key={c}
+                  className="rounded-sm border border-line px-4 py-2 font-mono text-label uppercase text-ink-faint"
+                >
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </section>
+
+        {/* SEC.04: Contact */}
         <section id="contact" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
           <Reveal>
-            <SectionRule sec="SEC.03" title="Open a channel" />
+            <SectionRule sec="SEC.04" title="Open a channel" />
             <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.2fr]">
               <div>
                 <h2 className="type-semi-extended max-w-[14ch] text-h2 uppercase">
