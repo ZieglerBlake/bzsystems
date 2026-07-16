@@ -76,7 +76,7 @@ export default function Home() {
       <header className="fixed inset-x-0 top-0 z-40 border-b border-line-soft bg-void/85 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
           <a href="#top" aria-label="BZ Systems home">
-            <Image src="/logo-dark.png" alt="BZ Systems" width={64} height={48} priority className="h-12 w-auto" />
+            <Image src="/logo.png" alt="BZ Systems" width={64} height={48} priority className="h-12 w-auto mix-blend-multiply" />
           </a>
           <div className="flex items-center gap-6 font-mono text-label uppercase sm:gap-8">
             <a href="#charter" className="hidden text-ink-dim transition-colors hover:text-ink sm:block">
@@ -108,7 +108,7 @@ export default function Home() {
           <div
             aria-hidden
             className="pointer-events-none absolute inset-x-0 bottom-0 h-64"
-            style={{ background: "linear-gradient(to top, #0a0c0b 20%, transparent)" }}
+            style={{ background: "linear-gradient(to top, #f7f8f6 20%, transparent)" }}
           />
           <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-40 lg:px-12 lg:pb-28">
             <p className="rise-in caret font-mono text-label uppercase text-ink-dim">
@@ -277,7 +277,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-line-soft">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-14 lg:flex-row lg:items-end lg:justify-between lg:px-12">
-          <Image src="/logo-dark.png" alt="BZ Systems" width={107} height={80} className="h-20 w-auto self-start" />
+          <Image src="/logo.png" alt="BZ Systems" width={107} height={80} className="h-20 w-auto self-start mix-blend-multiply" />
           <div className="flex flex-col gap-2 font-mono text-legal text-ink-faint lg:text-right">
             <p>© 2026 BZ SYSTEMS LLC — OHIO, USA. ALL RIGHTS RESERVED.</p>
             <p>SYSTEMS SHIP ON THEIR OWN DOMAINS. THIS IS THE PARENT.</p>

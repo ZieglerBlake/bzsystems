@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
-/* bzsystems.io redesign — CONTROL ROOM × SCHEMATIC.
-   Dark field, one signal color (#1E70CD, sampled from the logo's dash).
-   Default Tailwind scales are wiped so only these tokens exist. */
+/* bzsystems.io redesign — BRIGHT CONTROL ROOM × SCHEMATIC.
+   White drafting-lab field, hard ink, one signal color (#1E70CD,
+   sampled from the logo's dash). Default scales wiped. */
 @theme {
   --color-*: initial;
-  --color-void: #0a0c0b;
-  --color-panel: #0e1110;
-  --color-ink: #f4f6f5;
-  --color-ink-dim: rgb(244 246 245 / 0.62);
-  --color-ink-faint: rgb(244 246 245 / 0.36);
-  --color-line: rgb(244 246 245 / 0.14);
-  --color-line-soft: rgb(244 246 245 / 0.07);
+  --color-void: #f7f8f6; /* the field — name kept for stable class names */
+  --color-panel: #ffffff;
+  --color-ink: #101312;
+  --color-ink-dim: rgb(16 19 18 / 0.64);
+  --color-ink-faint: rgb(16 19 18 / 0.4);
+  --color-line: rgb(16 19 18 / 0.16);
+  --color-line-soft: rgb(16 19 18 / 0.08);
   --color-signal: #1e70cd;
-  --color-signal-bright: #3d8be8;
+  --color-signal-bright: #15529e; /* signal tuned for text on the light field */
 
   --radius-*: initial;
   --radius-sm: 2px;
   --radius-md: 6px;
 
   --shadow-*: initial;
-  --shadow-glow: 0 0 32px rgb(30 112 205 / 0.16);
+  --shadow-glow: 0 8px 28px rgb(30 112 205 / 0.18);
 
   --font-*: initial;
 
@@ -63,7 +63,7 @@
 
   ::selection {
     background: var(--color-signal);
-    color: var(--color-ink);
+    color: #ffffff;
   }
 
   h1,

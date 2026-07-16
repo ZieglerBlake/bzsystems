@@ -27,8 +27,8 @@ const NODES: MapNode[] = [
   { label: "NEXT SYSTEM", tag: "PX", x: 0.63, y: 0.1, faint: true, phase: 5.0 },
 ];
 
-const INK = "244, 246, 245";
-const SIGNAL = "#3D8BE8";
+const INK = "16, 19, 18";
+const SIGNAL = "#1E70CD";
 
 export default function SystemMap({ className = "" }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -104,7 +104,7 @@ export default function SystemMap({ className = "" }: { className?: string }) {
       ctx!.clearRect(0, 0, w, h);
 
       // Dot grid
-      ctx!.fillStyle = `rgba(${INK}, 0.055)`;
+      ctx!.fillStyle = `rgba(${INK}, 0.09)`;
       const gap = 30;
       for (let gx = gap / 2; gx < w; gx += gap) {
         for (let gy = gap / 2; gy < h; gy += gap) {
@@ -146,7 +146,7 @@ export default function SystemMap({ className = "" }: { className?: string }) {
           const tt = p.t - k * 0.012;
           if (tt < 0 || tt > 1) continue;
           const pt = bezier(core, cpt, pos[p.edge], tt);
-          ctx!.fillStyle = k === 0 ? SIGNAL : `rgba(61, 139, 232, ${0.4 - k * 0.065})`;
+          ctx!.fillStyle = k === 0 ? SIGNAL : `rgba(30, 112, 205, ${0.4 - k * 0.065})`;
           ctx!.beginPath();
           ctx!.arc(pt.x, pt.y, k === 0 ? 2.2 : 1.6, 0, Math.PI * 2);
           ctx!.fill();
@@ -166,7 +166,7 @@ export default function SystemMap({ className = "" }: { className?: string }) {
           const pt = ((t + n.phase * 1000) % period) / period;
           if (pt < 0.55 && !n.faint) {
             const pr = 8 + pt * 46;
-            ctx!.strokeStyle = `rgba(61, 139, 232, ${(0.32 * (1 - pt / 0.55)) * alpha})`;
+            ctx!.strokeStyle = `rgba(30, 112, 205, ${(0.38 * (1 - pt / 0.55)) * alpha})`;
             ctx!.lineWidth = 1;
             ctx!.beginPath();
             ctx!.arc(x, y, pr, 0, Math.PI * 2);
@@ -193,8 +193,8 @@ export default function SystemMap({ className = "" }: { className?: string }) {
 
         // Ring + core dot
         ctx!.strokeStyle = n.core
-          ? `rgba(61, 139, 232, ${0.85 * alpha})`
-          : `rgba(${INK}, ${0.4 * alpha})`;
+          ? `rgba(30, 112, 205, ${0.85 * alpha})`
+          : `rgba(${INK}, ${0.45 * alpha})`;
         ctx!.beginPath();
         ctx!.arc(x, y, n.core ? 6.5 : 4.5, 0, Math.PI * 2);
         ctx!.stroke();
