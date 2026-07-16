@@ -137,6 +137,26 @@
   background:
     radial-gradient(circle at 50% 48%, rgb(18 32 58 / 0.22), transparent 52%),
     #010308;
+  /* CSS-owned exit at cycle + hold, so the overlay clears even without JS */
+  animation: pbiOverlayOut 450ms ease-out 4.5s forwards;
+}
+
+.pbi.pbi-out {
+  /* JS skip: run the same exit immediately */
+  animation-delay: 0s;
+}
+
+@keyframes pbiOverlayOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pbi {
+    display: none;
+  }
 }
 
 .pbi-layer {

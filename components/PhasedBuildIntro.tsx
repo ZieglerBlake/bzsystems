@@ -13,52 +13,46 @@ const HOLD_MS = 700;
 const FADE_MS = 450;
 
 export default function PhasedBuildIntro() {
-  const [active, setActive] = useState(false);
-  const [fading, setFading] = useState(false);
+  // Rendered in the initial server HTML so the overlay is painted before
+  // hydration: no flash of the page underneath. CSS handles the fade-out
+  // (and hides it entirely under prefers-reduced-motion); JS only skips
+  // early and removes the node once it's invisible.
+  const [active, setActive] = useState(true);
+  const [skipped, setSkipped] = useState(false);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    setActive(true);
-  }, []);
-
-  useEffect(() => {
-    if (!active) return;
-    let fadeTimer = 0;
-    let endTimer = 0;
-    let started = false;
-
-    const beginFade = () => {
-      if (started) return;
-      started = true;
-      setFading(true);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setActive(false);
+      return;
+    }
+    let endTimer = window.setTimeout(
+      () => setActive(false),
+      CYCLE_MS + HOLD_MS + FADE_MS + 120,
+    );
+    const skip = () => {
+      setSkipped(true);
+      clearTimeout(endTimer);
       endTimer = window.setTimeout(() => setActive(false), FADE_MS + 60);
     };
-
-    fadeTimer = window.setTimeout(beginFade, CYCLE_MS + HOLD_MS);
-    const skip = () => beginFade();
     window.addEventListener("pointerdown", skip);
     window.addEventListener("keydown", skip);
     window.addEventListener("wheel", skip, { passive: true });
     window.addEventListener("touchmove", skip, { passive: true });
 
     return () => {
-      clearTimeout(fadeTimer);
       clearTimeout(endTimer);
       window.removeEventListener("pointerdown", skip);
       window.removeEventListener("keydown", skip);
       window.removeEventListener("wheel", skip);
       window.removeEventListener("touchmove", skip);
     };
-  }, [active]);
+  }, []);
 
   if (!active) return null;
   return (
     <div
       aria-hidden
-      className={`pbi fixed inset-0 z-50 transition-opacity ease-out ${
-        fading ? "opacity-0" : "opacity-100"
-      }`}
-      style={{ transitionDuration: `${FADE_MS}ms` }}
+      className={`pbi fixed inset-0 z-50 ${skipped ? "pbi-out" : ""}`}
     >
       <div className="pbi-layer pbi-scene" />
       <div className="pbi-layer pbi-shutter pbi-top" />
