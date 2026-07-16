@@ -1,4 +1,5 @@
 import Image from "next/image";
+import BootSequence from "@/components/BootSequence";
 import CircuitField from "@/components/CircuitField";
 import ContactForm from "@/components/ContactForm";
 import CoreArtifact from "@/components/CoreArtifact";
@@ -108,6 +109,7 @@ function SectionRule({ sec, title }: { sec: string; title: string }) {
 export default function Home() {
   return (
     <>
+      <BootSequence />
       {/* Nav */}
       <header className="fixed inset-x-0 top-0 z-40 border-b border-line-soft bg-void/85 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
