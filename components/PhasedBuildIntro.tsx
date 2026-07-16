@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 /* Blake's phased-build entrance: shutters assemble, blueprint grid and
    target rings phase in, energy rails draw, the core flashes, beams and
-   the security scan sweep, and the BZ scene locks in. Plays ONCE per
-   session (~3.8s + hold), any input skips, never mounts under
+   the security scan sweep, and the BZ scene locks in. Plays on EVERY
+   visit (~3.8s + hold), any input skips, never mounts under
    prefers-reduced-motion. Styles live in globals.css under .pbi. */
 
 const CYCLE_MS = 3800;
@@ -18,8 +18,6 @@ export default function PhasedBuildIntro() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (sessionStorage.getItem("bz-boot") === "1") return;
-    sessionStorage.setItem("bz-boot", "1");
     setActive(true);
   }, []);
 
