@@ -280,8 +280,16 @@ export default function Home() {
         </section>
 
         {/* SEC.03 — Principles */}
-        <section id="principles" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
-          <Reveal>
+        <section id="principles" className="relative scroll-mt-24 py-24 lg:py-36">
+          <Image
+            src="/tex/blueprint.webp"
+            alt=""
+            aria-hidden
+            fill
+            sizes="100vw"
+            className="pointer-events-none object-cover opacity-[0.05]"
+          />
+          <Reveal className="relative mx-auto max-w-7xl px-6 lg:px-12">
             <SectionRule sec="SEC.03" title="Operating principles" />
             <div className="mt-14 grid gap-12 lg:grid-cols-3">
               {principles.map((p, i) => (
@@ -319,6 +327,18 @@ export default function Home() {
                     blake@bzsystems.io
                   </a>
                 </p>
+                <figure className="mt-12 hidden max-w-sm lg:block">
+                  <Image
+                    src="/tex/contour.webp"
+                    alt="Blue contour line drawing on white drafting paper"
+                    width={1400}
+                    height={763}
+                    className="w-full brightness-105 mix-blend-multiply"
+                  />
+                  <figcaption className="mt-2 font-mono text-legal uppercase text-ink-faint">
+                    FIG.02 — Terrain, uncharted
+                  </figcaption>
+                </figure>
               </div>
               <ContactForm />
             </div>
@@ -330,6 +350,14 @@ export default function Home() {
       <footer className="border-t border-line-soft">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-14 lg:flex-row lg:items-end lg:justify-between lg:px-12">
           <Image src="/logo.png" alt="BZ Systems" width={107} height={80} className="h-20 w-auto self-start mix-blend-multiply" />
+          <Image
+            src="/tex/titleblock.webp"
+            alt=""
+            aria-hidden
+            width={830}
+            height={600}
+            className="hidden w-52 brightness-110 mix-blend-multiply opacity-70 lg:block"
+          />
           <div className="flex flex-col gap-2 font-mono text-legal text-ink-faint lg:text-right">
             <p>© 2026 BZ SYSTEMS LLC — OHIO, USA. ALL RIGHTS RESERVED.</p>
             <p>SYSTEMS SHIP ON THEIR OWN DOMAINS. THIS IS THE PARENT.</p>
