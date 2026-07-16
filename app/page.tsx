@@ -1,167 +1,289 @@
-import Footer from "@/components/Footer";
-import Nav from "@/components/Nav";
-import ProductCard from "@/components/ProductCard";
+import Image from "next/image";
+import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
-import SectionHeading from "@/components/SectionHeading";
-import { SENTINEL_URL } from "@/lib/site";
+import SystemMap from "@/components/SystemMap";
+
+const SENTINEL_URL = process.env.NEXT_PUBLIC_SENTINEL_URL;
+
+const ventures = [
+  {
+    tag: "P1",
+    name: "Vendor Reality Check",
+    desc: "AI vendor diligence for operators — five-axis scoring, go/no-go verdicts, zero brochure.",
+    status: "IN BUILD",
+    href: undefined as string | undefined,
+  },
+  {
+    tag: "P2",
+    name: "Sentinel",
+    desc: "White-label regulatory-change intelligence for boutique compliance consultancies.",
+    status: "PRE-LAUNCH",
+    href: SENTINEL_URL,
+  },
+  {
+    tag: "P3",
+    name: "SkillShelf",
+    desc: "Infrastructure for keeping, versioning, and reusing the AI skills a team trusts.",
+    status: "QUEUED",
+    href: undefined,
+  },
+  {
+    tag: "P4",
+    name: "License API",
+    desc: "Professional-license verification as a single API call, built for developers.",
+    status: "QUEUED",
+    href: undefined,
+  },
+];
+
+const principles = [
+  {
+    n: "01",
+    title: "Built in-house, end to end",
+    body: "Design, code, infrastructure, operations — every layer of every venture is authored inside the company. No agencies, no outsourcing, no assembly from parts we don't understand.",
+  },
+  {
+    n: "02",
+    title: "Each system stands alone",
+    body: "Every venture ships on its own domain with its own brand and its own P&L logic. The parent company is the factory, not the product.",
+  },
+  {
+    n: "03",
+    title: "Truth over theater",
+    body: "No invented metrics, no fake logos, no manufactured social proof. A system either works or it doesn't — and we say which.",
+  },
+];
+
+function SectionRule({ sec, title }: { sec: string; title: string }) {
+  return (
+    <div className="flex items-baseline gap-4">
+      <span className="whitespace-nowrap font-mono text-label uppercase text-signal-bright">
+        {sec}
+      </span>
+      <span className="whitespace-nowrap font-mono text-label uppercase text-ink-faint">
+        {title}
+      </span>
+      <span className="rule-draw h-px flex-1 self-center bg-line" />
+      <span className="hidden font-mono text-legal text-ink-faint sm:block">+</span>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
     <>
-      <Nav />
-      <main>
-        {/* Hero — copy-forward editorial, no CTA competing with the grid */}
-        <section className="relative">
-          {/* Structural hairlines + brass registration marks, aligned to the
-              content gutters — decorative only. */}
-          <div aria-hidden className="pointer-events-none absolute inset-0">
-            <div className="mx-auto h-full max-w-6xl px-6 lg:px-16">
-              <div className="relative h-full border-x border-border-soft">
-                <span className="absolute -left-[5px] top-12 font-mono text-legal text-accent">
-                  +
-                </span>
-                <span className="absolute -right-[5px] top-12 font-mono text-legal text-accent">
-                  +
-                </span>
-                <span className="absolute -left-[5px] bottom-12 font-mono text-legal text-accent">
-                  +
-                </span>
-                <span className="absolute -right-[5px] bottom-12 font-mono text-legal text-accent">
-                  +
-                </span>
-                <div className="absolute left-2/3 top-0 hidden h-full border-l border-border-soft lg:block" />
+      {/* Nav */}
+      <header className="fixed inset-x-0 top-0 z-40 border-b border-line-soft bg-void/85 backdrop-blur-sm">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
+          <a href="#top" aria-label="BZ Systems home">
+            <Image src="/logo-dark.png" alt="BZ Systems" width={64} height={48} priority className="h-12 w-auto" />
+          </a>
+          <div className="flex items-center gap-6 font-mono text-label uppercase sm:gap-8">
+            <a href="#charter" className="hidden text-ink-dim transition-colors hover:text-ink sm:block">
+              Charter
+            </a>
+            <a href="#ventures" className="text-ink-dim transition-colors hover:text-ink">
+              Ventures
+            </a>
+            <a href="#principles" className="hidden text-ink-dim transition-colors hover:text-ink sm:block">
+              Principles
+            </a>
+            <a
+              href="#contact"
+              className="rounded-sm border border-line px-4 py-2 text-ink transition-all duration-200 hover:border-signal hover:shadow-glow"
+            >
+              Contact
+            </a>
+          </div>
+        </nav>
+      </header>
+
+      <main id="top">
+        {/* Hero — live system map with type layered above */}
+        <section className="relative flex min-h-svh flex-col justify-end overflow-hidden">
+          <div className="absolute inset-0">
+            <SystemMap />
+          </div>
+          {/* Bottom fade so type sits on solid ground */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-64"
+            style={{ background: "linear-gradient(to top, #0a0c0b 20%, transparent)" }}
+          />
+          <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-40 lg:px-12 lg:pb-28">
+            <p className="rise-in caret font-mono text-label uppercase text-ink-dim">
+              BZ SYSTEMS LLC / PARENT COMPANY / ALL SYSTEMS NOMINAL
+            </p>
+            <h1 className="rise-in rise-in-delay-1 type-extended mt-6 max-w-5xl text-display uppercase">
+              One company.
+              <br />
+              <span className="text-signal-bright">Many machines.</span>
+            </h1>
+            <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
+              BZ Systems is the parent company behind a growing portfolio of
+              software ventures — each one designed, built, and operated
+              in-house, each one shipped on its own domain.
+            </p>
+            <ul className="rise-in rise-in-delay-3 mt-10 flex flex-wrap gap-3">
+              {["Ohio LLC", "04+ systems", "Self-operated"].map((f) => (
+                <li
+                  key={f}
+                  className="rounded-sm border border-line px-4 py-2 font-mono text-label uppercase text-ink-faint"
+                >
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* SEC.01 — Charter */}
+        <section id="charter" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
+          <Reveal>
+            <SectionRule sec="SEC.01" title="Charter" />
+            <div className="mt-14 grid gap-12 lg:grid-cols-[1.2fr_1fr]">
+              <h2 className="type-semi-extended max-w-[18ch] text-h2 uppercase">
+                The product is the company that makes the products.
+              </h2>
+              <div className="flex flex-col gap-5 text-ink-dim">
+                <p>
+                  Most software companies are one bet. BZ Systems is built to
+                  be a system of bets — an umbrella under which independent
+                  ventures are designed, launched, and run, from AI diligence
+                  tools to compliance intelligence to developer infrastructure.
+                </p>
+                <p>
+                  The ventures don&rsquo;t share a brand. They share an
+                  operator, a standard, and a build philosophy: ship real
+                  things, own every layer, and let each system prove itself on
+                  its own domain.
+                </p>
+                <p className="font-mono text-label uppercase text-ink-faint">
+                  Founded by Blake Ziegler ·{" "}
+                  <a
+                    href="https://blakeziegler.app"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal"
+                  >
+                    blakeziegler.app ↗
+                  </a>
+                </p>
               </div>
             </div>
-          </div>
-          <div className="relative mx-auto max-w-6xl px-6 pt-24 pb-24 lg:px-16 lg:pt-32 lg:pb-32">
-            <div className="flex flex-col gap-5 lg:gap-7">
-              <h1 className="rise-in max-w-[22ch] text-h1">
-                An independent studio building tools that solve real problems.
-              </h1>
-              <p className="rise-in rise-in-delay-1 max-w-[58ch] text-ink-muted">
-                Every product here is designed, built, and shipped in-house —
-                AI vendor diligence, skill infrastructure, and verification
-                APIs. No hype, no outsourcing.
-              </p>
-              <ul className="rise-in rise-in-delay-2 flex flex-wrap gap-3 pt-2">
-                {["Ohio LLC", "Four products", "Self-authored"].map((fact) => (
-                  <li
-                    key={fact}
-                    className="rounded-sm border border-border px-4 py-2 font-mono text-eyebrow uppercase text-ink-muted"
-                  >
-                    {fact}
-                  </li>
-                ))}
-              </ul>
+          </Reveal>
+        </section>
+
+        {/* SEC.02 — Ventures */}
+        <section id="ventures" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
+          <Reveal>
+            <SectionRule sec="SEC.02" title="Ventures / Live registry" />
+            <div className="mt-14 grid gap-px overflow-hidden rounded-md border border-line bg-line-soft sm:grid-cols-2">
+              {ventures.map((v) => {
+                const inner = (
+                  <>
+                    <div className="flex items-baseline justify-between">
+                      <span className="font-mono text-label text-signal-bright">{v.tag}</span>
+                      <span
+                        className={`font-mono text-legal uppercase ${
+                          v.status === "PRE-LAUNCH" ? "text-signal-bright" : "text-ink-faint"
+                        }`}
+                      >
+                        ● {v.status}
+                      </span>
+                    </div>
+                    <h3 className="type-semi-extended mt-6 text-h3 uppercase">{v.name}</h3>
+                    <p className="mt-3 text-body text-ink-dim">{v.desc}</p>
+                    <p className="mt-6 font-mono text-label uppercase text-ink-faint">
+                      {v.href ? (
+                        <span className="text-ink transition-colors group-hover:text-signal-bright">
+                          Enter system ↗
+                        </span>
+                      ) : (
+                        "Own domain at launch"
+                      )}
+                    </p>
+                  </>
+                );
+                const cls =
+                  "group flex flex-col bg-void p-8 transition-all duration-200 lg:p-10 hover:bg-panel";
+                return v.href ? (
+                  <a key={v.tag} href={v.href} target="_blank" rel="noreferrer" className={cls}>
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={v.tag} className={cls}>
+                    {inner}
+                  </div>
+                );
+              })}
+              {/* The next machine — implied pipeline */}
+              <div className="flex flex-col justify-center gap-3 border-t border-dashed border-line bg-void p-8 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between lg:p-10">
+                <span className="font-mono text-label uppercase text-ink-faint">
+                  PX / Next system — in design
+                </span>
+                <span className="font-mono text-legal uppercase text-ink-faint">
+                  Registry expands as systems clear the gate
+                </span>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </section>
 
-        {/* Portfolio bento — VRC weighted largest, License API smallest */}
-        <section
-          id="products"
-          className="mx-auto max-w-6xl px-6 pb-16 lg:px-16 lg:pb-24"
-        >
-          <SectionHeading eyebrow="Products" heading="What the studio ships" />
-          <div className="mt-12 grid gap-6 lg:grid-cols-6">
-            <ProductCard
-              variant="route"
-              flagship
-              index="P1"
-              className="lg:col-span-4 lg:row-span-2"
-              eyebrow="Flagship · AI vendor diligence"
-              name="Vendor Reality Check"
-              oneLiner="A grounded verdict on whether an AI vendor is actually worth buying — scored across five axes an operator cares about, with go/no-go reasoning instead of a brochure."
-              ctaLabel="Get your free verdict"
-              href="/vendor-reality-check#get-your-verdict"
-            >
-              <ul className="mt-2 hidden flex-col gap-3 border-t border-border-soft pt-5 lg:flex">
-                {[
-                  ["ROI Honesty", "Are the claimed returns real?"],
-                  ["Integration Tax", "How easily does it connect?"],
-                  ["Build-vs-Buy Moat", "Real value, or a wrapper?"],
-                  ["Time-to-Value", "How fast to payback?"],
-                  ["Lock-in Safety", "How safe is it to exit?"],
-                ].map(([axis, question]) => (
-                  <li
-                    key={axis}
-                    className="flex items-baseline justify-between gap-4"
+        {/* SEC.03 — Principles */}
+        <section id="principles" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
+          <Reveal>
+            <SectionRule sec="SEC.03" title="Operating principles" />
+            <div className="mt-14 grid gap-12 lg:grid-cols-3">
+              {principles.map((p) => (
+                <div key={p.n} className="flex flex-col gap-4 border-t border-line pt-6">
+                  <span className="font-mono text-label text-signal-bright">{p.n}</span>
+                  <h3 className="type-semi-extended text-h3 uppercase">{p.title}</h3>
+                  <p className="text-ink-dim">{p.body}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </section>
+
+        {/* SEC.04 — Contact */}
+        <section id="contact" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
+          <Reveal>
+            <SectionRule sec="SEC.04" title="Open a channel" />
+            <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.2fr]">
+              <div>
+                <h2 className="type-semi-extended max-w-[14ch] text-h2 uppercase">
+                  Talk to the operator.
+                </h2>
+                <p className="mt-6 max-w-[44ch] text-ink-dim">
+                  Partnerships, products, press, or something that doesn&rsquo;t
+                  fit a form — direct line either way.
+                </p>
+                <p className="mt-6 font-mono text-label">
+                  <a
+                    href="mailto:blake@bzsystems.io"
+                    className="text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal"
                   >
-                    <span className="font-mono text-eyebrow uppercase">
-                      {axis}
-                    </span>
-                    <span className="text-right text-ui text-ink-muted">
-                      {question}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </ProductCard>
-            <ProductCard
-              variant="external"
-              index="P2"
-              className="lg:col-span-2"
-              eyebrow="Compliance intelligence"
-              name="Sentinel"
-              oneLiner="White-label regulatory-change briefs for boutique compliance consultancies. Lives on its own domain."
-              ctaLabel="Visit Sentinel"
-              href={SENTINEL_URL}
-            />
-            <ProductCard
-              variant="route"
-              index="P3"
-              className="lg:col-span-2"
-              eyebrow="Skill infrastructure"
-              name="SkillShelf"
-              oneLiner="A home for the AI skills your team actually trusts — kept, versioned, reusable."
-              ctaLabel="Join the waitlist"
-              href="/skillshelf#waitlist"
-            />
-            <ProductCard
-              variant="waitlist-teaser"
-              index="P4"
-              className="lg:col-span-6"
-              eyebrow="Coming soon · For developers"
-              name="License Verification API"
-              oneLiner="Professional-license verification as a single API call."
-              ctaLabel="Join the developer waitlist"
-              href="/license-api"
-            />
-          </div>
-        </section>
-
-        {/* About — tinted band for rhythm variation */}
-        <section id="about" className="bg-green-100">
-          <Reveal className="mx-auto max-w-6xl px-6 py-16 lg:px-16 lg:py-24">
-            <SectionHeading eyebrow="About" heading="A studio of one, deliberately" />
-            <div className="mt-8 flex max-w-[68ch] flex-col gap-4">
-              <p>
-                BZ Systems is an independent software studio run by Blake
-                Ziegler. Everything on this page is self-authored — designed,
-                built, and maintained by the person whose name is on the LLC.
-              </p>
-              <p>
-                The through-line is credibility: tools that tell you the truth
-                about what works, whether that&rsquo;s an AI vendor&rsquo;s
-                real fit or a professional license&rsquo;s real status.
-              </p>
-              <p>
-                The person behind the studio lives at{" "}
-                <a
-                  href="https://blakeziegler.app"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-green-800 underline decoration-border underline-offset-4 transition-colors duration-[180ms] ease-out-quart hover:decoration-accent"
-                >
-                  blakeziegler.app
-                </a>
-                .
-              </p>
+                    blake@bzsystems.io
+                  </a>
+                </p>
+              </div>
+              <ContactForm />
             </div>
           </Reveal>
         </section>
       </main>
-      <Footer />
+
+      {/* Footer */}
+      <footer className="border-t border-line-soft">
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-14 lg:flex-row lg:items-end lg:justify-between lg:px-12">
+          <Image src="/logo-dark.png" alt="BZ Systems" width={107} height={80} className="h-20 w-auto self-start" />
+          <div className="flex flex-col gap-2 font-mono text-legal text-ink-faint lg:text-right">
+            <p>© 2026 BZ SYSTEMS LLC — OHIO, USA. ALL RIGHTS RESERVED.</p>
+            <p>SYSTEMS SHIP ON THEIR OWN DOMAINS. THIS IS THE PARENT.</p>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }

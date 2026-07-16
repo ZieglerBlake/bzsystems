@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { Archivo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
+const archivo = Archivo({
   subsets: ["latin"],
-  variable: "--font-fraunces",
-  axes: ["opsz"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-archivo",
+  axes: ["wdth"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -21,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "BZ Systems",
   description:
-    "An independent studio building AI tools and digital products that solve real problems.",
+    "BZ Systems LLC — the parent company behind a portfolio of software ventures, each designed, built, and operated in-house.",
 };
 
 export default function RootLayout({
@@ -31,9 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
-      >
+      <body className={`${archivo.variable} ${jetbrainsMono.variable} antialiased`}>
         {children}
       </body>
     </html>
