@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
+import CoreArtifact from "@/components/CoreArtifact";
 import PhasedBuildIntro from "@/components/PhasedBuildIntro";
 import Reveal from "@/components/Reveal";
 import SystemMap from "@/components/SystemMap";
@@ -375,6 +376,58 @@ export default function Home() {
             </div>
           </Reveal>
         </section>
+        {/* SEC.05: Drawing register */}
+        <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-12 lg:pb-32">
+          <Reveal>
+            <SectionRule sec="SEC.05" title="Drawing register" />
+            <div className="mt-14 grid gap-px overflow-hidden rounded-md border border-line bg-line-soft sm:grid-cols-2 lg:grid-cols-4">
+              <figure className="flex flex-col bg-void p-4">
+                <div className="h-40">
+                  <CoreArtifact />
+                </div>
+                <figcaption className="mt-3 font-mono text-legal uppercase text-ink-faint">
+                  FIG.01 / The core, rotating
+                </figcaption>
+              </figure>
+              <figure className="flex flex-col bg-void p-4">
+                <Image
+                  src="/tex/contour.webp"
+                  alt="Contour line drawing"
+                  width={1400}
+                  height={763}
+                  className="h-40 w-full object-cover brightness-105 mix-blend-multiply"
+                />
+                <figcaption className="mt-3 font-mono text-legal uppercase text-ink-faint">
+                  FIG.02 / Terrain, uncharted
+                </figcaption>
+              </figure>
+              <figure className="flex flex-col bg-void p-4">
+                <Image
+                  src="/tex/blueprint.webp"
+                  alt="Circuit blueprint drawing"
+                  width={1600}
+                  height={900}
+                  className="h-40 w-full object-cover brightness-[1.18] mix-blend-multiply"
+                />
+                <figcaption className="mt-3 font-mono text-legal uppercase text-ink-faint">
+                  FIG.03 / Circuit plan
+                </figcaption>
+              </figure>
+              <figure className="flex flex-col bg-void p-4">
+                <Image
+                  src="/tex/titleblock.webp"
+                  alt="Drafting title block"
+                  width={830}
+                  height={600}
+                  className="h-40 w-full object-contain brightness-110 mix-blend-multiply"
+                />
+                <figcaption className="mt-3 font-mono text-legal uppercase text-ink-faint">
+                  FIG.04 / Title block, unsigned
+                </figcaption>
+              </figure>
+            </div>
+          </Reveal>
+        </section>
       </main>
 
       {/* Footer */}
@@ -386,14 +439,6 @@ export default function Home() {
             width={107}
             height={80}
             className="h-20 w-auto self-start mix-blend-multiply"
-          />
-          <Image
-            src="/tex/titleblock.webp"
-            alt=""
-            aria-hidden
-            width={830}
-            height={600}
-            className="hidden w-52 brightness-110 mix-blend-multiply opacity-70 lg:block"
           />
           <div className="flex flex-col gap-2 font-mono text-legal text-ink-faint lg:text-right">
             <p>© 2026 BZ SYSTEMS LLC, OHIO, USA. ALL RIGHTS RESERVED.</p>
