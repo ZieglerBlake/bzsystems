@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     from: "BZ Systems <onboarding@resend.dev>",
     to: "blake@bzsystems.io",
     replyTo: email,
-    subject: `bzsystems.io contact — ${name}`,
+    subject: `bzsystems.io contact: ${name}`,
     text: `From: ${name} <${email}>\n\n${message}`,
   });
 

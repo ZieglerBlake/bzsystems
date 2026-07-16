@@ -15,14 +15,14 @@ const SIGNAL = "#1E70CD";
 
 const NODES = [
   { tag: "LLC", x: 0.5, y: 0.56, core: true },
-  { tag: "P1", x: 0.14, y: 0.3 },
-  { tag: "P2", x: 0.82, y: 0.24 },
-  { tag: "P3", x: 0.8, y: 0.74 },
-  { tag: "P4", x: 0.18, y: 0.78 },
-  { tag: "PX", x: 0.63, y: 0.1 },
+  { tag: "01", x: 0.14, y: 0.3 },
+  { tag: "02", x: 0.82, y: 0.24 },
+  { tag: "03", x: 0.8, y: 0.74 },
+  { tag: "04", x: 0.18, y: 0.78 },
+  { tag: "05", x: 0.63, y: 0.1 },
 ];
 
-const STATUS_A = "BZ SYSTEMS / INITIALIZING REGISTRY";
+const STATUS_A = "BZ SYSTEMS / INITIALIZING";
 const STATUS_B = "BZ SYSTEMS / ALL SYSTEMS NOMINAL";
 
 // Timeline (ms)

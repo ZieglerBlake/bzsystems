@@ -18,19 +18,25 @@ type MapNode = {
   phase: number;
 };
 
+/* Nodes are deliberately unnamed: the ventures are not listed here. */
 const NODES: MapNode[] = [
-  { label: "BZ CORE", tag: "LLC", x: 0.5, y: 0.56, core: true, phase: 0 },
-  { label: "SENTINEL", tag: "P2", x: 0.82, y: 0.24, phase: 1.3 },
-  { label: "VENDOR REALITY CHECK", tag: "P1", x: 0.14, y: 0.3, phase: 2.1 },
-  { label: "SKILLSHELF", tag: "P3", x: 0.8, y: 0.74, phase: 3.4 },
-  { label: "LICENSE API", tag: "P4", x: 0.18, y: 0.78, phase: 4.2 },
-  { label: "NEXT SYSTEM", tag: "PX", x: 0.63, y: 0.1, faint: true, phase: 5.0 },
+  { label: "", tag: "BZ CORE", x: 0.5, y: 0.56, core: true, phase: 0 },
+  { label: "", tag: "SYS.01", x: 0.82, y: 0.24, phase: 1.3 },
+  { label: "", tag: "SYS.02", x: 0.14, y: 0.3, phase: 2.1 },
+  { label: "", tag: "SYS.03", x: 0.8, y: 0.74, phase: 3.4 },
+  { label: "", tag: "SYS.04", x: 0.18, y: 0.78, phase: 4.2 },
+  { label: "", tag: "SYS.NEXT", x: 0.63, y: 0.1, faint: true, phase: 5.0 },
 ];
 
-const INK = "16, 19, 18";
 const SIGNAL = "#1E70CD";
 
-export default function SystemMap({ className = "" }: { className?: string }) {
+export default function SystemMap({
+  className = "",
+  variant = "light",
+}: {
+  className?: string;
+  variant?: "light" | "dark";
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -39,6 +45,7 @@ export default function SystemMap({ className = "" }: { className?: string }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const INK = variant === "dark" ? "244, 246, 245" : "16, 19, 18";
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let w = 0;
@@ -209,7 +216,7 @@ export default function SystemMap({ className = "" }: { className?: string }) {
         const lx = x + (n.x > 0.6 ? -8 : 8);
         ctx!.textAlign = n.x > 0.6 ? "right" : "left";
         ctx!.fillStyle = `rgba(${INK}, ${(narrow ? 0.22 : 0.5) * alpha})`;
-        ctx!.fillText(`${n.tag} / ${n.label}`, lx, y - 14);
+        ctx!.fillText(n.tag, lx, y - 14);
         if (!narrow) {
           ctx!.fillStyle = `rgba(${INK}, ${0.24 * alpha})`;
           ctx!.fillText(
@@ -274,7 +281,7 @@ export default function SystemMap({ className = "" }: { className?: string }) {
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("mousemove", onMouse);
     };
-  }, []);
+  }, [variant]);
 
   return <canvas ref={canvasRef} aria-hidden className={`h-full w-full ${className}`} />;
 }

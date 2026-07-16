@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "BZ Systems",
   description:
-    "BZ Systems LLC — the parent company behind a portfolio of software ventures, each designed, built, and operated in-house.",
+    "BZ Systems LLC is a technology building company. We design, build, and operate our own software ventures, each on its own domain.",
 };
 
 export default function RootLayout({

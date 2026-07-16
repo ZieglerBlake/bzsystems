@@ -84,7 +84,7 @@ export default function ContactForm() {
         </button>
         {status === "error" && (
           <p role="alert" className="font-mono text-label text-ink-dim">
-            Channel failed — email{" "}
+            Channel failed. Email{" "}
             <a href="mailto:blake@bzsystems.io" className="text-signal-bright underline">
               blake@bzsystems.io
             </a>
