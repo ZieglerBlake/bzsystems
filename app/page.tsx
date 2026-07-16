@@ -1,5 +1,7 @@
 import Image from "next/image";
+import CircuitField from "@/components/CircuitField";
 import ContactForm from "@/components/ContactForm";
+import CoreArtifact from "@/components/CoreArtifact";
 import Reveal from "@/components/Reveal";
 import SystemMap from "@/components/SystemMap";
 
@@ -53,6 +55,40 @@ const principles = [
     body: "No invented metrics, no fake logos, no manufactured social proof. A system either works or it doesn't — and we say which.",
   },
 ];
+
+/* Self-drawing schematic marks for the three principles */
+function Glyph({ variant }: { variant: number }) {
+  const stroke = { stroke: "currentColor", strokeWidth: 1.5, fill: "none" } as const;
+  return (
+    <svg aria-hidden viewBox="0 0 56 56" className="glyph h-14 w-14 text-ink">
+      {variant === 0 && (
+        <>
+          {/* built in-house: block inside its own frame */}
+          <path {...stroke} d="M8 8 H48 V48 H8 Z" />
+          <path {...stroke} d="M20 20 H36 V36 H20 Z" stroke="var(--color-signal)" />
+          <line {...stroke} x1="8" y1="8" x2="20" y2="20" />
+          <line {...stroke} x1="48" y1="48" x2="36" y2="36" />
+        </>
+      )}
+      {variant === 1 && (
+        <>
+          {/* stands alone: node with its own orbit */}
+          <circle {...stroke} cx="28" cy="28" r="19" strokeDasharray="2 5" />
+          <circle {...stroke} cx="28" cy="28" r="6" stroke="var(--color-signal)" />
+          <line {...stroke} x1="28" y1="3" x2="28" y2="12" />
+        </>
+      )}
+      {variant === 2 && (
+        <>
+          {/* truth over theater: gauge reading true */}
+          <path {...stroke} d="M8 40 A22 22 0 0 1 48 40" />
+          <line {...stroke} x1="28" y1="40" x2="42" y2="24" stroke="var(--color-signal)" />
+          <line {...stroke} x1="8" y1="46" x2="48" y2="46" />
+        </>
+      )}
+    </svg>
+  );
+}
 
 function SectionRule({ sec, title }: { sec: string; title: string }) {
   return (
@@ -141,11 +177,20 @@ export default function Home() {
         <section id="charter" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
           <Reveal>
             <SectionRule sec="SEC.01" title="Charter" />
-            <div className="mt-14 grid gap-12 lg:grid-cols-[1.2fr_1fr]">
-              <h2 className="type-semi-extended max-w-[18ch] text-h2 uppercase">
-                The product is the company that makes the products.
-              </h2>
-              <div className="flex flex-col gap-5 text-ink-dim">
+            <div className="mt-14 grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+              <div className="flex flex-col gap-3">
+                <div className="aspect-square w-full max-w-sm">
+                  <CoreArtifact />
+                </div>
+                <p className="font-mono text-legal uppercase text-ink-faint">
+                  FIG.01 — The core / self-contained system
+                </p>
+              </div>
+              <div className="flex flex-col gap-8">
+                <h2 className="type-semi-extended max-w-[18ch] text-h2 uppercase">
+                  The product is the company that makes the products.
+                </h2>
+                <div className="flex flex-col gap-5 text-ink-dim">
                 <p>
                   Most software companies are one bet. BZ Systems is built to
                   be a system of bets — an umbrella under which independent
@@ -169,14 +214,16 @@ export default function Home() {
                     blakeziegler.app ↗
                   </a>
                 </p>
+                </div>
               </div>
             </div>
           </Reveal>
         </section>
 
         {/* SEC.02 — Ventures */}
-        <section id="ventures" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
-          <Reveal>
+        <section id="ventures" className="relative scroll-mt-24 py-24 lg:py-36">
+          <CircuitField />
+          <Reveal className="relative mx-auto max-w-7xl px-6 lg:px-12">
             <SectionRule sec="SEC.02" title="Ventures / Live registry" />
             <div className="mt-14 grid gap-px overflow-hidden rounded-md border border-line bg-line-soft sm:grid-cols-2">
               {ventures.map((v) => {
@@ -235,9 +282,12 @@ export default function Home() {
           <Reveal>
             <SectionRule sec="SEC.03" title="Operating principles" />
             <div className="mt-14 grid gap-12 lg:grid-cols-3">
-              {principles.map((p) => (
+              {principles.map((p, i) => (
                 <div key={p.n} className="flex flex-col gap-4 border-t border-line pt-6">
-                  <span className="font-mono text-label text-signal-bright">{p.n}</span>
+                  <div className="flex items-center justify-between">
+                    <Glyph variant={i} />
+                    <span className="font-mono text-label text-signal-bright">{p.n}</span>
+                  </div>
                   <h3 className="type-semi-extended text-h3 uppercase">{p.title}</h3>
                   <p className="text-ink-dim">{p.body}</p>
                 </div>
