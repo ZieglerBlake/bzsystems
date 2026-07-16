@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* DESIGN-TOKENS.md — binding contract. Default Tailwind scales are wiped
+   (`initial`) so only these tokens can be used; drift fails at build time. */
+@theme {
+  --color-*: initial;
+  --color-bg: #f6f7f4;
+  --color-surface: #fdfdfb;
+  --color-ink: #161a17;
+  --color-ink-muted: #4a524c;
+  --color-border: #d8ddd6;
+  --color-border-soft: #e1e5df;
+  --color-green-900: #142921;
+  --color-green-800: #1e3a2f;
+  --color-green-700: #2a4d3f;
+  --color-green-100: #e3eae4;
+  --color-accent: #b8863b;
+  --color-accent-ink: #8a6224;
+
+  --radius-*: initial;
+  --radius-sm: 2px;
+  --radius-md: 6px;
+
+  --shadow-*: initial;
+  --shadow-lift: 0 2px 12px rgb(20 41 33 / 0.07);
+
+  --font-*: initial;
+
+  --text-*: initial;
+  --text-h1: clamp(2.5rem, 5vw, 4.25rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h1--font-weight: 560;
+  --text-h2: clamp(1.75rem, 3vw, 2.5rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 540;
+  --text-h3: 1.375rem;
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.02em;
+  --text-h3--font-weight: 540;
+  --text-h3-flagship: 1.75rem;
+  --text-h3-flagship--line-height: 1.25;
+  --text-h3-flagship--letter-spacing: -0.02em;
+  --text-h3-flagship--font-weight: 540;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.6;
+  --text-body--font-weight: 400;
+  --text-ui: 0.9375rem;
+  --text-ui--line-height: 1.2;
+  --text-ui--font-weight: 500;
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.08em;
+  --text-eyebrow--font-weight: 500;
+  --text-legal: 0.75rem;
+  --text-legal--line-height: 1.5;
+  --text-legal--letter-spacing: 0.06em;
+  --text-legal--font-weight: 400;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Font tokens reference next/font runtime variables, so they must be inlined. */
+@theme inline {
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+/* Hero entrance — CSS-only staggered fade + 12px rise. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.rise-in {
+  animation: rise-in 600ms var(--ease-out-quart) backwards;
+}
+
+.rise-in-delay-1 {
+  animation-delay: 120ms;
+}
+
+.rise-in-delay-2 {
+  animation-delay: 240ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in {
+    animation: none;
+  }
+}
+
+/* Scroll reveal (see components/Reveal.tsx). Hidden state is JS-applied,
+   so content stays visible without JS or with reduced motion. */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.reveal-pending.revealed {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 500ms var(--ease-out-quart),
+    transform 500ms var(--ease-out-quart);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-pending {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-bg font-sans text-body text-ink;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+}
