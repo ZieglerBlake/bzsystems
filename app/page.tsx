@@ -220,37 +220,37 @@ export default function Home() {
         {/* SEC.02: About us */}
         <section id="about" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
           <Reveal>
-            <SectionRule sec="SEC.02" title="About us" />
+            <SectionRule sec="SEC.02" title="Ownership" />
             <div className="mt-14 grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr]">
               <figure className="relative max-w-sm overflow-hidden rounded-md bg-ink">
                 <Image
-                  src="/blake.webp"
+                  src="/ziegler.webp"
                   alt="Blake Ziegler, founder of BZ Systems"
-                  width={800}
-                  height={962}
+                  width={427}
+                  height={513}
                   className="w-full"
                 />
                 <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
-                <figcaption className="flex items-baseline justify-between px-4 py-3 font-mono text-legal uppercase text-void/60">
-                  <span>B. Ziegler / Founder, Operator</span>
+                <figcaption className="flex items-baseline justify-between gap-3 px-4 py-3 font-mono text-legal uppercase text-void/60">
+                  <span>Ziegler / Founder, Principal</span>
                   <span className="text-[#5B9BE8]">EST. 2026</span>
                 </figcaption>
               </figure>
               <div className="flex flex-col gap-8">
                 <h2 className="type-semi-extended max-w-[18ch] text-h2 uppercase">
-                  A building company, built by one operator.
+                  One studio. One standard.
                 </h2>
                 <div className="flex flex-col gap-5 text-ink-dim">
                   <p>
                     BZ Systems is founded and run by Blake Ziegler. Design,
-                    code, infrastructure, operations: every layer of every
-                    venture is authored in-house, by the person whose name is
-                    on the LLC.
+                    code, infrastructure, operations — every layer of every
+                    venture is built in-house, by the person whose name is on
+                    the LLC.
                   </p>
                   <p>
-                    The thesis is simple. Most software companies are one bet.
-                    A building company is a system of bets, and the system
-                    itself is the product that compounds.
+                    The standard is the same across the board: built in-house,
+                    owned outright, operated with intent. We design it, we run
+                    it, we answer for it.
                   </p>
                 </div>
                 <p className="font-mono text-label uppercase">
