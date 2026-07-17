@@ -324,6 +324,8 @@ export default function Home() {
                 "APIs",
                 "Automation",
                 "Data pipelines",
+                "Infrastructure",
+                "Analytics",
               ].map((c) => (
                 <li
                   key={c}
