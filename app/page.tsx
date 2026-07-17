@@ -126,7 +126,8 @@ export default function Home() {
             <h1 className="rise-in rise-in-delay-1 type-extended mt-6 max-w-5xl text-display uppercase">
               DESIGNED BY US.
               <br />
-              <span className="text-signal-bright">BUILT BY US. OWNED BY US.</span>
+              <span className="text-signal-bright">BUILT BY US.</span> OWNED BY
+              US.
             </h1>
             <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
               BZ Systems designs, builds, and operates its own software
