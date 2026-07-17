@@ -70,7 +70,7 @@ export default function ContactForm() {
           rows={5}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          placeholder="What are we building?"
+          placeholder="Briefly describe your inquiry and any relevant background."
           className={`${inputClass} resize-y`}
         />
       </label>
@@ -80,7 +80,7 @@ export default function ContactForm() {
           disabled={status === "loading"}
           className="rounded-sm border border-signal px-8 py-3 font-mono text-label uppercase text-ink transition-all duration-200 hover:bg-signal hover:shadow-glow disabled:opacity-50"
         >
-          {status === "loading" ? "Transmitting…" : "Transmit"}
+          {status === "loading" ? "Transmitting…" : "Send inquiry"}
         </button>
         {status === "error" && (
           <p role="alert" className="font-mono text-label text-ink-dim">

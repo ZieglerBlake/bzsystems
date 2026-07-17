@@ -359,15 +359,16 @@ export default function Home() {
         {/* SEC.04: Contact */}
         <section id="contact" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
           <Reveal>
-            <SectionRule sec="SEC.04" title="Open a channel" />
+            <SectionRule sec="SEC.04" title="Contact" />
             <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.2fr]">
               <div>
                 <h2 className="type-semi-extended max-w-[14ch] text-h2 uppercase">
-                  Talk to the operator.
+                  Reach us directly.
                 </h2>
                 <p className="mt-6 max-w-[44ch] text-ink-dim">
-                  Partnerships, press, or something that doesn&rsquo;t fit a
-                  form. Direct line either way.
+                  For partnerships, press, or product inquiries, use the form
+                  below. We aim to respond as soon as possible. Detailed
+                  inquiries help us respond faster and more thoroughly.
                 </p>
                 <p className="mt-6 font-mono text-label">
                   <a
