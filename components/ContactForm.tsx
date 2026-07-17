@@ -85,8 +85,8 @@ export default function ContactForm() {
         {status === "error" && (
           <p role="alert" className="font-mono text-label text-ink-dim">
             Something went wrong. Please email us directly at{" "}
-            <a href="mailto:blake@bzsystems.io" className="text-signal-bright underline">
-              blake@bzsystems.io
+            <a href="mailto:contact@bzsystems.io" className="text-signal-bright underline">
+              contact@bzsystems.io
             </a>
             .
           </p>

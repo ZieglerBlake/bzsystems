@@ -310,10 +310,10 @@ export default function Home() {
                 </p>
                 <p className="mt-6 font-mono text-label">
                   <a
-                    href="mailto:blake@bzsystems.io"
+                    href="mailto:contact@bzsystems.io"
                     className="text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal"
                   >
-                    blake@bzsystems.io
+                    contact@bzsystems.io
                   </a>
                   <span className="text-ink-faint">&ensp;/&ensp;</span>
                   <a
