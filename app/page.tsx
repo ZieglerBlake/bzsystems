@@ -233,7 +233,7 @@ export default function Home() {
                 <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
                 <figcaption className="flex items-baseline justify-between gap-3 px-4 py-3 font-mono text-legal uppercase text-void/60">
                   <span>Ziegler / Founder, Principal</span>
-                  <span className="text-[#5B9BE8]">EST. 2026</span>
+                  <span className="whitespace-nowrap text-[#5B9BE8]">EST. 2026</span>
                 </figcaption>
               </figure>
               <div className="flex flex-col gap-8">
