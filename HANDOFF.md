@@ -1,0 +1,96 @@
+# HANDOFF — bzsystems.io (redesign branch)
+
+Last updated: 2026-07-17. Session built the full parent-company site on the
+`redesign` branch. Everything below is committed and pushed to
+`github.com/ZieglerBlake/bzsystems` (private). `main` still holds the retired
+light-editorial v1; do not develop there.
+
+## What the site is
+
+Parent-company flagship for BZ Systems LLC (independent software studio,
+Columbus OH, Blake Robert Ziegler). Ventures ship elsewhere; this site is
+brand + about + contact. Design language: "bright control room x schematic".
+
+- Field `#F7F8F6` (token name `void` — kept for class stability), panel white,
+  ink `#101312`, one signal blue `#1E70CD` (bright-on-dark `#5B9BE8`,
+  text-on-light `#15529E`). Fonts: Archivo variable (wdth axis; display 125,
+  semi 112) + JetBrains Mono. Blue seams: `h-[2px] bg-signal shadow-glow`.
+- Hard content rules from Blake: NO em dashes anywhere, ever. No invented
+  metrics/details. Venture lineup lives on /ventures (pending content), not
+  on the home page.
+
+## Pages & structure (all verified desktop + 375px)
+
+- `/` — PhasedBuildIntro (plays EVERY visit, skippable, SSR-rendered so no
+  flash) → hero (live SystemMap canvas, "DESIGNED BY US. / BUILT BY US. /
+  OWNED BY US.") → film band (hero.mp4 + centered logo-dark w/ vignette) →
+  SEC.01 THE COMPANY (dark band) → SEC.02 OWNERSHIP (graded headshot
+  ziegler.webp) → SEC.03 HOW WE BUILD (3 cards + 7 capability chips +
+  "ARCHITECTURE OVER ASSURANCES.") → thesis slab ("THE SYSTEM IS THE
+  STRATEGY. THE PRODUCTS ARE THE PROOF.") → SEC.04 CONTACT (form) → footer.
+- `/about` — definitive copy from Blake (verbatim, verified byte-for-byte):
+  nameplate logo, ABOUT label, "Building software companies, venture by
+  venture.", THE COMPANY / THE THESIS / WHAT WE BUILD / HOW WE OPERATE.
+- `/ventures` — honest placeholder: dark, live map, "THE REGISTRY IS IN
+  BUILD." Awaiting real lineup content from Blake.
+- `POST /api/contact` — Resend-backed handler, validates, sends to
+  blake@bzsystems.io (replyTo submitter). WORKS IN CODE, DEAD IN PRACTICE:
+  no RESEND_API_KEY set anywhere, so every submit 503s into the graceful
+  error state. Zero emails have ever been delivered.
+
+Shared components: Nav (routes /ventures, /about, /#contact), Footer,
+SectionRule, Reveal (scroll reveal; anchor-jump-safe), SystemMap
+(light/dark variants, unlabeled SYS.xx nodes), CoreArtifact (unused
+currently), CircuitField (unused currently), PhasedBuildIntro, ContactForm.
+
+Assets in /public: logo.png, logo-dark.png (generated white knockout),
+hero.mp4 + hero-poster.webp, ziegler.webp (graded headshot),
+tex/blueprint.webp (SEC.03 backdrop), tex/contour.webp (SEC.04 figure).
+UNUSED (safe to delete or reuse): blake.webp, tex/titleblock.webp.
+
+## Blocked on Blake (in priority order)
+
+1. RESEND_API_KEY → .env.local + Vercel env. Then: verify bzsystems.io in
+   Resend, switch sender from onboarding@resend.dev to contact@bzsystems.io,
+   live-test the form end to end.
+2. contact@bzsystems.io must exist as a real mailbox/alias (public-facing
+   address site-wide since the email swap; Resend recipient is still
+   blake@bzsystems.io by his instruction).
+3. Deploy: vercel.com/new → import ZieglerBlake/bzsystems (the local Vercel
+   CLI token is scope-restricted and cannot create projects) → add domain
+   bzsystems.io + www at registrar. Deploy from `redesign` or merge first.
+4. Merge decision: redesign → main. /code-review ultra teardown was offered,
+   never run.
+5. Ventures registry content (names, one-liners, statuses, links).
+6. Home SEC.02 vs /about duplication: awaiting slim/re-point go-ahead.
+
+## Open flags awaiting verbatim copy from Blake
+
+- Form strings still off-theme: loading "Transmitting…", success
+  "▸ Transmission received. Expect a reply within 48 hours."
+  (Proposed: "Sending…" / "▸ Inquiry received. We will reply within 48
+  hours." — not yet approved.)
+- Factually-wrong "own domain" claim survives in exactly two places, both
+  reported and deliberately unchanged pending his words:
+  layout.tsx:19 metadata description ("each on its own domain") and the
+  footer line "VENTURES SHIP ON THEIR OWN DOMAINS. THIS IS THE PARENT."
+
+## Not done yet (explicitly deferred)
+
+- SEO/meta/OG/favicon pass (only a minimal title/description exists; OG
+  image plan: screenshot the real hero; favicon: cut from logo.png).
+- Analytics, sitemap, robots: none.
+
+## Dev ops notes for the next session
+
+- Dev server: preview config `bzsystems-dev` (port 3105) lives in
+  fable-window/.claude/launch.json (session working dir), NOT in this repo.
+- Build ritual: STOP the dev server first, `rm -rf .next && npx next build
+  --no-lint`, then restart. Building while the dev server runs corrupts
+  .next (learned the hard way).
+- Shell cwd resets between commands; always `cd` explicitly or git/build
+  ends up running in the wrong repo.
+- Browser panes cache hard: verify with `curl localhost:3105` when "old
+  site" is reported; cache-bust navigations (?v=...) fix stale tabs.
+- Em-dash check before any copy commit:
+  `grep -rn "—" app components --include="*.tsx"` must return comments only.
