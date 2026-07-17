@@ -294,17 +294,17 @@ export default function Home() {
                 {
                   n: "01",
                   title: "Built in-house, end to end",
-                  body: "Every layer is authored inside the company, from the interface down to the infrastructure. Nothing is assembled from parts we don't understand.",
+                  body: "Interface to infrastructure, we write the whole stack ourselves. If it's in the product, we can take it apart, explain it, and stand behind it.",
                 },
                 {
                   n: "02",
                   title: "Ships standalone",
-                  body: "Each venture gets its own name, its own domain, and its own brand. It has to survive on its own merits, without the parent holding its hand.",
+                  body: "Each venture gets its own name, its own brand, and its own front door. It stands alone with its own P&L. The studio backs it, but never props it up.",
                 },
                 {
                   n: "03",
-                  title: "Truth over theater",
-                  body: "No invented metrics, no manufactured social proof. If a system works, we say so. If it doesn't, it gets rebuilt or retired.",
+                  title: "Honest by structure",
+                  body: "The structure makes honesty automatic. Every claim is checkable, every number is real, and every venture is stated exactly as it stands. The standard doesn't move.",
                 },
               ].map((p, i) => (
                 <div key={p.n} className="flex flex-col gap-4 border-t border-line pt-6">
@@ -324,7 +324,6 @@ export default function Home() {
                 "APIs",
                 "Automation",
                 "Data pipelines",
-                "Operations",
               ].map((c) => (
                 <li
                   key={c}
@@ -334,6 +333,9 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            <p className="mt-16 font-mono text-label uppercase text-ink-faint">
+              Architecture over assurances.
+            </p>
           </Reveal>
         </section>
 
