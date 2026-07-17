@@ -80,14 +80,15 @@ export default function ContactForm() {
           disabled={status === "loading"}
           className="rounded-sm border border-signal px-8 py-3 font-mono text-label uppercase text-ink transition-all duration-200 hover:bg-signal hover:shadow-glow disabled:opacity-50"
         >
-          {status === "loading" ? "Transmitting…" : "Send inquiry"}
+          {status === "loading" ? "Transmitting…" : "Send"}
         </button>
         {status === "error" && (
           <p role="alert" className="font-mono text-label text-ink-dim">
-            Channel failed. Email{" "}
+            Something went wrong. Please email us directly at{" "}
             <a href="mailto:blake@bzsystems.io" className="text-signal-bright underline">
               blake@bzsystems.io
             </a>
+            .
           </p>
         )}
       </div>
