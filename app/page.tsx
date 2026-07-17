@@ -346,8 +346,8 @@ export default function Home() {
           <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
           <Reveal className="mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-32">
             <p className="type-extended max-w-[16ch] text-display uppercase text-void">
-              The build is the business.{" "}
-              <span className="text-[#5B9BE8]">The factory is the product.</span>
+              The system is the strategy.{" "}
+              <span className="text-[#5B9BE8]">The products are the proof.</span>
             </p>
             <p className="mt-8 font-mono text-label uppercase text-void/40">
               BZ Systems LLC / Est. 2026
