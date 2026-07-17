@@ -243,7 +243,7 @@ export default function Home() {
                 <div className="flex flex-col gap-5 text-ink-dim">
                   <p>
                     BZ Systems is founded and run by Blake Ziegler. Design,
-                    code, infrastructure, operations — every layer of every
+                    code, infrastructure, operations: every layer of every
                     venture is built in-house, by the person whose name is on
                     the LLC.
                   </p>
