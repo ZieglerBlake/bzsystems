@@ -25,7 +25,7 @@
   --font-*: initial;
 
   --text-*: initial;
-  --text-display: clamp(2.75rem, 8vw, 6rem);
+  --text-display: clamp(1.75rem, 6.5vw, 5rem);
   --text-display--line-height: 0.96;
   --text-display--letter-spacing: 0.01em;
   --text-display--font-weight: 800;

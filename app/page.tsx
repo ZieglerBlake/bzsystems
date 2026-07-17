@@ -121,20 +121,20 @@ export default function Home() {
           />
           <div className="relative mx-auto w-full max-w-7xl px-6 pb-20 pt-40 lg:px-12 lg:pb-24">
             <p className="rise-in caret font-mono text-label uppercase text-ink-dim">
-              BZ SYSTEMS LLC / TECH BUILDING COMPANY / ALL SYSTEMS NOMINAL
+              BZ SYSTEMS LLC / INDEPENDENT SOFTWARE STUDIO / COLUMBUS, OH
             </p>
             <h1 className="rise-in rise-in-delay-1 type-extended mt-6 max-w-5xl text-display uppercase">
-              One company.
+              DESIGNED BY US.
               <br />
-              <span className="text-signal-bright">Many machines.</span>
+              <span className="text-signal-bright">BUILT BY US. OWNED BY US.</span>
             </h1>
             <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
-              BZ Systems is a technology building company in Ohio. We design,
-              build, and operate our own software ventures. Each one ships on
-              its own domain, under its own name.
+              BZ Systems designs, builds, and operates its own software
+              products. Each one is owned and operated in-house, from
+              architecture to invoice.
             </p>
             <ul className="rise-in rise-in-delay-3 mt-10 flex flex-wrap gap-3">
-              {["Ohio LLC", "Self-operated", "Always building"].map((f) => (
+              {["FOUNDER-BUILT", "REVENUE-FUNDED", "EST. 2026"].map((f) => (
                 <li
                   key={f}
                   className="rounded-sm border border-line px-4 py-2 font-mono text-label uppercase text-ink-faint"
