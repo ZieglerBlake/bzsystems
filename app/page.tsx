@@ -148,7 +148,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* The slab film: full-bleed, no text, pure theme */}
+        {/* The slab film: full-bleed, logo over the moving theme */}
         <section aria-hidden className="relative h-[42vh] overflow-hidden bg-ink lg:h-[52vh]">
           <div className="absolute inset-x-0 top-0 z-10 h-[2px] bg-signal shadow-glow" />
           <video
@@ -161,6 +161,25 @@ export default function Home() {
           >
             <source src="/hero.mp4" type="video/mp4" />
           </video>
+          <div className="absolute inset-0 z-10 grid place-items-center">
+            <div className="relative grid place-items-center">
+              <div
+                aria-hidden
+                className="absolute h-[340px] w-[560px] rounded-full"
+                style={{
+                  background:
+                    "radial-gradient(closest-side, rgb(1 3 8 / 0.62), transparent)",
+                }}
+              />
+              <Image
+                src="/logo-dark.png"
+                alt=""
+                width={341}
+                height={256}
+                className="relative h-32 w-auto drop-shadow-[0_6px_32px_rgba(1,3,8,0.75)] lg:h-44"
+              />
+            </div>
+          </div>
         </section>
 
         {/* SEC.01: Ventures. The black slab band. No names, ever. */}
