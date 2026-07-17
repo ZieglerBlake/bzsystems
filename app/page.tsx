@@ -189,24 +189,27 @@ export default function Home() {
             <SystemMap variant="dark" />
           </div>
           <Reveal className="relative mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-36">
-            <SectionRule sec="SEC.01" title="Ventures" dark />
+            <SectionRule sec="SEC.01" title="The company" dark />
             <div className="mt-14 grid gap-12 lg:grid-cols-[1.1fr_1fr]">
-              <h2 className="type-semi-extended max-w-[16ch] text-h2 uppercase text-void">
-                We build them. They leave home.
+              <h2 className="type-semi-extended max-w-[19ch] text-h2 uppercase text-void">
+                Built in-house.
+                <br />
+                Shipped to market.
               </h2>
               <div className="flex flex-col gap-5 text-void/70">
                 <p>
-                  Every venture BZ Systems builds ships on its own domain, with
-                  its own name and its own brand. Some are live. Some are in
-                  build. Some are still on the drafting table.
+                  BZ Systems LLC is an independent software studio out of
+                  Columbus, Ohio. The products are the business, designed here,
+                  built here, operated here, and supported by the people who
+                  made them.
                 </p>
                 <p>
-                  You will not find a catalog here, by design. The company is
-                  the factory, not the showroom, and this page does not chase
-                  what the factory is making.
+                  The full lineup, live and in build, is on the ventures page.
+                  Each one states what it does, where it stands, and how to
+                  get in.
                 </p>
                 <p className="font-mono text-label uppercase text-void/50">
-                  If a venture wants you to find it, it will find you.
+                  Full-stack ownership. Zero outside capital.
                 </p>
               </div>
             </div>
