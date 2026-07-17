@@ -1,7 +1,10 @@
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
+import Footer from "@/components/Footer";
+import Nav from "@/components/Nav";
 import PhasedBuildIntro from "@/components/PhasedBuildIntro";
 import Reveal from "@/components/Reveal";
+import SectionRule from "@/components/SectionRule";
 import SystemMap from "@/components/SystemMap";
 
 const LINKEDIN = "https://www.linkedin.com/in/blakerobertziegler/";
@@ -37,76 +40,11 @@ function Glyph({ variant }: { variant: number }) {
   );
 }
 
-function SectionRule({
-  sec,
-  title,
-  dark = false,
-}: {
-  sec: string;
-  title: string;
-  dark?: boolean;
-}) {
-  return (
-    <div className="flex items-baseline gap-4">
-      <span
-        className={`whitespace-nowrap font-mono text-label uppercase ${
-          dark ? "text-[#5B9BE8]" : "text-signal-bright"
-        }`}
-      >
-        {sec}
-      </span>
-      <span
-        className={`whitespace-nowrap font-mono text-label uppercase ${
-          dark ? "text-void/40" : "text-ink-faint"
-        }`}
-      >
-        {title}
-      </span>
-      <span className={`rule-draw h-px flex-1 self-center ${dark ? "bg-void/20" : "bg-line"}`} />
-      <span
-        className={`hidden font-mono text-legal sm:block ${
-          dark ? "text-void/40" : "text-ink-faint"
-        }`}
-      >
-        +
-      </span>
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <>
       <PhasedBuildIntro />
-      {/* Nav */}
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-line-soft bg-void/85 backdrop-blur-sm">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
-          <a href="#top" aria-label="BZ Systems home">
-            <Image
-              src="/logo.png"
-              alt="BZ Systems"
-              width={64}
-              height={48}
-              priority
-              className="h-12 w-auto mix-blend-multiply"
-            />
-          </a>
-          <div className="flex items-center gap-6 font-mono text-label uppercase sm:gap-8">
-            <a href="#ventures" className="text-ink-dim transition-colors hover:text-ink">
-              Ventures
-            </a>
-            <a href="#about" className="text-ink-dim transition-colors hover:text-ink">
-              About us
-            </a>
-            <a
-              href="#contact"
-              className="rounded-sm border border-line px-4 py-2 text-ink transition-all duration-200 hover:border-signal hover:shadow-glow"
-            >
-              Contact
-            </a>
-          </div>
-        </nav>
-      </header>
+      <Nav />
 
       <main id="top">
         {/* Hero: calm live map behind the text */}
@@ -406,22 +344,7 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-line-soft">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-14 lg:flex-row lg:items-end lg:justify-between lg:px-12">
-          <Image
-            src="/logo.png"
-            alt="BZ Systems"
-            width={107}
-            height={80}
-            className="h-20 w-auto self-start mix-blend-multiply"
-          />
-          <div className="flex flex-col gap-2 font-mono text-legal text-ink-faint lg:text-right">
-            <p>© 2026 BZ SYSTEMS LLC, OHIO, USA. ALL RIGHTS RESERVED.</p>
-            <p>VENTURES SHIP ON THEIR OWN DOMAINS. THIS IS THE PARENT.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
