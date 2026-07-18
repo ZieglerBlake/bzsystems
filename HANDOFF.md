@@ -88,10 +88,9 @@ tex/contour.webp (FIG.02 removed from SEC.04 on 2026-07-18).
 
 ## Open flags awaiting verbatim copy from Blake
 
-- Form strings still off-theme: loading "Transmitting…", success
-  "▸ Transmission received. Expect a reply within 48 hours."
-  (Proposed: "Sending…" / "▸ Inquiry received. We will reply within 48
-  hours." — not yet approved.)
+- RESOLVED 2026-07-18: form strings are Blake's verbatim copy: loading
+  "Sending…", success "▸ Message sent and received. We will get back to
+  you ASAP."
 - Factually-wrong "own domain" claim survives in exactly two places, both
   reported and deliberately unchanged pending his words:
   layout.tsx:19 metadata description ("each on its own domain") and the
@@ -107,7 +106,10 @@ tex/contour.webp (FIG.02 removed from SEC.04 on 2026-07-18).
   never stale. Swap to a real screenshot later if preferred.
 - (2026-07-18) Analytics DONE: @vercel/analytics wired in layout. Silent
   until the Vercel import (blocker 3), then live with zero work.
-- Favicon: app/favicon.ico was already a custom 4-res icon. Left as is.
+- Favicon: the original app/favicon.ico was the create-next-app DEFAULT
+  (Vercel triangle), not custom. Replaced 2026-07-18 with the B-Z mark on
+  an ink plate cut from logo-dark.png: favicon.ico 16/32/48 + app/icon.png
+  512 + app/apple-icon.png 180.
 - FLAG: .env.example is stale. It describes a waitlist endpoint and
   NEXT_PUBLIC_SENTINEL_URL that do not exist in this repo; the real handler
   is app/api/contact needing RESEND_API_KEY. Rewrite when doing blocker 1.
