@@ -1,9 +1,10 @@
 # HANDOFF — bzsystems.io (redesign branch)
 
-Last updated: 2026-07-17. Session built the full parent-company site on the
-`redesign` branch. Everything below is committed and pushed to
-`github.com/ZieglerBlake/bzsystems` (private). `main` still holds the retired
-light-editorial v1; do not develop there.
+Last updated: 2026-07-18. MERGED: `redesign` was fast-forwarded into `main`
+on 2026-07-18 for the Vercel launch; `main` is now the live branch and the
+place to develop. The retired light-editorial v1 exists only in git history.
+Everything below is committed and pushed to
+`github.com/ZieglerBlake/bzsystems` (private).
 
 ## What the site is
 
