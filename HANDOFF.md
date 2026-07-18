@@ -91,10 +91,13 @@ tex/contour.webp (FIG.02 removed from SEC.04 on 2026-07-18).
 - RESOLVED 2026-07-18: form strings are Blake's verbatim copy: loading
   "Sending…", success "▸ Message sent and received. We will get back to
   you ASAP."
-- Factually-wrong "own domain" claim survives in exactly two places, both
-  reported and deliberately unchanged pending his words:
-  layout.tsx:19 metadata description ("each on its own domain") and the
-  footer line "VENTURES SHIP ON THEIR OWN DOMAINS. THIS IS THE PARENT."
+- The "own domain" claim survives in exactly ONE place now: the footer
+  line "VENTURES SHIP ON THEIR OWN DOMAINS. THIS IS THE PARENT."
+  (visible copy, awaiting Blake's words). The metadata description half
+  was RESOLVED 2026-07-18: root description is the hero subline verbatim,
+  per Blake's metadata-pass instruction. Full SEO state: per-page
+  meta/OG/Twitter on all routes, Organization JSON-LD on home, sitemap +
+  robots exclude /ventures while locked (one-line revert at launch).
 
 ## Not done yet (explicitly deferred)
 
