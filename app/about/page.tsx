@@ -10,13 +10,6 @@ export const metadata: Metadata = {
 
 const sections = [
   {
-    label: "The company",
-    paragraphs: [
-      "BZ Systems LLC is an independent software studio out of Columbus, Ohio, founded in 2026 by Blake Robert Ziegler. The company exists to do one thing: build software products worth owning, and then own them.",
-      "The studio operates as a parent company. Each venture ships under its own name and brand, stands on its own P&L, and is built, operated, and supported entirely in-house. Nothing is acquired, nothing is outsourced, and nothing ships that we wouldn't run ourselves.",
-    ],
-  },
-  {
     label: "The thesis",
     paragraphs: [
       "Most software companies are built to be sold. BZ Systems is built to be kept.",
@@ -43,15 +36,19 @@ export default function About() {
       <Nav />
       <main>
         <div className="mx-auto max-w-7xl px-6 pt-40 pb-24 lg:px-12 lg:pb-32">
-          {/* Nameplate */}
-          <Image
-            src="/logo.png"
-            alt="BZ Systems"
-            width={107}
-            height={80}
-            priority
-            className="rise-in h-20 w-auto mix-blend-multiply"
-          />
+          {/* Nameplate: white knockout mark on an ink plate, centered */}
+          <div className="rise-in flex justify-center">
+            <div className="rounded-sm bg-ink px-4 py-2">
+              <Image
+                src="/logo-dark.png"
+                alt="BZ Systems"
+                width={1448}
+                height={1086}
+                priority
+                className="h-40 w-auto"
+              />
+            </div>
+          </div>
 
           {/* Page label */}
           <p className="rise-in rise-in-delay-1 mt-10 font-mono text-label uppercase text-ink-dim">
