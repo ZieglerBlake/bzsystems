@@ -21,18 +21,24 @@ brand + about + contact. Design language: "bright control room x schematic".
 
 ## Pages & structure (all verified desktop + 375px)
 
-- `/` — PhasedBuildIntro (plays EVERY visit, skippable, SSR-rendered so no
-  flash) → hero (live SystemMap canvas, "DESIGNED BY US. / BUILT BY US. /
+- `/` — PhasedBuildIntro (plays on every fresh load, skippable, SSR-rendered
+  so no flash; since 2026-07-18 it does NOT replay on in-site route
+  transitions within a pageload and never gates section deep links like
+  /#contact) → hero (live SystemMap canvas, "DESIGNED BY US. / BUILT BY US. /
   OWNED BY US.") → film band (hero.mp4 + centered logo-dark w/ vignette) →
   SEC.01 THE COMPANY (dark band) → SEC.02 OWNERSHIP (graded headshot
   ziegler.webp) → SEC.03 HOW WE BUILD (3 cards + 7 capability chips +
   "ARCHITECTURE OVER ASSURANCES.") → thesis slab ("THE SYSTEM IS THE
   STRATEGY. THE PRODUCTS ARE THE PROOF.") → SEC.04 CONTACT (form) → footer.
-- `/about` — definitive copy from Blake (verbatim, verified byte-for-byte):
-  nameplate logo, ABOUT label, "Building software companies, venture by
-  venture.", THE COMPANY / THE THESIS / WHAT WE BUILD / HOW WE OPERATE.
-- `/ventures` — honest placeholder: dark, live map, "THE REGISTRY IS IN
-  BUILD." Awaiting real lineup content from Blake.
+- `/about` — definitive copy from Blake (verbatim): centered dark-mark
+  nameplate (logo-dark.png on an ink plate), ABOUT label, "Building software
+  companies, venture by venture.", THE THESIS / WHAT WE BUILD / HOW WE
+  OPERATE. (THE COMPANY section removed 2026-07-18 at Blake's request.)
+- `/ventures` — LIGHT themed since 2026-07-18: light map, "THE REGISTRY IS
+  IN BUILD.", decorative password gate (components/RegistryLock.tsx, NOT
+  real auth, every attempt refused; swap for a real check at launch),
+  RETURN TO MAIN + SEND AN INQUIRY buttons. Padlock glyph sits next to
+  VENTURES in the shared Nav. Awaiting real lineup content from Blake.
 - `POST /api/contact` — Resend-backed handler, validates, sends to
   blake@bzsystems.io (replyTo submitter). WORKS IN CODE, DEAD IN PRACTICE:
   no RESEND_API_KEY set anywhere, so every submit 503s into the graceful

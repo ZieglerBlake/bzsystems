@@ -12,16 +12,29 @@ const CYCLE_MS = 3800;
 const HOLD_MS = 700;
 const FADE_MS = 450;
 
+// Once per pageload: in-site route transitions back to the home page do
+// not replay the intro, and section deep links (/#contact) are never
+// gated behind it.
+let playedThisPageload = false;
+
 export default function PhasedBuildIntro() {
   // Rendered in the initial server HTML so the overlay is painted before
   // hydration: no flash of the page underneath. CSS handles the fade-out
   // (and hides it entirely under prefers-reduced-motion); JS only skips
   // early and removes the node once it's invisible.
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return !playedThisPageload && !window.location.hash;
+  });
   const [skipped, setSkipped] = useState(false);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (!active) return;
+    playedThisPageload = true;
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.location.hash
+    ) {
       setActive(false);
       return;
     }
@@ -46,7 +59,7 @@ export default function PhasedBuildIntro() {
       window.removeEventListener("wheel", skip);
       window.removeEventListener("touchmove", skip);
     };
-  }, []);
+  }, [active]);
 
   if (!active) return null;
   return (
