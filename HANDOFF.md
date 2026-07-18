@@ -48,10 +48,14 @@ brand + about + contact. Design language: "bright control room x schematic".
 - `POST /api/contact` — Resend-backed handler, validates, sends FROM and TO
   contact@bzsystems.io (replyTo submitter; changed from
   onboarding@resend.dev / blake@ on 2026-07-18 at Blake's direction).
-  Requires: bzsystems.io verified in Resend (sender), Porkbun email
-  forwarding contact@ -> Blake's gmail (recipient), RESEND_API_KEY in
-  Vercel env. Until all three exist every submit 503s/502s into the
-  graceful error state. Zero emails have ever been delivered.
+  LIVE AND SENDING as of 2026-07-18: bzsystems.io verified in Resend,
+  RESEND_API_KEY in Vercel env, live endpoint returned 200/ok on a real
+  test. Receiving depends on Porkbun email forwarding contact@ ->
+  Blake's gmail. Deployed on Vercel (bzsystems-dgcx.vercel.app, Hobby):
+  repo made PUBLIC 2026-07-18 because Hobby blocks private-repo deploys
+  with non-member contributors; going private again re-blocks future
+  deploys (Pro removes the restriction). bzsystems.io DNS at Porkbun
+  still needs pointing (A @ 76.76.21.21, CNAME www cname.vercel-dns.com).
 
 Shared components: Nav (routes /ventures, /about, /#contact), Footer,
 SectionRule, Reveal (scroll reveal; anchor-jump-safe), SystemMap
