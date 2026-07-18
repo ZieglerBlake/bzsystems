@@ -8,7 +8,7 @@ export default function Nav() {
         <Link href="/" aria-label="BZ Systems home">
           <Image
             src="/logo.png"
-            alt="BZ Systems"
+            alt="BZ Systems logo"
             width={64}
             height={48}
             priority

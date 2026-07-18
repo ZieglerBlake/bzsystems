@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-14 lg:flex-row lg:items-end lg:justify-between lg:px-12">
         <Image
           src="/logo.png"
-          alt="BZ Systems"
+          alt="BZ Systems logo"
           width={107}
           height={80}
           className="h-20 w-auto self-start mix-blend-multiply"

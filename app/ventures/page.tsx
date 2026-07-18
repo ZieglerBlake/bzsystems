@@ -8,6 +8,26 @@ import SystemMap from "@/components/SystemMap";
 
 export const metadata: Metadata = {
   title: "Ventures / BZ Systems",
+  description:
+    "The venture registry of BZ Systems. The full lineup, live and in build, will be published here. Each venture will state what it does, where it stands, and how to get in.",
+  alternates: { canonical: "/ventures" },
+  openGraph: {
+    title: "Ventures / BZ Systems",
+    description:
+      "The venture registry of BZ Systems. The full lineup, live and in build, will be published here.",
+    url: "/ventures",
+    siteName: "BZ Systems",
+    locale: "en_US",
+    type: "website",
+    images: ["/opengraph-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image.png"],
+    title: "Ventures / BZ Systems",
+    description:
+      "The venture registry of BZ Systems. The full lineup, live and in build, will be published here.",
+  },
 };
 
 export default function Ventures() {

@@ -9,6 +9,31 @@ import SystemMap from "@/components/SystemMap";
 
 const LINKEDIN = "https://www.linkedin.com/in/blakerobertziegler/";
 
+/* Organization schema. Facts only, all stated on this site: name, place,
+   founding year, founder, public contact address. */
+const ORG_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "BZ Systems LLC",
+  url: "https://bzsystems.io",
+  logo: "https://bzsystems.io/logo.png",
+  description:
+    "BZ Systems designs, builds, and operates its own software products. Each one is owned and operated in-house, from architecture to invoice.",
+  foundingDate: "2026",
+  email: "contact@bzsystems.io",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Columbus",
+    addressRegion: "OH",
+    addressCountry: "US",
+  },
+  founder: {
+    "@type": "Person",
+    name: "Blake Robert Ziegler",
+    sameAs: [LINKEDIN],
+  },
+};
+
 /* Self-drawing schematic marks for the build principles */
 function Glyph({ variant }: { variant: number }) {
   const stroke = { stroke: "currentColor", strokeWidth: 1.5, fill: "none" } as const;
@@ -43,6 +68,10 @@ function Glyph({ variant }: { variant: number }) {
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSONLD) }}
+      />
       <PhasedBuildIntro />
       <Nav />
 

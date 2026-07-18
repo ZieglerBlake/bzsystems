@@ -7,6 +7,26 @@ import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "About Us / BZ Systems",
+  description:
+    "BZ Systems LLC is an independent software studio out of Columbus, Ohio, founded in 2026 by Blake Robert Ziegler. The company exists to do one thing: build software products worth owning, and then own them.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Us / BZ Systems",
+    description:
+      "BZ Systems LLC is an independent software studio out of Columbus, Ohio, founded in 2026 by Blake Robert Ziegler. The company exists to do one thing: build software products worth owning, and then own them.",
+    url: "/about",
+    siteName: "BZ Systems",
+    locale: "en_US",
+    type: "website",
+    images: ["/opengraph-image.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/opengraph-image.png"],
+    title: "About Us / BZ Systems",
+    description:
+      "BZ Systems LLC is an independent software studio out of Columbus, Ohio, founded in 2026 by Blake Robert Ziegler. The company exists to do one thing: build software products worth owning, and then own them.",
+  },
 };
 
 const sections = [
@@ -49,7 +69,7 @@ export default function About() {
             <div className="rounded-sm bg-ink px-4 py-2">
               <Image
                 src="/logo-dark.png"
-                alt="BZ Systems"
+                alt="BZ Systems logo, white mark on a black plate"
                 width={1448}
                 height={1086}
                 priority
