@@ -54,8 +54,10 @@ brand + about + contact. Design language: "bright control room x schematic".
   Blake's gmail. Deployed on Vercel (bzsystems-dgcx.vercel.app, Hobby):
   repo made PUBLIC 2026-07-18 because Hobby blocks private-repo deploys
   with non-member contributors; going private again re-blocks future
-  deploys (Pro removes the restriction). bzsystems.io DNS at Porkbun
-  still needs pointing (A @ 76.76.21.21, CNAME www cname.vercel-dns.com).
+  deploys (Pro removes the restriction). LAUNCHED 2026-07-18: bzsystems.io
+  is LIVE (Porkbun DNS -> Vercel; www is the primary host, apex 308s to
+  it; Porkbun MX/TXT records carry contact@ forwarding + Resend, do not
+  touch). Contact form delivered a real email end to end.
 
 Shared components: Nav (routes /ventures, /about, /#contact), Footer,
 SectionRule, Reveal (scroll reveal; anchor-jump-safe), SystemMap
