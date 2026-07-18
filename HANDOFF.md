@@ -45,10 +45,13 @@ brand + about + contact. Design language: "bright control room x schematic".
   real auth, every attempt refused; swap for a real check at launch),
   RETURN TO MAIN + SEND AN INQUIRY buttons. Padlock glyph sits next to
   VENTURES in the shared Nav. Awaiting real lineup content from Blake.
-- `POST /api/contact` — Resend-backed handler, validates, sends to
-  blake@bzsystems.io (replyTo submitter). WORKS IN CODE, DEAD IN PRACTICE:
-  no RESEND_API_KEY set anywhere, so every submit 503s into the graceful
-  error state. Zero emails have ever been delivered.
+- `POST /api/contact` — Resend-backed handler, validates, sends FROM and TO
+  contact@bzsystems.io (replyTo submitter; changed from
+  onboarding@resend.dev / blake@ on 2026-07-18 at Blake's direction).
+  Requires: bzsystems.io verified in Resend (sender), Porkbun email
+  forwarding contact@ -> Blake's gmail (recipient), RESEND_API_KEY in
+  Vercel env. Until all three exist every submit 503s/502s into the
+  graceful error state. Zero emails have ever been delivered.
 
 Shared components: Nav (routes /ventures, /about, /#contact), Footer,
 SectionRule, Reveal (scroll reveal; anchor-jump-safe), SystemMap
@@ -58,7 +61,8 @@ currently), CircuitField (unused currently), PhasedBuildIntro, ContactForm.
 Assets in /public: logo.png, logo-dark.png (generated white knockout),
 hero.mp4 + hero-poster.webp, ziegler.webp (graded headshot),
 tex/blueprint.webp (SEC.03 backdrop), tex/contour.webp (SEC.04 figure).
-UNUSED (safe to delete or reuse): blake.webp, tex/titleblock.webp.
+UNUSED (safe to delete or reuse): blake.webp, tex/titleblock.webp,
+tex/contour.webp (FIG.02 removed from SEC.04 on 2026-07-18).
 
 ## Blocked on Blake (in priority order)
 

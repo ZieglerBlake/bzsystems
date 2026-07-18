@@ -325,18 +325,6 @@ export default function Home() {
                     LinkedIn ↗
                   </a>
                 </p>
-                <figure className="mt-12 hidden max-w-sm lg:block">
-                  <Image
-                    src="/tex/contour.webp"
-                    alt="Blue contour line drawing on white drafting paper"
-                    width={1400}
-                    height={763}
-                    className="w-full brightness-105 mix-blend-multiply"
-                  />
-                  <figcaption className="mt-2 font-mono text-legal uppercase text-ink-faint">
-                    FIG.02, terrain uncharted
-                  </figcaption>
-                </figure>
               </div>
               <ContactForm />
             </div>
