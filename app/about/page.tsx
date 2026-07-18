@@ -10,6 +10,13 @@ export const metadata: Metadata = {
 
 const sections = [
   {
+    label: "The company",
+    paragraphs: [
+      "BZ Systems LLC is an independent software studio out of Columbus, Ohio, founded in 2026 by Blake Robert Ziegler. The company exists to do one thing: build software products worth owning, and then own them.",
+      "The studio operates as a parent company. Each venture ships under its own name and brand, stands on its own P&L, and is built, operated, and supported entirely in-house. Nothing is acquired, nothing is outsourced, and nothing ships that we wouldn't run ourselves.",
+    ],
+  },
+  {
     label: "The thesis",
     paragraphs: [
       "Most software companies are built to be sold. BZ Systems is built to be kept.",
@@ -50,18 +57,8 @@ export default function About() {
             </div>
           </div>
 
-          {/* Page label */}
-          <p className="rise-in rise-in-delay-1 mt-10 font-mono text-label uppercase text-ink-dim">
-            ABOUT
-          </p>
-
-          {/* Headline */}
-          <h1 className="rise-in rise-in-delay-2 type-extended mt-6 max-w-[24ch] text-display uppercase">
-            Building software companies, venture by venture.
-          </h1>
-
-          {/* Sections */}
-          <div className="mt-20 max-w-3xl">
+          {/* Sections: centered under the nameplate */}
+          <div className="mx-auto mt-20 max-w-3xl text-center">
             {sections.map((s, i) => (
               <Reveal key={s.label}>
                 {i > 0 && <div aria-hidden className="my-14 h-px bg-line-soft" />}

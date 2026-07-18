@@ -31,9 +31,11 @@ brand + about + contact. Design language: "bright control room x schematic".
   "ARCHITECTURE OVER ASSURANCES.") → thesis slab ("THE SYSTEM IS THE
   STRATEGY. THE PRODUCTS ARE THE PROOF.") → SEC.04 CONTACT (form) → footer.
 - `/about` — definitive copy from Blake (verbatim): centered dark-mark
-  nameplate (logo-dark.png on an ink plate), ABOUT label, "Building software
-  companies, venture by venture.", THE THESIS / WHAT WE BUILD / HOW WE
-  OPERATE. (THE COMPANY section removed 2026-07-18 at Blake's request.)
+  nameplate (logo-dark.png on an ink plate), then all four sections
+  centered: THE COMPANY / THE THESIS / WHAT WE BUILD / HOW WE OPERATE.
+  The ABOUT label and "Building software companies..." headline were
+  removed 2026-07-18 at Blake's request (page has no h1 now; flag if an
+  SEO pass ever revisits this).
 - `/ventures` — LIGHT themed since 2026-07-18: light map, "THE REGISTRY IS
   IN BUILD.", decorative password gate (components/RegistryLock.tsx, NOT
   real auth, every attempt refused; swap for a real check at launch),
