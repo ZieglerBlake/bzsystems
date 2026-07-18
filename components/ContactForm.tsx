@@ -30,7 +30,7 @@ export default function ContactForm() {
   if (status === "success") {
     return (
       <p role="status" className="font-mono text-label uppercase text-signal-bright">
-        ▸ Transmission received. Expect a reply within 48 hours.
+        ▸ Message sent and received. We will get back to you ASAP.
       </p>
     );
   }
@@ -80,7 +80,7 @@ export default function ContactForm() {
           disabled={status === "loading"}
           className="rounded-sm border border-signal px-8 py-3 font-mono text-label uppercase text-ink transition-all duration-200 hover:bg-signal hover:shadow-glow disabled:opacity-50"
         >
-          {status === "loading" ? "Transmitting…" : "Send"}
+          {status === "loading" ? "Sending…" : "Send"}
         </button>
         {status === "error" && (
           <p role="alert" className="font-mono text-label text-ink-dim">
