@@ -21,10 +21,13 @@ brand + about + contact. Design language: "bright control room x schematic".
 
 ## Pages & structure (all verified desktop + 375px)
 
-- `/` — PhasedBuildIntro (plays on every fresh load, skippable, SSR-rendered
-  so no flash; since 2026-07-18 it does NOT replay on in-site route
-  transitions within a pageload and never gates section deep links like
-  /#contact) → hero (live SystemMap canvas, "DESIGNED BY US. / BUILT BY US. /
+- `/` — PhasedBuildIntro (plays ONLY on a fresh document load, skippable,
+  SSR-rendered so no flash; NEVER on any in-site route transition and never
+  on section deep links like /#contact. Mechanism: the hydration initializer
+  checks for the server-rendered .pbi node in the DOM; client-side
+  transitions have none. Do not replace with effect-ordering tricks; a
+  layout-level tracker was tried 2026-07-18 and lost the hydration race) →
+  hero (live SystemMap canvas, "DESIGNED BY US. / BUILT BY US. /
   OWNED BY US.") → film band (hero.mp4 + centered logo-dark w/ vignette) →
   SEC.01 THE COMPANY (dark band) → SEC.02 OWNERSHIP (graded headshot
   ziegler.webp) → SEC.03 HOW WE BUILD (3 cards + 7 capability chips +

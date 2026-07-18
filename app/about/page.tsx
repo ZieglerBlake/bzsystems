@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
@@ -74,6 +75,15 @@ export default function About() {
                 </section>
               </Reveal>
             ))}
+
+            <div className="mt-16 flex justify-center">
+              <Link
+                href="/"
+                className="rounded-sm border border-line px-8 py-3 font-mono text-label uppercase text-ink transition-all duration-200 hover:border-signal hover:shadow-glow"
+              >
+                Return to main
+              </Link>
+            </div>
           </div>
         </div>
       </main>
