@@ -108,6 +108,13 @@ tex/contour.webp (FIG.02 removed from SEC.04 on 2026-07-18).
 
 ## Dev ops notes for the next session
 
+- NO Co-Authored-By trailers in commits in this repo. Vercel Hobby +
+  private repo blocks any deployment whose commit lists a non-member
+  contributor ("commit author did not have contributing access"); Claude
+  co-author trailers trip it. Learned 2026-07-18 (two blocked deploys,
+  history rewritten to clear them). Author must stay
+  BlakeRobertZiegler@gmail.com.
+
 - Dev server: preview config `bzsystems-dev` (port 3105) lives in
   fable-window/.claude/launch.json (session working dir), NOT in this repo.
 - Build ritual: STOP the dev server first, `rm -rf .next && npx next build
