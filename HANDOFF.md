@@ -77,9 +77,18 @@ UNUSED (safe to delete or reuse): blake.webp, tex/titleblock.webp.
 
 ## Not done yet (explicitly deferred)
 
-- SEO/meta/OG/favicon pass (only a minimal title/description exists; OG
-  image plan: screenshot the real hero; favicon: cut from logo.png).
-- Analytics, sitemap, robots: none.
+- (2026-07-18) SEO pass DONE: robots.ts, sitemap.ts, canonical, full OG +
+  Twitter meta in layout.tsx. OG description uses the approved hero subline;
+  the disputed root description (open flag above) was NOT reused or changed.
+  OG image is code-generated (app/opengraph-image.tsx, fonts committed under
+  assets/fonts, OFL) instead of the hero-screenshot plan: deterministic,
+  never stale. Swap to a real screenshot later if preferred.
+- (2026-07-18) Analytics DONE: @vercel/analytics wired in layout. Silent
+  until the Vercel import (blocker 3), then live with zero work.
+- Favicon: app/favicon.ico was already a custom 4-res icon. Left as is.
+- FLAG: .env.example is stale. It describes a waitlist endpoint and
+  NEXT_PUBLIC_SENTINEL_URL that do not exist in this repo; the real handler
+  is app/api/contact needing RESEND_API_KEY. Rewrite when doing blocker 1.
 
 ## Dev ops notes for the next session
 
