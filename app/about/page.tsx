@@ -34,7 +34,7 @@ const sections = [
     label: "The company",
     paragraphs: [
       "BZ Systems LLC is an independent software studio out of Columbus, Ohio, founded in 2026 by Blake Robert Ziegler. The company exists to do one thing: build software products worth owning, and then own them.",
-      "The studio operates as a parent company. Each venture ships under its own name and brand, stands on its own P&L, and is built, operated, and supported entirely in-house. Nothing is acquired, nothing is outsourced, and nothing ships that we wouldn't run ourselves.",
+      "The studio operates as a holding company for a set of independent go-to-market ventures. Each one ships under its own name and brand, stands on its own P&L, and is built, operated, and supported entirely in-house. Nothing is acquired, nothing is outsourced, and nothing ships that we wouldn't run ourselves.",
     ],
   },
   {

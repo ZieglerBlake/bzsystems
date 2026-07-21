@@ -98,9 +98,9 @@ export default function Home() {
               OWNED BY US.
             </h1>
             <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
-              BZ Systems designs, builds, and operates its own software
-              products. Each one is owned and operated in-house, from
-              architecture to invoice.
+              We design, build, and operate our own software products. Each
+              one is owned and operated in-house, from architecture to
+              invoice.
             </p>
             <ul className="rise-in rise-in-delay-3 mt-10 flex flex-wrap gap-3">
               {["FOUNDER-BUILT", "REVENUE-FUNDED", "EST. 2026"].map((f) => (
@@ -209,10 +209,9 @@ export default function Home() {
                 </h2>
                 <div className="flex flex-col gap-5 text-ink-dim">
                   <p>
-                    BZ Systems is founded and run by Blake Ziegler. Design,
-                    code, infrastructure, operations: every layer of every
-                    venture is built in-house, by the person whose name is on
-                    the LLC.
+                    Founded and run by Blake Ziegler. Design, code,
+                    infrastructure, operations: every layer of every venture
+                    is built in-house, by the person whose name is on the LLC.
                   </p>
                   <p>
                     The standard is the same across the board: built in-house,
