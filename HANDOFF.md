@@ -51,15 +51,21 @@ read it fully before changing anything. Resume incantation for any session:
 
 - `/` — PhasedBuildIntro (fresh loads only, skippable, SSR so no flash) →
   hero (live SystemMap canvas, "DESIGNED BY US. / BUILT BY US. / OWNED BY
-  US.") → film band (hero.mp4 + centered logo-dark w/ vignette) → SEC.01
-  THE COMPANY (dark band) → SEC.02 OWNERSHIP (ziegler.webp headshot) →
+  US.", subline is FIRST PERSON "We design, build, and operate our own
+  software products..." — deliberately diverges from the name-led meta/OG/
+  JSON-LD description, which stays name-led for out-of-context snippets) →
+  film band (hero.mp4 + centered logo-dark w/ vignette) → SEC.01
+  THE COMPANY (dark band) → SEC.02 OWNERSHIP (ziegler.webp headshot; opener
+  is "Founded and run by Blake Ziegler...") →
   SEC.03 HOW WE BUILD (3 cards + 7 capability chips) → thesis slab →
   SEC.04 CONTACT (form) → footer. Organization JSON-LD script at top of
   the page component.
 - `/about` — centered dark-mark nameplate (logo-dark.png on an ink plate),
   four centered sections, Blake's verbatim copy: THE COMPANY / THE THESIS /
   WHAT WE BUILD / HOW WE OPERATE, then RETURN TO MAIN. No h1 by Blake's
-  choice (he removed the headline); flag if SEO ever revisits.
+  choice (he removed the headline); flag if SEO ever revisits. THE COMPANY
+  now describes the studio as "a holding company for a set of independent
+  go-to-market ventures" (changed from "parent company" 2026-07-18).
 - `/ventures` — light theme, live map, "THE REGISTRY IS IN BUILD.",
   decorative password gate (`components/RegistryLock.tsx`, NOT real auth,
   every attempt refused; swap for a real check at launch), RETURN TO MAIN +
@@ -106,7 +112,9 @@ tex/contour.webp.
    /ventures to sitemap.ts and drop the robots disallow.
 2. Footer line "VENTURES SHIP ON THEIR OWN DOMAINS. THIS IS THE PARENT." is
    factually wrong until something ships; awaiting his replacement copy.
-   (The metadata half of this flag was resolved 2026-07-18.)
+   (The metadata half of this flag was resolved 2026-07-18.) NOTE: /about
+   now says "holding company" while this footer still says "THE PARENT" —
+   reconcile the term when Blake gives footer copy.
 3. Home SEC.02 vs /about duplication: awaiting slim/re-point go-ahead.
 
 ## Dev workflow (follow exactly; each step earned its place)
