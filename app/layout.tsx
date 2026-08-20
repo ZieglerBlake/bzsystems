@@ -20,12 +20,12 @@ export const metadata: Metadata = {
   /* Drawn verbatim from the hero subline; replaces the retired
      "own domain" description (see HANDOFF copy flags). */
   description:
-    "BZ Systems designs, builds, and operates its own software products. Each one is owned and operated in-house, from architecture to invoice.",
+    "An independent software studio building AI, data, and automation products, and putting the same stack to work for financial institutions, auditees, and operators who need systems that hold up.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "BZ Systems",
     description:
-      "BZ Systems designs, builds, and operates its own software products. Each one is owned and operated in-house, from architecture to invoice.",
+      "An independent software studio building AI, data, and automation products, and putting the same stack to work for financial institutions, auditees, and operators who need systems that hold up.",
     url: "/",
     siteName: "BZ Systems",
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BZ Systems",
     description:
-      "BZ Systems designs, builds, and operates its own software products. Each one is owned and operated in-house, from architecture to invoice.",
+      "An independent software studio building AI, data, and automation products, and putting the same stack to work for financial institutions, auditees, and operators who need systems that hold up.",
   },
 };
 

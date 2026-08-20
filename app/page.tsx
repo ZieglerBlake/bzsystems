@@ -18,9 +18,9 @@ const ORG_JSONLD = {
   url: "https://bzsystems.io",
   logo: "https://bzsystems.io/logo.png",
   description:
-    "BZ Systems designs, builds, and operates its own software products. Each one is owned and operated in-house, from architecture to invoice.",
+    "An independent software studio building AI, data, and automation products, and putting the same stack to work for financial institutions, auditees, and operators who need systems that hold up.",
   foundingDate: "2026",
-  email: "contact@bzsystems.io",
+  email: "blake@bzsystems.io",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Columbus",
@@ -98,12 +98,13 @@ export default function Home() {
               OWNED BY US.
             </h1>
             <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
-              We design, build, and operate our own software products. Each
-              one is owned and operated in-house, from architecture to
-              invoice.
+              An independent software studio building AI, data, and
+              automation products, and putting the same stack to work for
+              financial institutions, auditees, and operators who need
+              systems that hold up.
             </p>
             <ul className="rise-in rise-in-delay-3 mt-10 flex flex-wrap gap-3">
-              {["FOUNDER-BUILT", "REVENUE-FUNDED", "EST. 2026"].map((f) => (
+              {["FOUNDER-BUILT", "REVENUE-FUNDED", "FULL-STACK, IN-HOUSE"].map((f) => (
                 <li
                   key={f}
                   className="rounded-sm border border-line px-4 py-2 font-mono text-label uppercase text-ink-faint"
@@ -200,7 +201,6 @@ export default function Home() {
                 <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
                 <figcaption className="flex items-baseline justify-between gap-3 px-4 py-3 font-mono text-legal uppercase text-void/60">
                   <span>Ziegler / Founder, Principal</span>
-                  <span className="whitespace-nowrap text-[#5B9BE8]">EST. 2026</span>
                 </figcaption>
               </figure>
               <div className="flex flex-col gap-8">
@@ -269,8 +269,8 @@ export default function Home() {
                 },
                 {
                   n: "03",
-                  title: "Honest by structure",
-                  body: "The structure makes honesty automatic. Every claim is checkable, every number is real, and every venture is stated exactly as it stands. The standard doesn't move.",
+                  title: "Accountable by structure",
+                  body: "The structure does the enforcing. Every claim is checkable, every number is real, and every venture is stated exactly as it stands. The standard doesn't move.",
                 },
               ].map((p, i) => (
                 <div key={p.n} className="flex flex-col gap-4 border-t border-line pt-6">
@@ -311,10 +311,6 @@ export default function Home() {
         <section className="relative overflow-hidden bg-ink">
           <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
           <Reveal className="mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-32">
-            <p className="type-extended max-w-[16ch] text-display uppercase text-void">
-              The system is the strategy.{" "}
-              <span className="text-[#5B9BE8]">The products are the proof.</span>
-            </p>
             <p className="mt-8 font-mono text-label uppercase text-void/40">
               BZ Systems LLC / Est. 2026
             </p>
@@ -332,16 +328,16 @@ export default function Home() {
                   Reach us directly.
                 </h2>
                 <p className="mt-6 max-w-[44ch] text-ink-dim">
-                  For partnerships, press, or product inquiries, use the form
-                  below. We aim to respond as soon as possible. Detailed
-                  inquiries help us respond faster and more thoroughly.
+                  Working on vendor risk, AI governance, or an operations
+                  problem software should be solving? Email blake@bzsystems.io
+                  directly. You'll hear back within one business day.
                 </p>
                 <p className="mt-6 font-mono text-label">
                   <a
-                    href="mailto:contact@bzsystems.io"
+                    href="mailto:blake@bzsystems.io"
                     className="text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal"
                   >
-                    contact@bzsystems.io
+                    blake@bzsystems.io
                   </a>
                   <span className="text-ink-faint">&ensp;/&ensp;</span>
                   <a

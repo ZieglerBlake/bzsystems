@@ -51,15 +51,20 @@ read it fully before changing anything. Resume incantation for any session:
 
 - `/` — PhasedBuildIntro (fresh loads only, skippable, SSR so no flash) →
   hero (live SystemMap canvas, "DESIGNED BY US. / BUILT BY US. / OWNED BY
-  US.", subline is FIRST PERSON "We design, build, and operate our own
-  software products..." — deliberately diverges from the name-led meta/OG/
-  JSON-LD description, which stays name-led for out-of-context snippets) →
-  film band (hero.mp4 + centered logo-dark w/ vignette) → SEC.01
-  THE COMPANY (dark band) → SEC.02 OWNERSHIP (ziegler.webp headshot; opener
-  is "Founded and run by Blake Ziegler...") →
-  SEC.03 HOW WE BUILD (3 cards + 7 capability chips) → thesis slab →
-  SEC.04 CONTACT (form) → footer. Organization JSON-LD script at top of
-  the page component.
+  US."; subline is the buyer-facing studio line "An independent software
+  studio building AI, data, and automation products, and putting the same
+  stack to work for financial institutions, auditees, and operators who
+  need systems that hold up." As of 2026-08-20 the meta/OG/Twitter/JSON-LD
+  descriptions all MATCH this exact sentence, no divergence.) → film band
+  (hero.mp4 + centered logo-dark w/ vignette) → SEC.01 THE COMPANY (dark
+  band) → SEC.02 OWNERSHIP (ziegler.webp headshot; opener "Founded and run
+  by Blake Ziegler..."; caption no longer shows EST. 2026) → SEC.03 HOW WE
+  BUILD (3 cards + 7 chips; card 03 is now "Accountable by structure") →
+  thesis slab (tagline "The system is the strategy..." REMOVED from home
+  2026-08-20 at Blake's request; slab intentionally kept standing with just
+  "BZ SYSTEMS LLC / EST. 2026") → SEC.04 CONTACT (blake@ direct-email CTA +
+  form) → footer. Organization JSON-LD at top of the page component. Hero
+  badge row: FOUNDER-BUILT / REVENUE-FUNDED / FULL-STACK, IN-HOUSE.
 - `/about` — centered dark-mark nameplate (logo-dark.png on an ink plate),
   four centered sections, Blake's verbatim copy: THE COMPANY / THE THESIS /
   WHAT WE BUILD / HOW WE OPERATE, then RETURN TO MAIN. No h1 by Blake's
@@ -73,9 +78,15 @@ read it fully before changing anything. Resume incantation for any session:
   sitemap and disallowed in robots while locked (one-line revert in each
   when the lineup publishes).
 - `POST /api/contact` — validates, sends from/to contact@bzsystems.io via
-  Resend (replyTo submitter). Form strings are Blake's verbatim: loading
-  "Sending…", success "▸ Message sent and received. We will get back to
-  you ASAP."
+  Resend (replyTo submitter). Form strings: loading "Sending…", success
+  "▸ Message sent and received. We will get back to you ASAP."
+  EMAIL SPLIT (2026-08-20): every VISIBLE email + mailto + the JSON-LD
+  contact email is now blake@bzsystems.io, but route.ts send-to stays
+  contact@bzsystems.io (the address with Porkbun forwarding to Blake's
+  gmail). DO NOT change route.ts to blake@ to "fix" the mismatch unless
+  blake@ has its own working forwarding/mailbox, or form delivery breaks.
+  DEPENDENCY: the public "email blake@ directly" CTA needs blake@bzsystems.io
+  to actually receive mail (Porkbun forward or mailbox); verify externally.
 
 Shared components: Nav, Footer, SectionRule, Reveal (scroll reveal,
 anchor-jump-safe), SystemMap (light/dark variants), PhasedBuildIntro,
@@ -90,7 +101,9 @@ B-Z mark on ink plate — favicon.ico 16/32/48 + icon.png 512 +
 apple-icon.png 180, all generated from logo-dark.png.
 
 Assets in /public: logo.png, logo-dark.png (white knockout), hero.mp4 +
-hero-poster.webp, ziegler.webp, tex/blueprint.webp (SEC.03 backdrop).
+hero-poster.webp, ziegler.webp, tex/blueprint.webp (SEC.03 backdrop),
+assets/logo-sig.png (522x447 BZ mark for email signatures, hosted at
+/assets/logo-sig.png; added 2026-08-20).
 UNUSED (safe to delete or reuse): blake.webp, tex/titleblock.webp,
 tex/contour.webp.
 

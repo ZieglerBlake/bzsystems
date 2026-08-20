@@ -41,7 +41,7 @@ const sections = [
     label: "The thesis",
     paragraphs: [
       "Most software companies are built to be sold. BZ Systems is built to be kept.",
-      "We believe durable products come from durable structure: full ownership, no outside capital, and no exit plan driving the roadmap. When a company answers only to its customers and its own standard, honesty stops being a policy and becomes a byproduct. The system is the strategy. The products are the proof.",
+      "We believe durable products come from durable structure: full ownership, no outside capital, and no exit plan driving the roadmap. When a company answers only to its customers and its own standard, accountability is structural, not aspirational. The system is the strategy. The products are the proof.",
     ],
   },
   {
