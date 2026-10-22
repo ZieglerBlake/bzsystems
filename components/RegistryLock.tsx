@@ -39,8 +39,8 @@ export default function RegistryLock() {
       </div>
       <p aria-live="polite" className="mt-4 font-mono text-label uppercase text-ink-faint">
         {denied
-          ? "▸ ACCESS DENIED. THE REGISTRY IS SEALED WHILE IN BUILD."
-          : "THE REGISTRY IS LOCKED UNTIL THE LINEUP PUBLISHES."}
+          ? "▸ NO MATCH. THE REGISTRY IS STILL IN BUILD."
+          : "LOCKED WHILE IN BUILD. NO PUBLIC KEYS YET."}
       </p>
     </form>
   );

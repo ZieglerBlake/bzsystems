@@ -30,7 +30,7 @@ export default function ContactForm() {
   if (status === "success") {
     return (
       <p role="status" className="font-mono text-label uppercase text-signal-bright">
-        ▸ Message sent and received. We will get back to you ASAP.
+        ▸ Message sent. You'll hear back within one business day.
       </p>
     );
   }
@@ -70,7 +70,7 @@ export default function ContactForm() {
           rows={5}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          placeholder="Briefly describe your inquiry and any relevant background."
+          placeholder="Tell me what you're working on."
           className={`${inputClass} resize-y`}
         />
       </label>
@@ -84,7 +84,7 @@ export default function ContactForm() {
         </button>
         {status === "error" && (
           <p role="alert" className="font-mono text-label text-ink-dim">
-            Something went wrong. Please email us directly at{" "}
+            Something went wrong. Please email{" "}
             <a href="mailto:blake@bzsystems.io" className="text-signal-bright underline">
               blake@bzsystems.io
             </a>

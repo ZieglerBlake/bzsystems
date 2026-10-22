@@ -18,7 +18,7 @@ const ORG_JSONLD = {
   url: "https://bzsystems.io",
   logo: "https://bzsystems.io/logo.png",
   description:
-    "An independent software studio building AI, data, and automation products, and putting the same stack to work for financial institutions, auditees, and operators who need systems that hold up.",
+    "An independent software studio that builds and keeps its own AI, data, and automation products. The same stack goes to work for financial institutions, regulated operators, and teams under audit who need systems that hold up.",
   foundingDate: "2026",
   email: "blake@bzsystems.io",
   address: {
@@ -98,13 +98,13 @@ export default function Home() {
               OWNED BY US.
             </h1>
             <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
-              An independent software studio building AI, data, and
-              automation products, and putting the same stack to work for
-              financial institutions, auditees, and operators who need
-              systems that hold up.
+              An independent software studio that builds and keeps its own
+              AI, data, and automation products. The same stack goes to work
+              for financial institutions, regulated operators, and teams
+              under audit who need systems that hold up.
             </p>
             <ul className="rise-in rise-in-delay-3 mt-10 flex flex-wrap gap-3">
-              {["FOUNDER-BUILT", "REVENUE-FUNDED", "FULL-STACK, IN-HOUSE"].map((f) => (
+              {["FOUNDER-BUILT", "NO OUTSIDE CAPITAL", "BUILT IN-HOUSE"].map((f) => (
                 <li
                   key={f}
                   className="rounded-sm border border-line px-4 py-2 font-mono text-label uppercase text-ink-faint"
@@ -160,24 +160,20 @@ export default function Home() {
             <SectionRule sec="SEC.01" title="The company" dark />
             <div className="mt-14 grid gap-12 lg:grid-cols-[1.1fr_1fr]">
               <h2 className="type-semi-extended max-w-[19ch] text-h2 uppercase text-void">
-                Built in-house.
+                We build software companies.
                 <br />
-                Shipped to market.
+                Then we keep them.
               </h2>
               <div className="flex flex-col gap-5 text-void/70">
                 <p>
-                  BZ Systems LLC is an independent software studio out of
-                  Columbus, Ohio. The products are the business, designed here,
-                  built here, operated here, and supported by the people who
-                  made them.
+                  BZ Systems is a holding company. Under it sits a small set
+                  of software ventures, and all of them are ours: we designed
+                  them, we build them, and we run them, with no investors and
+                  no plan to sell.
                 </p>
                 <p>
-                  The full lineup, live and in build, is on the ventures page.
-                  Each one states what it does, where it stands, and how to
-                  get in.
-                </p>
-                <p className="font-mono text-label uppercase text-void/50">
-                  Full-stack ownership. Zero outside capital.
+                  Each one gets listed on the ventures page as it goes live.
+                  The registry is still in build.
                 </p>
               </div>
             </div>
@@ -211,12 +207,11 @@ export default function Home() {
                   <p>
                     Founded and run by Blake Ziegler. Design, code,
                     infrastructure, operations: every layer of every venture
-                    is built in-house, by the person whose name is on the LLC.
+                    comes from the person whose name is on the LLC.
                   </p>
                   <p>
-                    The standard is the same across the board: built in-house,
-                    owned outright, operated with intent. We design it, we run
-                    it, we answer for it.
+                    Same standard, every venture. We design it, we run it, we
+                    answer for it.
                   </p>
                 </div>
                 <p className="font-mono text-label uppercase">
@@ -264,13 +259,13 @@ export default function Home() {
                 },
                 {
                   n: "02",
-                  title: "Ships standalone",
+                  title: "Stands on its own",
                   body: "Each venture gets its own name, its own brand, and its own front door. It stands alone with its own P&L. The studio backs it, but never props it up.",
                 },
                 {
                   n: "03",
                   title: "Accountable by structure",
-                  body: "The structure does the enforcing. Every claim is checkable, every number is real, and every venture is stated exactly as it stands. The standard doesn't move.",
+                  body: "The structure does the enforcing. Every claim on this site is checkable, and every venture is described exactly as it stands today, not as we hope it turns out.",
                 },
               ].map((p, i) => (
                 <div key={p.n} className="flex flex-col gap-4 border-t border-line pt-6">
@@ -311,8 +306,12 @@ export default function Home() {
         <section className="relative overflow-hidden bg-ink">
           <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
           <Reveal className="mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-32">
+            <p className="type-extended max-w-[22ch] text-display uppercase text-void">
+              Most software companies are built to be sold.{" "}
+              <span className="text-[#5B9BE8]">This one is built to be kept.</span>
+            </p>
             <p className="mt-8 font-mono text-label uppercase text-void/40">
-              BZ Systems LLC / Est. 2026
+              BZ Systems LLC
             </p>
           </Reveal>
           <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
@@ -325,12 +324,12 @@ export default function Home() {
             <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.2fr]">
               <div>
                 <h2 className="type-semi-extended max-w-[14ch] text-h2 uppercase">
-                  Reach us directly.
+                  Get in touch.
                 </h2>
                 <p className="mt-6 max-w-[44ch] text-ink-dim">
                   Working on vendor risk, AI governance, or an operations
-                  problem software should be solving? Email blake@bzsystems.io
-                  directly. You'll hear back within one business day.
+                  problem that software should be solving? Email me directly.
+                  You'll hear back within one business day.
                 </p>
                 <p className="mt-6 font-mono text-label">
                   <a

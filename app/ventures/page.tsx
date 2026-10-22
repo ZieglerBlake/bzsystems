@@ -9,12 +9,12 @@ import SystemMap from "@/components/SystemMap";
 export const metadata: Metadata = {
   title: "Ventures / BZ Systems",
   description:
-    "The venture registry of BZ Systems. The full lineup, live and in build, will be published here. Each venture will state what it does, where it stands, and how to get in.",
+    "The venture registry of BZ Systems. Each venture gets listed here as it goes live, with what it does, where it stands, and how to reach it.",
   alternates: { canonical: "/ventures" },
   openGraph: {
     title: "Ventures / BZ Systems",
     description:
-      "The venture registry of BZ Systems. The full lineup, live and in build, will be published here.",
+      "The venture registry of BZ Systems. Each venture gets listed here as it goes live.",
     url: "/ventures",
     siteName: "BZ Systems",
     locale: "en_US",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ["/opengraph-image.png"],
     title: "Ventures / BZ Systems",
     description:
-      "The venture registry of BZ Systems. The full lineup, live and in build, will be published here.",
+      "The venture registry of BZ Systems. Each venture gets listed here as it goes live.",
   },
 };
 
@@ -40,15 +40,14 @@ export default function Ventures() {
             <SystemMap />
           </div>
           <div className="relative mx-auto w-full max-w-7xl px-6 py-32 lg:px-12">
-            <SectionRule sec="VENTURES" title="Live registry" />
+            <SectionRule sec="VENTURES" title="Registry" />
             <h1 className="type-extended mt-10 max-w-[16ch] text-display uppercase">
               The registry is{" "}
               <span className="text-signal-bright">in build.</span>
             </h1>
             <p className="mt-8 max-w-[52ch] text-body text-ink-dim">
-              The full lineup, live and in build, will be published here. Each
-              venture will state what it does, where it stands, and how to get
-              in.
+              Each venture gets listed here as it goes live, with what it does,
+              where it stands, and how to reach it.
             </p>
 
             <RegistryLock />
@@ -58,7 +57,7 @@ export default function Ventures() {
                 href="/"
                 className="rounded-sm border border-line px-8 py-3 font-mono text-label uppercase text-ink transition-all duration-200 hover:border-signal hover:shadow-glow"
               >
-                Return to main
+                Back to home
               </Link>
               <Link
                 href="/#contact"
@@ -68,7 +67,7 @@ export default function Ventures() {
               </Link>
             </div>
             <p className="mt-8 font-mono text-label uppercase text-ink-faint">
-              Registry entries publish as ventures clear the gate.
+              Entries appear as ventures go live.
             </p>
           </div>
         </section>
