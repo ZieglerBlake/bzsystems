@@ -8,8 +8,9 @@ read it fully before changing anything. Resume incantation for any session:
 ## The one-minute orientation
 
 - Repo: `github.com/ZieglerBlake/bzsystems` — **PUBLIC on purpose** (see
-  Deploy rules). Develop on `main`; every push to `main` auto-deploys to
-  production via Vercel. There is no staging; verify locally first.
+  Deploy rules). Local checkout: `~/code/bzsystems`. Develop on `main`;
+  every push to `main` auto-deploys to production via Vercel. There is no
+  staging; verify locally first.
 - Parent-company flagship for BZ Systems LLC (independent software studio,
   Columbus OH, Blake Robert Ziegler). Ventures ship elsewhere; this site is
   brand + about + contact. Design language: "bright control room x
@@ -132,9 +133,10 @@ tex/contour.webp.
 
 ## Dev workflow (follow exactly; each step earned its place)
 
-- Dev server: preview config `bzsystems-dev` (port 3105) lives in
-  fable-window/.claude/launch.json (a session working dir), NOT this repo.
-  Any session can also just `npm run dev` on any port.
+- Local checkout lives at `~/code/bzsystems` (moved there 2026-10-22; the
+  old ~/Desktop/NewBZSys location no longer exists). Dev server: preview
+  config `bzsystems-dev` (port 3105) is now IN this repo at
+  `.claude/launch.json`. Any session can also `npm run dev -- -p 3105`.
 - Build ritual: STOP the dev server first, then
   `rm -rf .next && npm run build`. Building while the dev server runs
   corrupts `.next`.

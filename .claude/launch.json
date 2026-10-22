@@ -4,7 +4,7 @@
     {
       "name": "bzsystems-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "3105"],
+      "runtimeArgs": ["run", "dev", "--", "-p", "3105"],
       "port": 3105
     }
   ]
