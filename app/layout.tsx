@@ -20,12 +20,12 @@ export const metadata: Metadata = {
   /* Drawn verbatim from the hero subline; replaces the retired
      "own domain" description (see HANDOFF copy flags). */
   description:
-    "An independent software studio that builds and keeps its own AI, data, and automation products. The same stack goes to work for financial institutions, regulated operators, and teams under audit who need systems that hold up.",
+    "An independent studio that builds and keeps its own AI, data, and automation products, and uses the same stack to strengthen the processes your team already runs.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "BZ Systems",
     description:
-      "An independent software studio that builds and keeps its own AI, data, and automation products. The same stack goes to work for financial institutions, regulated operators, and teams under audit who need systems that hold up.",
+      "An independent studio that builds and keeps its own AI, data, and automation products, and uses the same stack to strengthen the processes your team already runs.",
     url: "/",
     siteName: "BZ Systems",
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BZ Systems",
     description:
-      "An independent software studio that builds and keeps its own AI, data, and automation products. The same stack goes to work for financial institutions, regulated operators, and teams under audit who need systems that hold up.",
+      "An independent studio that builds and keeps its own AI, data, and automation products, and uses the same stack to strengthen the processes your team already runs.",
   },
 };
 
@@ -45,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${archivo.variable} ${jetbrainsMono.variable} antialiased`}>
         {children}
         <Analytics />

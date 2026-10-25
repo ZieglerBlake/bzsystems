@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import HeroHeadline from "@/components/HeroHeadline";
 import Nav from "@/components/Nav";
 import PhasedBuildIntro from "@/components/PhasedBuildIntro";
 import Reveal from "@/components/Reveal";
@@ -18,7 +19,7 @@ const ORG_JSONLD = {
   url: "https://bzsystems.io",
   logo: "https://bzsystems.io/logo.png",
   description:
-    "An independent software studio that builds and keeps its own AI, data, and automation products. The same stack goes to work for financial institutions, regulated operators, and teams under audit who need systems that hold up.",
+    "An independent studio that builds and keeps its own AI, data, and automation products, and uses the same stack to strengthen the processes your team already runs.",
   foundingDate: "2026",
   email: "blake@bzsystems.io",
   address: {
@@ -90,21 +91,14 @@ export default function Home() {
             <p className="rise-in caret font-mono text-label uppercase text-ink-dim">
               BZ SYSTEMS LLC / INDEPENDENT SOFTWARE STUDIO / COLUMBUS, OH
             </p>
-            <h1 className="rise-in rise-in-delay-1 type-extended mt-6 max-w-5xl text-display uppercase">
-              DESIGNED BY US.
-              <br />
-              <span className="text-signal-bright">BUILT BY US.</span>
-              <br />
-              OWNED BY US.
-            </h1>
+            <HeroHeadline />
             <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
-              An independent software studio that builds and keeps its own
-              AI, data, and automation products. The same stack goes to work
-              for financial institutions, regulated operators, and teams
-              under audit who need systems that hold up.
+              An independent studio that builds and keeps its own AI, data,
+              and automation products, and uses the same stack to strengthen
+              the processes your team already runs.
             </p>
             <ul className="rise-in rise-in-delay-3 mt-10 flex flex-wrap gap-3">
-              {["FOUNDER-BUILT", "NO OUTSIDE CAPITAL", "BUILT IN-HOUSE"].map((f) => (
+              {["FOUNDER RUN", "CUSTOM BUILT", "PROCESS ENHANCING"].map((f) => (
                 <li
                   key={f}
                   className="rounded-sm border border-line px-4 py-2 font-mono text-label uppercase text-ink-faint"
@@ -181,64 +175,7 @@ export default function Home() {
           <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
         </section>
 
-        {/* SEC.02: About us */}
-        <section id="about" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
-          <Reveal>
-            <SectionRule sec="SEC.02" title="Ownership" />
-            <div className="mt-14 grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-              <figure className="relative max-w-sm overflow-hidden rounded-md bg-ink">
-                <Image
-                  src="/ziegler.webp"
-                  alt="Blake Ziegler, founder of BZ Systems"
-                  width={427}
-                  height={513}
-                  className="w-full"
-                />
-                <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
-                <figcaption className="flex items-baseline justify-between gap-3 px-4 py-3 font-mono text-legal uppercase text-void/60">
-                  <span>Ziegler / Founder, Principal</span>
-                </figcaption>
-              </figure>
-              <div className="flex flex-col gap-8">
-                <h2 className="type-semi-extended max-w-[18ch] text-h2 uppercase">
-                  One studio. One standard.
-                </h2>
-                <div className="flex flex-col gap-5 text-ink-dim">
-                  <p>
-                    Founded and run by Blake Ziegler. Design, code,
-                    infrastructure, operations: every layer of every venture
-                    comes from the person whose name is on the LLC.
-                  </p>
-                  <p>
-                    Same standard, every venture. We design it, we run it, we
-                    answer for it.
-                  </p>
-                </div>
-                <p className="font-mono text-label uppercase">
-                  <a
-                    href={LINKEDIN}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal"
-                  >
-                    LinkedIn ↗
-                  </a>
-                  <span className="text-ink-faint">&ensp;/&ensp;</span>
-                  <a
-                    href="https://blakeziegler.app"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal"
-                  >
-                    blakeziegler.app ↗
-                  </a>
-                </p>
-              </div>
-            </div>
-          </Reveal>
-        </section>
-
-        {/* SEC.03: How we build */}
+        {/* SEC.02: How we build */}
         <section className="relative overflow-hidden">
           <Image
             src="/tex/blueprint.webp"
@@ -249,7 +186,7 @@ export default function Home() {
             className="pointer-events-none object-cover opacity-[0.05]"
           />
           <Reveal className="relative mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-36">
-            <SectionRule sec="SEC.03" title="How we build" />
+            <SectionRule sec="SEC.02" title="How we build" />
             <div className="mt-14 grid gap-12 lg:grid-cols-3">
               {[
                 {
@@ -317,10 +254,10 @@ export default function Home() {
           <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
         </section>
 
-        {/* SEC.04: Contact */}
+        {/* SEC.03: Contact */}
         <section id="contact" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
           <Reveal>
-            <SectionRule sec="SEC.04" title="Contact" />
+            <SectionRule sec="SEC.03" title="Contact" />
             <div className="mt-14 grid gap-12 lg:grid-cols-[1fr_1.2fr]">
               <div>
                 <h2 className="type-semi-extended max-w-[14ch] text-h2 uppercase">

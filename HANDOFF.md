@@ -50,37 +50,40 @@ read it fully before changing anything. Resume incantation for any session:
 
 ## Pages (all verified desktop + 375px, live)
 
-- `/` — PhasedBuildIntro (fresh loads only, skippable, SSR so no flash) →
-  hero (live SystemMap canvas, "DESIGNED BY US. / BUILT BY US. / OWNED BY
-  US."; subline is the buyer-facing studio line "An independent software
-  studio building AI, data, and automation products, and putting the same
-  stack to work for financial institutions, auditees, and operators who
-  need systems that hold up." As of 2026-08-20 the meta/OG/Twitter/JSON-LD
-  descriptions all MATCH this exact sentence, no divergence.) → film band
-  (hero.mp4 + centered logo-dark w/ vignette) → SEC.01 THE COMPANY (dark
-  band) → SEC.02 OWNERSHIP (ziegler.webp headshot; opener "Founded and run
-  by Blake Ziegler..."; caption no longer shows EST. 2026) → SEC.03 HOW WE
-  BUILD (3 cards + 7 chips; card 03 is now "Accountable by structure") →
-  thesis slab (tagline "The system is the strategy..." REMOVED from home
-  2026-08-20 at Blake's request; slab intentionally kept standing with just
-  "BZ SYSTEMS LLC / EST. 2026") → SEC.04 CONTACT (blake@ direct-email CTA +
-  form) → footer. Organization JSON-LD at top of the page component. Hero
-  badge row: FOUNDER-BUILT / REVENUE-FUNDED / FULL-STACK, IN-HOUSE.
-- `/about` — centered dark-mark nameplate (logo-dark.png on an ink plate),
-  four centered sections, Blake's verbatim copy: THE COMPANY / THE THESIS /
-  WHAT WE BUILD / HOW WE OPERATE, then RETURN TO MAIN. No h1 by Blake's
-  choice (he removed the headline); flag if SEO ever revisits. THE COMPANY
-  now describes the studio as "a holding company for a set of independent
-  go-to-market ventures" (changed from "parent company" 2026-07-18).
-- `/ventures` — light theme, live map, "THE REGISTRY IS IN BUILD.",
-  decorative password gate (`components/RegistryLock.tsx`, NOT real auth,
-  every attempt refused; swap for a real check at launch), RETURN TO MAIN +
-  SEND AN INQUIRY. Padlock glyph next to VENTURES in Nav. Excluded from
-  sitemap and disallowed in robots while locked (one-line revert in each
-  when the lineup publishes).
+- `/` (as of 2026-10-25, six panels) — PhasedBuildIntro (fresh loads only,
+  skippable, SSR so no flash) → hero (live SystemMap canvas; headline
+  "DESIGNED BY US. / BUILT BY US. / OWNED BY US." rendered by
+  `components/HeroHeadline.tsx`: the signal blue steps DESIGNED → BUILT →
+  OWNED every 2.5s, holds on BUILT for SSR and reduced motion; subline
+  "An independent studio that builds and keeps its own AI, data, and
+  automation products, and uses the same stack to strengthen the processes
+  your team already runs." which the meta/OG/Twitter/JSON-LD descriptions
+  mirror; badges FOUNDER RUN / CUSTOM BUILT / PROCESS ENHANCING, no
+  hyphens by Blake's choice) → film band (hero.mp4 + centered logo-dark) →
+  SEC.01 THE COMPANY (dark band; "We build software companies. Then we keep
+  them." + holding-company paragraph) → SEC.02 HOW WE BUILD (3 cards + 7
+  chips; card 02 "Stands on its own", card 03 "Accountable by structure")
+  → thesis slab ("Most software companies are built to be sold. This one is
+  built to be kept." / BZ SYSTEMS LLC) → SEC.03 CONTACT ("Get in touch.",
+  "Email me directly. You'll hear back within one business day." + form) →
+  footer ("EACH VENTURE WILL SHIP UNDER ITS OWN NAME. THIS IS THE HOLDING
+  COMPANY."). The old SEC.02 OWNERSHIP panel was removed from home
+  2026-10-25 at Blake's request; the photo moved to /about.
+- `/about` — centered dark-mark nameplate, then four centered sections in
+  Blake's FIRST-PERSON voice: THE COMPANY ("I started BZ Systems in
+  2026...") / THE THESIS / WHAT I BUILD / HOW I OPERATE, then a founder
+  sign-off (ziegler.webp, "Ziegler / Founder, Principal", LinkedIn and
+  blakeziegler.app links), then BACK TO HOME. No h1 by Blake's choice.
+- `/ventures` — light theme, live map, label "Registry", "THE REGISTRY IS
+  IN BUILD.", decorative password gate (`components/RegistryLock.tsx`, NOT
+  real auth; copy "LOCKED WHILE IN BUILD. NO PUBLIC KEYS YET." / "▸ NO
+  MATCH. THE REGISTRY IS STILL IN BUILD."), BACK TO HOME + SEND AN
+  INQUIRY. Padlock glyph next to VENTURES in Nav. Excluded from sitemap and
+  disallowed in robots while locked (one-line revert in each when the
+  lineup publishes).
 - `POST /api/contact` — validates, sends from/to contact@bzsystems.io via
   Resend (replyTo submitter). Form strings: loading "Sending…", success
-  "▸ Message sent and received. We will get back to you ASAP."
+  "▸ Message sent. You'll hear back within one business day."
   EMAIL SPLIT (2026-08-20): every VISIBLE email + mailto + the JSON-LD
   contact email is now blake@bzsystems.io, but route.ts send-to stays
   contact@bzsystems.io (the address with Porkbun forwarding to Blake's

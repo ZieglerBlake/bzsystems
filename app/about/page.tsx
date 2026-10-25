@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
 
+const LINKEDIN = "https://www.linkedin.com/in/blakerobertziegler/";
+
 export const metadata: Metadata = {
   title: "About us / BZ Systems",
   description:
@@ -95,6 +97,43 @@ export default function About() {
                 </section>
               </Reveal>
             ))}
+
+            {/* Founder sign-off: the page is written in his voice, so it ends with him */}
+            <Reveal>
+              <div aria-hidden className="my-14 h-px bg-line-soft" />
+              <figure className="mx-auto max-w-xs overflow-hidden rounded-md bg-ink">
+                <Image
+                  src="/ziegler.webp"
+                  alt="Blake Ziegler, founder of BZ Systems"
+                  width={427}
+                  height={513}
+                  className="w-full"
+                />
+                <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
+                <figcaption className="px-4 py-3 font-mono text-legal uppercase text-void/60">
+                  Ziegler / Founder, Principal
+                </figcaption>
+              </figure>
+              <p className="mt-6 font-mono text-label uppercase">
+                <a
+                  href={LINKEDIN}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal"
+                >
+                  LinkedIn ↗
+                </a>
+                <span className="text-ink-faint">&ensp;/&ensp;</span>
+                <a
+                  href="https://blakeziegler.app"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal"
+                >
+                  blakeziegler.app ↗
+                </a>
+              </p>
+            </Reveal>
 
             <div className="mt-16 flex justify-center">
               <Link
