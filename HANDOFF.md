@@ -52,9 +52,9 @@ read it fully before changing anything. Resume incantation for any session:
 
 - `/` (as of 2026-10-25, six panels) — PhasedBuildIntro (fresh loads only,
   skippable, SSR so no flash) → hero (live SystemMap canvas; headline
-  "DESIGNED BY US. / BUILT BY US. / OWNED BY US." rendered by
-  `components/HeroHeadline.tsx`: the signal blue steps DESIGNED → BUILT →
-  OWNED every 2.5s, holds on BUILT for SSR and reduced motion; subline
+  "FIX THE PROCESS. / ENRICH THE WORK." (static; replaced DESIGNED / BUILT /
+  OWNED BY US on 2026-10-25 at Blake's request) with a smaller signal-blue
+  kicker "SMALL FIXES THAT COMPOUND."; subline
   "An independent studio that builds and keeps its own AI, data, and
   automation products, and uses the same stack to strengthen the processes
   your team already runs." which the meta/OG/Twitter/JSON-LD descriptions

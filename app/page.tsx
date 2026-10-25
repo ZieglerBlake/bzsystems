@@ -1,7 +1,6 @@
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
-import HeroHeadline from "@/components/HeroHeadline";
 import Nav from "@/components/Nav";
 import PhasedBuildIntro from "@/components/PhasedBuildIntro";
 import Reveal from "@/components/Reveal";
@@ -91,7 +90,14 @@ export default function Home() {
             <p className="rise-in caret font-mono text-label uppercase text-ink-dim">
               BZ SYSTEMS LLC / INDEPENDENT SOFTWARE STUDIO / COLUMBUS, OH
             </p>
-            <HeroHeadline />
+            <h1 className="rise-in rise-in-delay-1 type-extended mt-6 max-w-5xl text-display uppercase">
+              FIX THE PROCESS.
+              <br />
+              ENRICH THE WORK.
+            </h1>
+            <p className="rise-in rise-in-delay-2 type-semi-extended mt-6 text-h2 uppercase text-signal-bright">
+              Small fixes that compound.
+            </p>
             <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
               An independent studio that builds and keeps its own AI, data,
               and automation products, and uses the same stack to strengthen
