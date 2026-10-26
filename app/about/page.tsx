@@ -74,7 +74,9 @@ export default function About() {
               />
               <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
               <figcaption className="px-4 py-3 font-mono text-legal uppercase text-void/60">
-                Ziegler / Founder, Principal
+                Blake Ziegler / Founder, Principal
+                <br />
+                <span className="text-void/85">Formerly Morgan Stanley</span>
               </figcaption>
             </figure>
             <div>
@@ -90,7 +92,7 @@ export default function About() {
               <p className="rise-in rise-in-delay-2 mt-8 max-w-[56ch] text-body text-ink-dim">
                 BZ Systems is a software company based in Columbus, Ohio,
                 founded on two backgrounds: investment banking and software
-                engineering. The company runs on both: Wall Street discipline
+                engineering. The company runs on both: institutional standards
                 and the speed of an agile team. We build software from the
                 idea up: our own ventures, products for people with an idea
                 worth building, and upgrades for teams whose processes need one.
