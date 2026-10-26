@@ -98,9 +98,9 @@ export default function Home() {
               className="rise-in rise-in-delay-1 type-extended mt-6 text-display uppercase"
               style={{ fontSize: "clamp(1.75rem, 5.4vw, 4.25rem)" }}
             >
-              YOUR IDEA, BUILT.
+              <span className="text-signal-bright">YOUR IDEA,</span> BUILT.
               <br />
-              YOUR PROCESS, FIXED.
+              <span className="text-signal-bright">YOUR PROCESS,</span> FIXED.
             </h1>
             <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
               An independent studio that builds software from the idea up:
