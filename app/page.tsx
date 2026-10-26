@@ -203,7 +203,7 @@ export default function Home() {
               {[
                 {
                   n: "01",
-                  title: "Built in-house, end to end",
+                  title: "Built end to end",
                   body: "From the first sketch of an idea, or the first look at a process, all the way to the infrastructure it runs on, we write the whole stack ourselves. If it's in the product, we can take it apart, explain it, and stand behind it.",
                 },
                 {
