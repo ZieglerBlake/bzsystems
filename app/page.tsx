@@ -37,26 +37,6 @@ const ORG_JSONLD = {
   },
 };
 
-/* What we build, in two groups that mirror the hero headline. */
-const CAPABILITIES = [
-  {
-    label: "Your idea, built",
-    items: [
-      { title: "Web apps & platforms", body: "Customer-facing products, portals, and dashboards, built from the first screen up." },
-      { title: "AI products", body: "Assistants and tools built on current AI models, wired into real data and real work." },
-      { title: "APIs & integrations", body: "Connect the systems you already use so they finally talk to each other." },
-    ],
-  },
-  {
-    label: "Your process, upgraded",
-    items: [
-      { title: "Workflow automation", body: "Intake, approvals, and handoffs that run themselves instead of living in inboxes." },
-      { title: "Data & reporting", body: "Data lands where it is needed, and the reports build themselves." },
-      { title: "Infrastructure", body: "Hosting, security, and monitoring set up to stay up." },
-    ],
-  },
-];
-
 /* Self-drawing schematic marks for the build principles */
 function Glyph({ variant }: { variant: number }) {
   const stroke = { stroke: "currentColor", strokeWidth: 1.5, fill: "none" } as const;
@@ -169,8 +149,9 @@ export default function Home() {
                 <p>
                   BZ Systems is a holding company. It builds and runs a small
                   set of its own software ventures. The same stack and the
-                  same habits go into client work: small, targeted fixes to
-                  the processes a team already runs.
+                  same habits go into client work: new products built from
+                  the idea up, and upgrades to the processes a team already
+                  runs.
                 </p>
                 <p>
                   The focus runs from small businesses to regulated teams in
@@ -227,22 +208,15 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            {/* What we build, grouped to mirror the hero: idea work, process work */}
-            <div className="mt-20 grid gap-12 lg:grid-cols-2">
-              {CAPABILITIES.map((group) => (
-                <div key={group.label}>
-                  <p className="font-mono text-label uppercase text-signal-bright">{group.label}</p>
-                  <ul className="mt-5 grid gap-px overflow-hidden rounded-md border border-line bg-line">
-                    {group.items.map((it) => (
-                      <li key={it.title} className="bg-panel/85 p-6 transition-colors duration-200 hover:bg-panel">
-                        <p className="type-semi-extended text-h3 uppercase">{it.title}</p>
-                        <p className="mt-2 text-ink-dim">{it.body}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            {/* The full list of what we build lives on /about */}
+            <p className="mt-14 font-mono text-label uppercase">
+              <Link
+                href="/about"
+                className="text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal"
+              >
+                See what we build →
+              </Link>
+            </p>
             {/* Closing line: the section ends by pointing at the contact form */}
             <div className="mt-20 flex flex-wrap items-center justify-between gap-8 border-t border-line pt-10">
               <p

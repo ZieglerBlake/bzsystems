@@ -81,7 +81,7 @@ read it fully before changing anything. Resume incantation for any session:
   and partners on request") → SEC.02 HOW WE BUILD (cards 01 Built
   in-house, end to end / 02 Small first, then compound / 03 One builder,
   no handoffs; capability groups "Your idea, built" and "Your process,
-  upgraded", three items each; closer "LESS PITCH. MORE PRODUCT." + Start
+  upgraded" moved to /about only (home links "See what we build"); closer "LESS PITCH. MORE PRODUCT." + Start
   something) → SEC.03 CONTACT ("Have an idea you want built, or a process
   that needs an upgrade? Email me directly..." + form) → footer (centered
   logo-mark; "© 2026 BZ SYSTEMS LLC, OHIO, USA. ALL RIGHTS RESERVED." /
@@ -128,7 +128,7 @@ ContactForm, RegistryLock. Unused but kept: CoreArtifact, CircuitField.
 SEO state: per-page title/description/OG/Twitter on all routes (verbatim
 from page copy), canonicals, Organization JSON-LD on home, sitemap.ts +
 robots.ts, static OG image `app/opengraph-image.png` (cinematic brand
-still: darkened hero.mp4 frame + vignette + glowing lockup — regenerate by
+still: darkened hero.mp4 frame (hero.mp4 deleted 2026-10-25; recover it from git history to regenerate) + vignette + glowing lockup — regenerate by
 recompositing, the recipe is in git history commit bfb28b2). Favicon set:
 B-Z mark on ink plate — favicon.ico 16/32/48 + icon.png 512 +
 apple-icon.png 180, all generated from logo-dark.png.
@@ -136,8 +136,7 @@ apple-icon.png 180, all generated from logo-dark.png.
 Assets in /public: logo.png, logo-dark.png (white knockout; the intro samples it), ziegler.webp, tex/blueprint.webp (SEC.03 backdrop),
 assets/logo-sig.png (522x447 BZ mark for email signatures, hosted at
 /assets/logo-sig.png; added 2026-08-20).
-UNUSED (safe to delete or reuse): hero.mp4, hero-poster.webp, build-hero.webp
-(film band removed 2026-10-25; OG image recipe still references hero.mp4), blake.webp, tex/titleblock.webp,
+UNUSED (safe to delete or reuse): tex/titleblock.webp,
 tex/contour.webp.
 
 ## Infrastructure map (who does what)
