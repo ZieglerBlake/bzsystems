@@ -21,7 +21,7 @@ const ORG_JSONLD = {
   url: "https://bzsystems.io",
   logo: "https://bzsystems.io/logo.png",
   description:
-    "An independent studio that builds software from the idea up: for our own ventures, for people with an idea worth building, and for teams whose processes need fixing.",
+    "An independent studio that builds software from the idea up: for our own ventures, for people with an idea worth building, and for teams whose processes need upgrading.",
   foundingDate: "2026",
   email: "blake@bzsystems.io",
   address: {
@@ -48,7 +48,7 @@ const CAPABILITIES = [
     ],
   },
   {
-    label: "Your process, fixed",
+    label: "Your process, upgraded",
     items: [
       { title: "Workflow automation", body: "Intake, approvals, and handoffs that run themselves instead of living in inboxes." },
       { title: "Data & reporting", body: "Data lands where it is needed, and the reports build themselves." },
@@ -116,16 +116,16 @@ export default function Home() {
             </p>
             <h1
               className="rise-in rise-in-delay-1 type-extended mt-6 text-display uppercase"
-              style={{ fontSize: "clamp(1.75rem, 5.4vw, 4.25rem)" }}
+              style={{ fontSize: "clamp(1.75rem, 4.6vw, 3.6rem)" }}
             >
               <span className="text-signal-bright">YOUR IDEA,</span> BUILT.
               <br />
-              <span className="text-signal-bright">YOUR PROCESS,</span> FIXED.
+              <span className="text-signal-bright">YOUR PROCESS,</span> UPGRADED.
             </h1>
             <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
               An independent studio that builds software from the idea up:
               for our own ventures, for people with an idea worth building,
-              and for teams whose processes need fixing.
+              and for teams whose processes need upgrading.
             </p>
             <div className="rise-in rise-in-delay-3 mt-8">
               <Link
@@ -148,7 +148,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* The process, fixed: pinned scroll story (ProcessStory.tsx) */}
+        {/* How we work: idea + process stories (ProcessStory.tsx) */}
         <ProcessStory />
 
         {/* SEC.01: Ventures. The black slab band. No names, ever. */}
@@ -271,8 +271,8 @@ export default function Home() {
                   Get in touch.
                 </h2>
                 <p className="mt-6 max-w-[44ch] text-ink-dim">
-                  Have an idea you want built, or a process software should be
-                  fixing? Email me directly. You'll hear back within one
+                  Have an idea you want built, or a process that needs an
+                  upgrade? Email me directly. You'll hear back within one
                   business day.
                 </p>
                 <p className="mt-6 font-mono text-label">

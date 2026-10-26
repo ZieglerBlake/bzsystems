@@ -20,12 +20,12 @@ export const metadata: Metadata = {
   /* Drawn verbatim from the hero subline; replaces the retired
      "own domain" description (see HANDOFF copy flags). */
   description:
-    "An independent studio that builds software from the idea up: for our own ventures, for people with an idea worth building, and for teams whose processes need fixing.",
+    "An independent studio that builds software from the idea up: for our own ventures, for people with an idea worth building, and for teams whose processes need upgrading.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "BZ Systems",
     description:
-      "An independent studio that builds software from the idea up: for our own ventures, for people with an idea worth building, and for teams whose processes need fixing.",
+      "An independent studio that builds software from the idea up: for our own ventures, for people with an idea worth building, and for teams whose processes need upgrading.",
     url: "/",
     siteName: "BZ Systems",
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BZ Systems",
     description:
-      "An independent studio that builds software from the idea up: for our own ventures, for people with an idea worth building, and for teams whose processes need fixing.",
+      "An independent studio that builds software from the idea up: for our own ventures, for people with an idea worth building, and for teams whose processes need upgrading.",
   },
 };
 

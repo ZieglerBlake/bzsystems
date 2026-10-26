@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 /* How we work: two stories in one band that auto-alternate (tabs switch).
    YOUR IDEA, BUILT: a spark at the first stage builds the line stage by
    stage until the product is live and work flows through it.
-   YOUR PROCESS, FIXED: a manual, siloed six-step process (queues, rework
+   YOUR PROCESS, UPGRADED: a manual, siloed six-step process (queues, rework
    loops) gets fixed one step at a time, straightens, then folds from six
    steps to three. Both loop while on screen and never pin the scroll.
    Illustrative, not claims about any client. Canvas 2D for the flow, HTML
@@ -59,7 +59,7 @@ const COPY: Record<Mode, {
     end: { tag: "Launch day", line: ["Built", "and running."] },
   },
   process: {
-    tab: "Your process, fixed",
+    tab: "Your process, upgraded",
     start: { tag: "Current state", line: ["Manual", "and siloed."] },
     end: { tag: "Future state", line: ["Automated", "and efficient."] },
   },

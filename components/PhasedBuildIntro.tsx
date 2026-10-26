@@ -46,12 +46,15 @@ const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
 // Plays only on a fresh document load of the home page. On a fresh load
 // the server-rendered overlay is already in the DOM when this component
 // hydrates; on an in-site route transition there is no server HTML, so
-// the intro stays quiet. Section deep links (/#contact) never gate.
+// the intro stays quiet. Section deep links (/#contact) never gate: the
+// first client render must still match the server (so the overlay is
+// cleanly removed, not stranded), so a tiny inline script hides it before
+// first paint and the effect below takes it out.
 
 export default function PhasedBuildIntro() {
   const [active, setActive] = useState(() => {
     if (typeof window === "undefined") return true;
-    return !!document.querySelector(".pbi") && !window.location.hash;
+    return !!document.querySelector(".pbi");
   });
   const rootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -412,7 +415,12 @@ export default function PhasedBuildIntro() {
 
   if (!active) return null;
   return (
-    <div ref={rootRef} aria-hidden className="pbi fixed inset-0 z-50">
+    <div ref={rootRef} aria-hidden className="pbi fixed inset-0 z-50" suppressHydrationWarning>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: "if(location.hash)document.currentScript.parentNode.style.display='none'",
+        }}
+      />
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
     </div>
   );
