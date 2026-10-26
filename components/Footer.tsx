@@ -13,7 +13,7 @@ export default function Footer() {
         />
         <div className="flex flex-col gap-2 font-mono text-legal text-ink-faint lg:text-right">
           <p>© 2026 BZ SYSTEMS LLC, OHIO, USA. ALL RIGHTS RESERVED.</p>
-          <p>EACH VENTURE WILL SHIP UNDER ITS OWN NAME. THIS IS THE HOLDING COMPANY.</p>
+          <p>EACH VENTURE WILL SHIP UNDER ITS OWN NAME &amp; URL. THIS IS THE HOLDING COMPANY.</p>
         </div>
       </div>
     </footer>

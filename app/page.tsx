@@ -243,9 +243,21 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <p className="mt-16 font-mono text-label uppercase text-ink-faint">
-              Architecture over assurances.
-            </p>
+            {/* Closing line: the section ends by pointing at the contact form */}
+            <div className="mt-20 flex flex-wrap items-center justify-between gap-8 border-t border-line pt-10">
+              <p
+                className="type-extended text-display uppercase"
+                style={{ fontSize: "clamp(1.75rem, 4.5vw, 3.5rem)" }}
+              >
+                Less pitch. <span className="text-signal-bright">More product.</span>
+              </p>
+              <Link
+                href="/#contact"
+                className="rounded-sm bg-signal px-8 py-3 font-mono text-label uppercase text-panel shadow-glow transition-all duration-200 hover:bg-signal-bright"
+              >
+                Start something
+              </Link>
+            </div>
           </Reveal>
         </section>
 
