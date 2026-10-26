@@ -11,12 +11,12 @@ const LINKEDIN = "https://www.linkedin.com/in/blakerobertziegler/";
 export const metadata: Metadata = {
   title: "About us / BZ Systems",
   description:
-    "I'm Blake Ziegler. I started BZ Systems in 2026 in Columbus, Ohio, and I build software from the idea up: my own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
+    "BZ Systems is a software company based in Columbus, Ohio, founded on two backgrounds: investment banking and software engineering. We build software from the idea up: our own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About us / BZ Systems",
     description:
-      "I'm Blake Ziegler. I started BZ Systems in 2026 in Columbus, Ohio, and I build software from the idea up: my own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
+      "BZ Systems is a software company based in Columbus, Ohio, founded on two backgrounds: investment banking and software engineering. We build software from the idea up: our own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
     url: "/about",
     siteName: "BZ Systems",
     locale: "en_US",
@@ -28,30 +28,30 @@ export const metadata: Metadata = {
     images: ["/opengraph-image.png"],
     title: "About us / BZ Systems",
     description:
-      "I'm Blake Ziegler. I started BZ Systems in 2026 in Columbus, Ohio, and I build software from the idea up: my own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
+      "BZ Systems is a software company based in Columbus, Ohio, founded on two backgrounds: investment banking and software engineering. We build software from the idea up: our own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
   },
 };
 
 const LINK =
   "text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal";
 
-/* What I build: the same two halves as the home headline. */
+/* What we build: the same two halves as the home headline. */
 const WORK = [
   {
     label: "Your idea, built",
-    body: "You have an idea and maybe a sketch. I take it from there: what version one needs, the product itself, and the infrastructure it runs on, until it is live and in use.",
+    body: "You have an idea and maybe a sketch. We take it from there: what version one needs, the product itself, and the infrastructure it runs on, until it is live and in use.",
   },
   {
     label: "Your process, upgraded",
-    body: "Your team runs on handoffs, spreadsheets, and inboxes. I find the steps that slow it down and automate them one at a time, so the work gets faster without starting over.",
+    body: "Your team runs on handoffs, spreadsheets, and inboxes. We find the steps that slow it down and automate them one at a time, so the work gets faster without starting over.",
   },
 ];
 
-/* How I work: fixed rules, short enough to hold me to. */
+/* How we work: fixed rules, short enough to hold us to. */
 const RULES = [
-  { title: "You talk to me", body: "The person who scopes your project runs it start to finish. No account managers, no game of telephone." },
+  { title: "You talk to the founder", body: "The person who scopes your project runs it start to finish. No account managers, no game of telephone." },
   { title: "Small first, then compound", body: "The smallest version that works ships first. You see it running early, and every step builds on the last." },
-  { title: "Built in America", body: "Every line of code is written in the United States, by employees or U.S.-based contractors I hire and manage directly. No offshore teams, no offshore tools, no offshore handoffs." },
+  { title: "Built in America", body: "Every line of code is written in the United States, by employees or U.S.-based contractors we hire and manage directly. No offshore teams, no offshore tools, no offshore handoffs." },
   { title: "Nothing announced before it exists", body: "No roadmaps sold as products. If it is on this site, it is real." },
 ];
 
@@ -60,7 +60,7 @@ export default function About() {
     <>
       <Nav />
       <main>
-        {/* Intro: the founder up top, the page is in his voice */}
+        {/* Intro: the founder's photo up top beside the company line */}
         <section className="mx-auto max-w-7xl px-6 pt-36 pb-20 lg:px-12 lg:pt-44 lg:pb-28">
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-20">
             <figure className="rise-in mx-auto w-full max-w-[260px] overflow-hidden lg:max-w-[360px] rounded-md bg-night">
@@ -81,17 +81,19 @@ export default function About() {
               <p className="rise-in font-mono text-label uppercase text-signal-bright">About</p>
               <h1
                 className="rise-in rise-in-delay-1 type-extended mt-4 text-display uppercase"
-                style={{ fontSize: "clamp(1.6rem, 4vw, 3.25rem)" }}
+                style={{ fontSize: "clamp(1.3rem, 4vw, 3.25rem)" }}
               >
-                One builder.
+                We build it.
                 <br />
-                <span className="text-signal-bright">The whole stack.</span>
+                <span className="text-signal-bright">We stand behind it.</span>
               </h1>
               <p className="rise-in rise-in-delay-2 mt-8 max-w-[56ch] text-body text-ink-dim">
-                I&apos;m Blake Ziegler. I started BZ Systems in 2026 in
-                Columbus, Ohio, and I build software from the idea up: my own
-                ventures, products for people with an idea worth building, and
-                upgrades for teams whose processes need one.
+                BZ Systems is a software company based in Columbus, Ohio,
+                founded on two backgrounds: investment banking and software
+                engineering. The company runs on both: the rigor of a deal team
+                and the speed of a product team. We build software from the
+                idea up: our own ventures, products for people with an idea
+                worth building, and upgrades for teams whose processes need one.
               </p>
               <p className="rise-in rise-in-delay-3 mt-8 font-mono text-label uppercase">
                 <a href={LINKEDIN} target="_blank" rel="noreferrer" className={LINK}>
@@ -110,11 +112,11 @@ export default function About() {
           </div>
         </section>
 
-        {/* What I build */}
+        {/* What we build */}
         <section className="bg-wash">
           <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
           <Reveal className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
-            <SectionRule sec="01" title="What I build" />
+            <SectionRule sec="01" title="What we build" />
             <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line lg:grid-cols-2">
               {WORK.map((w) => (
                 <div key={w.label} className="bg-panel p-8 lg:p-10">
@@ -126,10 +128,10 @@ export default function About() {
           </Reveal>
         </section>
 
-        {/* How I work */}
+        {/* How we work */}
         <section className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
           <Reveal>
-            <SectionRule sec="02" title="How I work" />
+            <SectionRule sec="02" title="How we work" />
             <ol className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
               {RULES.map((r, i) => (
                 <li key={r.title} className="border-t border-line pt-6">
@@ -155,7 +157,7 @@ export default function About() {
               </h2>
               <div className="flex flex-col gap-5 text-void/70">
                 <p>
-                  BZ Systems is a holding company. It owns a small set of my
+                  BZ Systems is a holding company. It owns a small set of its
                   own software ventures, each under its own brand, and the
                   client work runs on the same stack and the same habits.
                 </p>
