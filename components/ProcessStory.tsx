@@ -18,9 +18,9 @@ const ZIG = [0.16, -0.14, 0.12, -0.16, 0.14, -0.1];
 // Rework loops: items leaving step [from] get sent back to step [to].
 const REWORK = [[2, 1], [4, 3]];
 // The story loops while on screen: lead-in, six fixes, hold, quick reset.
-const LEAD_MS = 1600; // sit in the current state first
+const LEAD_MS = 2600; // sit in the current state first
 const FIX_MS = 650; // one fix lands every 650ms
-const HOLD_MS = 3200; // hold on the future state
+const HOLD_MS = 4200; // hold on the future state
 const RESET_MS = 600; // everything fades back to manual
 const CYCLE = LEAD_MS + FIX_MS * 6 + HOLD_MS + RESET_MS;
 
@@ -28,6 +28,11 @@ const INK = "rgb(16, 19, 18)";
 const FAINT = "rgba(16, 19, 18, 0.32)";
 const BLUE = "rgb(30, 112, 205)"; // signal
 const PANEL = "#ffffff";
+const WASH = "rgba(238, 243, 250, 0.92)"; // label backdrop, matches the band
+// The line only straightens once every step is fixed, so labels hold still
+// while the fixes land.
+const ALL_FIXED = LEAD_MS + FIX_MS * 5 + FIX_MS * 0.7;
+const STRAIGHTEN_MS = 800;
 const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
 const ease = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
 
@@ -74,22 +79,27 @@ export default function ProcessStory() {
     let last = performance.now();
     let shownFixed = -1, shownDone = false;
 
-    const fixesAt = (now: number) => {
-      if (start < 0) return STEPS.map(() => 0);
+    const stateAt = (now: number) => {
+      if (start < 0) return { fixes: STEPS.map(() => 0), straight: 0 };
       const t = (now - start) % CYCLE;
       if (t > CYCLE - RESET_MS) {
         const back = 1 - (t - (CYCLE - RESET_MS)) / RESET_MS;
-        return STEPS.map(() => back);
+        return { fixes: STEPS.map(() => back), straight: back };
       }
-      return STEPS.map((_, k) => clamp01((t - LEAD_MS - k * FIX_MS) / (FIX_MS * 0.7)));
+      return {
+        fixes: STEPS.map((_, k) => clamp01((t - LEAD_MS - k * FIX_MS) / (FIX_MS * 0.7))),
+        straight: clamp01((t - ALL_FIXED) / STRAIGHTEN_MS),
+      };
     };
 
     const frame = (now: number, finished = false) => {
       const dt = Math.min(50, now - last);
       last = now;
-      const fixes = finished ? STEPS.map(() => 1) : fixesAt(now);
+      const { fixes, straight } = finished
+        ? { fixes: STEPS.map(() => 1), straight: 1 }
+        : stateAt(now);
       const auto = fixes.reduce((a, b) => a + b, 0) / STEPS.length;
-      const pts = nodes(ease(auto));
+      const pts = nodes(ease(straight));
 
       const fixed = fixes.filter((f) => f >= 0.5).length;
       const done = fixed === STEPS.length;
@@ -160,7 +170,7 @@ export default function ProcessStory() {
           const q = queued[k]++;
           const [nx, ny] = pts[k];
           x = tall ? nx - 26 - q * 10 : nx - 10 + q * 10;
-          y = tall ? ny : ny + 50;
+          y = tall ? ny : ny + 58;
         } else {
           x = pts[k][0] + (pts[k + 1][0] - pts[k][0]) * fr;
           y = pts[k][1] + (pts[k + 1][1] - pts[k][1]) * fr;
@@ -171,19 +181,21 @@ export default function ProcessStory() {
       }
       ctx.globalAlpha = 1;
 
+      // Labels sit on a small band-colored backdrop so lines and moving
+      // items pass behind the text instead of through it.
+      const label = (text: string, x: number, y: number, size: number, color: string) => {
+        ctx.font = `600 ${size}px ${mono}`;
+        const w = ctx.measureText(text).width;
+        ctx.fillStyle = WASH;
+        ctx.fillRect((tall ? x : x - w / 2) - 4, y - size, w + 8, size + 5);
+        ctx.fillStyle = color;
+        ctx.fillText(text, x, y);
+      };
+
       // Steps: hollow ink ring while manual, filled signal blue once fixed.
-      ctx.font = `500 12px ${mono}`;
       for (let k = 0; k <= LAST; k++) {
         const [x, y] = pts[k];
         const f = fixes[k];
-        if (f > 0 && f < 1) {
-          ctx.globalAlpha = 0.35 * Math.sin(f * Math.PI);
-          ctx.fillStyle = BLUE;
-          ctx.beginPath();
-          ctx.arc(x, y, 16 + f * 22, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.globalAlpha = 1;
-        }
         ctx.beginPath();
         ctx.arc(x, y, 11, 0, Math.PI * 2);
         ctx.fillStyle = f > 0.5 ? BLUE : PANEL;
@@ -193,13 +205,23 @@ export default function ProcessStory() {
         ctx.stroke();
         // Step name above the bubble, its status below it.
         ctx.textAlign = tall ? "left" : "center";
-        ctx.font = `500 12px ${mono}`;
-        ctx.fillStyle = f > 0.5 ? INK : "rgba(16, 19, 18, 0.55)";
-        ctx.fillText(STEPS[k].toUpperCase(), tall ? x + 24 : x, tall ? y - 2 : y - 24);
-        ctx.font = `500 10px ${mono}`;
-        ctx.fillStyle = f > 0.5 ? BLUE : "rgba(16, 19, 18, 0.4)";
-        ctx.fillText(f > 0.5 ? "AUTOMATED" : "MANUAL", tall ? x + 24 : x, tall ? y + 13 : y + 32);
+        const lx = tall ? x + 24 : x;
+        label(STEPS[k].toUpperCase(), lx, tall ? y - 2 : y - 24, 13, f > 0.5 ? INK : "rgba(16, 19, 18, 0.62)");
+        label(f > 0.5 ? "AUTOMATED" : "MANUAL", lx, tall ? y + 14 : y + 36, 11, f > 0.5 ? BLUE : "rgba(16, 19, 18, 0.5)");
       }
+
+      // The moment of a fix: an expanding ring, drawn last so labels never clip it.
+      ctx.strokeStyle = BLUE;
+      ctx.lineWidth = 2;
+      for (let k = 0; k <= LAST; k++) {
+        const f = fixes[k];
+        if (f <= 0 || f >= 1) continue;
+        ctx.globalAlpha = 0.6 * Math.sin(f * Math.PI);
+        ctx.beginPath();
+        ctx.arc(pts[k][0], pts[k][1], 14 + f * 26, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
     };
 
     if (reduced) {
