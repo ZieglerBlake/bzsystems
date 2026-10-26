@@ -184,12 +184,12 @@ export default function Home() {
                 {
                   n: "01",
                   title: "Built in-house, end to end",
-                  body: "Interface to infrastructure, we write the whole stack ourselves. If it's in the product, we can take it apart, explain it, and stand behind it.",
+                  body: "From the first sketch of an idea, or the first look at a process, all the way to the infrastructure it runs on, we write the whole stack ourselves. If it's in the product, we can take it apart, explain it, and stand behind it.",
                 },
                 {
                   n: "02",
-                  title: "Stands on its own",
-                  body: "Each venture gets its own name, its own brand, and its own front door. It stands alone with its own P&L. The studio backs it, but never props it up.",
+                  title: "Small first, then compound",
+                  body: "We ship the smallest version that works, then improve it step by step. You see it running early, and every step builds on the last.",
                 },
                 {
                   n: "03",
