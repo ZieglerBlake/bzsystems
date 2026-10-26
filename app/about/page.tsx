@@ -55,8 +55,8 @@ const WORK = [
     label: "Your process, upgraded",
     title: "The same work, minus the busywork",
     body: [
-      "Most teams do not need a new system. They need the one they have to stop leaking time. We map how the work actually moves today and find the manual steps, handoffs, and rework that slow it down.",
-      "Then we automate them one at a time. Nothing gets ripped out, your team keeps working while it improves, and every fix builds on the last.",
+      "Most teams do not need a new system. They need the one they have to stop leaking time. We start by mapping your process exactly as it runs today, every step, every handoff, and identify the inefficiencies: the manual work, the waiting, and the rework that slow it down.",
+      "From that map, we fix them one at a time. Nothing gets ripped out, your team keeps working while it improves, and every fix builds on the last.",
     ],
     items: [
       { title: "Workflow automation", body: "Intake, approvals, and handoffs that run themselves instead of living in inboxes." },
@@ -72,7 +72,18 @@ export default function About() {
       <Nav />
       <main>
         {/* Intro: the founder's photo up top beside the company line */}
-        <section className="mx-auto max-w-7xl px-6 pt-36 pb-20 lg:px-12 lg:pt-44 lg:pb-28">
+        <section className="relative overflow-hidden">
+          {/* Oversized BZ mark, barely there, behind the intro */}
+          <Image
+            src="/logo-mark.png"
+            alt=""
+            aria-hidden
+            width={732}
+            height={626}
+            priority
+            className="pointer-events-none absolute right-[-12%] top-1/2 w-[110vw] max-w-[1000px] -translate-y-1/2 select-none opacity-[0.035] lg:right-[-4%] lg:opacity-[0.05] lg:w-[62vw]"
+          />
+          <div className="relative mx-auto max-w-7xl px-6 pt-36 pb-20 lg:px-12 lg:pt-44 lg:pb-28">
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-20">
             {/* Founder card: the BZ mark sits with the photo, on a navy plate
                 with an offset signal-blue frame behind it */}
@@ -133,6 +144,7 @@ export default function About() {
                 </a>
               </p>
             </div>
+          </div>
           </div>
         </section>
 
