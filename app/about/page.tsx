@@ -90,8 +90,8 @@ export default function About() {
               <p className="rise-in rise-in-delay-2 mt-8 max-w-[56ch] text-body text-ink-dim">
                 BZ Systems is a software company based in Columbus, Ohio,
                 founded on two backgrounds: investment banking and software
-                engineering. The company runs on both: the rigor of a deal team
-                and the speed of a product team. We build software from the
+                engineering. The company runs on both: Wall Street discipline
+                and the speed of an agile team. We build software from the
                 idea up: our own ventures, products for people with an idea
                 worth building, and upgrades for teams whose processes need one.
               </p>
