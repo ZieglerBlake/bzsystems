@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 
 /* The process, fixed. A six-step process starts MANUAL (work queues up,
-   two rework loops bounce items back); when the section comes into view
-   the fixes land one step at a time on their own (no scroll pinning):
-   each step turns blue, its queue drains, its loop fades, and the line
-   straightens. Then it holds the fixed pipeline with work flowing.
-   Replay restarts it. Illustrative, not a claim about any client.
+   two rework loops bounce items back); while the section is on screen the
+   fixes land one step at a time on their own (no scroll pinning): each
+   step turns blue and reads AUTOMATED, its queue drains, its loop fades,
+   and the line straightens. It holds, resets, and loops. Illustrative,
+   not a claim about any client.
    Canvas 2D for the flow, HTML for type. Runs only while on screen;
    reduced motion gets the finished state, static. */
 
@@ -17,8 +17,12 @@ const LAST = STEPS.length - 1;
 const ZIG = [0.16, -0.14, 0.12, -0.16, 0.14, -0.1];
 // Rework loops: items leaving step [from] get sent back to step [to].
 const REWORK = [[2, 1], [4, 3]];
-const LEAD_MS = 500; // pause before the first fix
-const FIX_MS = 750; // one fix lands every 750ms
+// The story loops while on screen: lead-in, six fixes, hold, quick reset.
+const LEAD_MS = 400;
+const FIX_MS = 420; // one fix lands every 420ms
+const HOLD_MS = 2200; // admire the fixed pipeline
+const RESET_MS = 450; // everything fades back to manual
+const CYCLE = LEAD_MS + FIX_MS * 6 + HOLD_MS + RESET_MS;
 
 const INK = "rgb(16, 19, 18)";
 const FAINT = "rgba(16, 19, 18, 0.32)";
@@ -32,7 +36,6 @@ type Item = { u: number; wait: number };
 export default function ProcessStory() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const replayRef = useRef<() => void>(() => {});
   const [stage, setStage] = useState({ fixed: 0, done: false });
 
   useEffect(() => {
@@ -71,10 +74,15 @@ export default function ProcessStory() {
     let last = performance.now();
     let shownFixed = -1, shownDone = false;
 
-    const fixesAt = (now: number) =>
-      STEPS.map((_, k) =>
-        start < 0 ? 0 : clamp01((now - start - LEAD_MS - k * FIX_MS) / (FIX_MS * 0.7)),
-      );
+    const fixesAt = (now: number) => {
+      if (start < 0) return STEPS.map(() => 0);
+      const t = (now - start) % CYCLE;
+      if (t > CYCLE - RESET_MS) {
+        const back = 1 - (t - (CYCLE - RESET_MS)) / RESET_MS;
+        return STEPS.map(() => back);
+      }
+      return STEPS.map((_, k) => clamp01((t - LEAD_MS - k * FIX_MS) / (FIX_MS * 0.7)));
+    };
 
     const frame = (now: number, finished = false) => {
       const dt = Math.min(50, now - last);
@@ -152,7 +160,7 @@ export default function ProcessStory() {
           const q = queued[k]++;
           const [nx, ny] = pts[k];
           x = tall ? nx - 26 - q * 10 : nx - 10 + q * 10;
-          y = tall ? ny : ny + 28;
+          y = tall ? ny : ny + 50;
         } else {
           x = pts[k][0] + (pts[k + 1][0] - pts[k][0]) * fr;
           y = pts[k][1] + (pts[k + 1][1] - pts[k][1]) * fr;
@@ -183,9 +191,14 @@ export default function ProcessStory() {
         ctx.lineWidth = 2;
         ctx.strokeStyle = f > 0.5 ? BLUE : FAINT;
         ctx.stroke();
-        ctx.fillStyle = f > 0.5 ? INK : "rgba(16, 19, 18, 0.55)";
+        // Step name above the bubble, its status below it.
         ctx.textAlign = tall ? "left" : "center";
-        ctx.fillText(STEPS[k].toUpperCase(), tall ? x + 24 : x, tall ? y + 4 : y - 24);
+        ctx.font = `500 12px ${mono}`;
+        ctx.fillStyle = f > 0.5 ? INK : "rgba(16, 19, 18, 0.55)";
+        ctx.fillText(STEPS[k].toUpperCase(), tall ? x + 24 : x, tall ? y - 2 : y - 24);
+        ctx.font = `500 10px ${mono}`;
+        ctx.fillStyle = f > 0.5 ? BLUE : "rgba(16, 19, 18, 0.4)";
+        ctx.fillText(f > 0.5 ? "AUTOMATED" : "MANUAL", tall ? x + 24 : x, tall ? y + 13 : y + 32);
       }
     };
 
@@ -199,11 +212,6 @@ export default function ProcessStory() {
       ro.observe(canvas);
       return () => ro.disconnect();
     }
-
-    replayRef.current = () => {
-      start = performance.now();
-      for (const it of items) it.wait = 0;
-    };
 
     let visible = false, raf = 0;
     const loop = (now: number) => {
@@ -242,23 +250,14 @@ export default function ProcessStory() {
     <section ref={sectionRef} aria-label="How a process gets fixed" className="relative overflow-hidden bg-wash">
       <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-24">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <p className="font-mono text-label uppercase text-signal-bright">The process, fixed</p>
-            <h2 className="type-semi-extended mt-4 max-w-[22ch] text-h2 uppercase">
-              {stage.done ? "The manual work is gone." : "Small fixes. One step at a time."}
-            </h2>
-            <p className="mt-3 font-mono text-label uppercase text-ink-dim" aria-live="polite">
-              {caption}
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={() => replayRef.current()}
-            className="rounded-sm border border-line px-4 py-2 font-mono text-label uppercase text-ink-dim transition-colors hover:border-signal hover:text-ink"
-          >
-            ↻ Replay
-          </button>
+        <div>
+          <p className="font-mono text-label uppercase text-signal-bright">The process, fixed</p>
+          <h2 className="type-semi-extended mt-4 max-w-[22ch] text-h2 uppercase">
+            The manual work is gone.
+          </h2>
+          <p className="mt-3 font-mono text-label uppercase text-ink-dim" aria-live="polite">
+            {caption}
+          </p>
         </div>
         <canvas ref={canvasRef} aria-hidden className="mt-6 h-[520px] w-full sm:h-[260px] lg:h-[280px]" />
         <div className="mt-4 flex flex-wrap items-end gap-x-10 gap-y-6 font-mono uppercase">
@@ -273,16 +272,6 @@ export default function ProcessStory() {
               {REWORK.filter(([from]) => from >= stage.fixed).length}
             </p>
             <p className="mt-2 text-label text-ink-dim">Rework loops</p>
-          </div>
-          <div className="ml-auto flex items-center gap-5 text-label text-ink-dim">
-            <span className="flex items-center gap-2">
-              <span className="inline-block h-3 w-3 rounded-full border-2 border-ink/30 bg-panel" />
-              Manual
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="inline-block h-3 w-3 rounded-full bg-signal" />
-              Automated
-            </span>
           </div>
         </div>
       </div>

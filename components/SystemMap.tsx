@@ -33,9 +33,12 @@ const SIGNAL = "#1E70CD";
 export default function SystemMap({
   className = "",
   variant = "light",
+  still = false,
 }: {
   className?: string;
   variant?: "light" | "dark";
+  /** Draw one static frame and hold it (same path as reduced motion). */
+  still?: boolean;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -46,7 +49,7 @@ export default function SystemMap({
     if (!ctx) return;
 
     const INK = variant === "dark" ? "244, 246, 245" : "16, 19, 18";
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduced = still || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let w = 0;
     let h = 0;
@@ -286,7 +289,7 @@ export default function SystemMap({
       document.removeEventListener("visibilitychange", onVis);
       window.removeEventListener("mousemove", onMouse);
     };
-  }, [variant]);
+  }, [variant, still]);
 
   return <canvas ref={canvasRef} aria-hidden className={`h-full w-full ${className}`} />;
 }

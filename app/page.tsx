@@ -82,7 +82,7 @@ export default function Home() {
         {/* Hero: calm live map behind the text */}
         <section className="relative flex min-h-svh flex-col justify-end overflow-hidden">
           <div className="absolute inset-0">
-            <SystemMap />
+            <SystemMap still />
             <WaterSurface />
           </div>
           <div
