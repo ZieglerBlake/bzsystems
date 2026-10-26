@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import BandLab from "@/components/BandLab";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import PhasedBuildIntro from "@/components/PhasedBuildIntro";
+import ProcessStory from "@/components/ProcessStory";
 import Reveal from "@/components/Reveal";
 import SectionRule from "@/components/SectionRule";
 import SystemMap from "@/components/SystemMap";
@@ -128,8 +128,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PROTOTYPE: band options with a live switcher (see BandLab.tsx) */}
-        <BandLab />
+        {/* The process, fixed: pinned scroll story (ProcessStory.tsx) */}
+        <ProcessStory />
 
         {/* SEC.01: Ventures. The black slab band. No names, ever. */}
         <section id="ventures" className="relative scroll-mt-24 overflow-hidden bg-night">

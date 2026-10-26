@@ -14,17 +14,12 @@ const DAMPING = 0.986;
 const SHADE = 0.006; // slope -> opacity
 const MAX_ALPHA = 110;
 
-/* tone "dark" lifts the crests to ice and roughly doubles contrast so the
-   surface reads on the navy bands; "light" is the hero default. */
-export default function WaterSurface({ tone = "light" }: { tone?: "light" | "dark" }) {
+export default function WaterSurface() {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const dark = tone === "dark";
-    const shade = dark ? SHADE * 1.6 : SHADE;
-    const maxAlpha = dark ? 190 : MAX_ALPHA;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -85,14 +80,12 @@ export default function WaterSurface({ tone = "light" }: { tone?: "light" | "dar
           const i = y * cols + x;
           const s = cur[i - 1] - cur[i + 1] + (cur[i - cols] - cur[i + cols]);
           const o = i * 4;
-          if (s > 0 && dark) {
-            d[o] = 232; d[o + 1] = 238; d[o + 2] = 246; // ice crest on navy
-          } else if (s > 0) {
+          if (s > 0) {
             d[o] = 91; d[o + 1] = 155; d[o + 2] = 232; // #5B9BE8 crest
           } else {
             d[o] = 30; d[o + 1] = 112; d[o + 2] = 205; // #1E70CD trough
           }
-          d[o + 3] = Math.min(1, Math.abs(s) * shade) * maxAlpha;
+          d[o + 3] = Math.min(1, Math.abs(s) * SHADE) * MAX_ALPHA;
         }
       }
       ctx.putImageData(img, 0, 0);
@@ -152,7 +145,7 @@ export default function WaterSurface({ tone = "light" }: { tone?: "light" | "dar
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onDown);
     };
-  }, [tone]);
+  }, []);
 
   return (
     <canvas
