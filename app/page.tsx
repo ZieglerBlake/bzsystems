@@ -37,6 +37,26 @@ const ORG_JSONLD = {
   },
 };
 
+/* What we build, in two groups that mirror the hero headline. */
+const CAPABILITIES = [
+  {
+    label: "Your idea, built",
+    items: [
+      { title: "Web apps & platforms", body: "Customer-facing products, portals, and dashboards, built from the first screen up." },
+      { title: "AI products", body: "Assistants and tools built on current AI models, wired into real data and real work." },
+      { title: "APIs & integrations", body: "Connect the systems you already use so they finally talk to each other." },
+    ],
+  },
+  {
+    label: "Your process, fixed",
+    items: [
+      { title: "Workflow automation", body: "Intake, approvals, and handoffs that run themselves instead of living in inboxes." },
+      { title: "Data & reporting", body: "Data lands where it is needed, and the reports build themselves." },
+      { title: "Infrastructure", body: "Hosting, security, and monitoring set up to stay up." },
+    ],
+  },
+];
+
 /* Self-drawing schematic marks for the build principles */
 function Glyph({ variant }: { variant: number }) {
   const stroke = { stroke: "currentColor", strokeWidth: 1.5, fill: "none" } as const;
@@ -193,8 +213,8 @@ export default function Home() {
                 },
                 {
                   n: "03",
-                  title: "Accountable by structure",
-                  body: "The structure does the enforcing. Every claim on this site is checkable, and every venture is described exactly as it stands today, not as we hope it turns out.",
+                  title: "One builder, no handoffs",
+                  body: "The person who scopes your project is the person who builds it. No relay team, no game of telephone, and one person who answers for all of it.",
                 },
               ].map((p, i) => (
                 <div key={p.n} className="flex flex-col gap-4 border-t border-line pt-6">
@@ -207,24 +227,22 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <ul className="mt-16 flex flex-wrap gap-3">
-              {[
-                "AI systems",
-                "Web platforms",
-                "APIs",
-                "Automation",
-                "Data pipelines",
-                "Infrastructure",
-                "Analytics",
-              ].map((c) => (
-                <li
-                  key={c}
-                  className="rounded-sm border border-line px-4 py-2 font-mono text-label uppercase text-ink-faint"
-                >
-                  {c}
-                </li>
+            {/* What we build, grouped to mirror the hero: idea work, process work */}
+            <div className="mt-20 grid gap-12 lg:grid-cols-2">
+              {CAPABILITIES.map((group) => (
+                <div key={group.label}>
+                  <p className="font-mono text-label uppercase text-signal-bright">{group.label}</p>
+                  <ul className="mt-5 grid gap-px overflow-hidden rounded-md border border-line bg-line">
+                    {group.items.map((it) => (
+                      <li key={it.title} className="bg-panel/85 p-6 transition-colors duration-200 hover:bg-panel">
+                        <p className="type-semi-extended text-h3 uppercase">{it.title}</p>
+                        <p className="mt-2 text-ink-dim">{it.body}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
+            </div>
             <p className="mt-16 font-mono text-label uppercase text-ink-faint">
               Architecture over assurances.
             </p>
