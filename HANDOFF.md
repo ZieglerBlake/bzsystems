@@ -46,12 +46,20 @@ read it fully before changing anything. Resume incantation for any session:
   white, ink `#101312`, one signal blue `#1E70CD` (bright-on-dark `#5B9BE8`,
   text-on-light `#15529E`). Fonts: Archivo variable (wdth axis; display 125,
   semi 112) + JetBrains Mono. Blue seams: `h-[2px] bg-signal shadow-glow`.
+- Since 2026-10-25: dark bands use token `night` `#0B1220` (deep navy, NOT
+  ink); the How we build band uses `wash` `#EEF3FA`; `ink-dim` is 0.72.
+  Primary actions are SOLID signal-blue buttons (hero "Get in touch", form
+  "Send"). Nav and footer use `public/logo-mark.png` (transparent, made
+  from logo.png by color-to-alpha); logo.png has a white background and
+  shows as a box on dark, so do not use it in UI.
 - Tokens live in `app/globals.css` under `@theme`.
 
 ## Pages (all verified desktop + 375px, live)
 
 - `/` (as of 2026-10-25, six panels) — PhasedBuildIntro (fresh loads only,
-  skippable, SSR so no flash) → hero (live SystemMap canvas; headline
+  skippable, SSR so no flash) → hero (live SystemMap canvas with `components/WaterSurface.tsx` ripples over it:
+  2D wave sim, soft ambient drops + cursor wakes, off for reduced motion;
+  headline
   "FIX THE PROCESS. / ENRICH THE WORK." (static; replaced DESIGNED / BUILT /
   OWNED BY US on 2026-10-25 at Blake's request) with a smaller signal-blue
   kicker "SMALL FIXES THAT COMPOUND."; subline
@@ -59,9 +67,13 @@ read it fully before changing anything. Resume incantation for any session:
   automation products, and uses the same stack to strengthen the processes
   your team already runs." which the meta/OG/Twitter/JSON-LD descriptions
   mirror; badges FOUNDER RUN / CUSTOM BUILT / PROCESS ENHANCING, no
-  hyphens by Blake's choice) → film band (hero.mp4 + centered logo-dark) →
-  SEC.01 THE COMPANY (dark band; "We build software companies. Then we keep
-  them." + holding-company paragraph) → SEC.02 HOW WE BUILD (3 cards + 7
+  hyphens by Blake's choice; solid "Get in touch" button) → film band (hero.mp4 + centered logo-dark) →
+  SEC.01 THE COMPANY (navy band; headline "RUN LIKE A STARTUP. / HELD LIKE A
+  HOLDCO." (Blake: the HOLDCO half stays no matter what); copy: holding
+  company + same stack in client work, "The focus runs from small businesses
+  to regulated teams in finance.", ventures page "locked, open to clients
+  and partners on request" (Blake's wording; the lock is still decorative,
+  see Still open)) → SEC.02 HOW WE BUILD (3 cards + 7
   chips; card 02 "Stands on its own", card 03 "Accountable by structure")
   → thesis slab ("Most software companies are built to be sold. This one is
   built to be kept." / BZ SYSTEMS LLC) → SEC.03 CONTACT ("Get in touch.",

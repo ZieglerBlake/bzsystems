@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
@@ -6,6 +7,7 @@ import PhasedBuildIntro from "@/components/PhasedBuildIntro";
 import Reveal from "@/components/Reveal";
 import SectionRule from "@/components/SectionRule";
 import SystemMap from "@/components/SystemMap";
+import WaterSurface from "@/components/WaterSurface";
 
 const LINKEDIN = "https://www.linkedin.com/in/blakerobertziegler/";
 
@@ -80,6 +82,7 @@ export default function Home() {
         <section className="relative flex min-h-svh flex-col justify-end overflow-hidden">
           <div className="absolute inset-0">
             <SystemMap />
+            <WaterSurface />
           </div>
           <div
             aria-hidden
@@ -103,6 +106,14 @@ export default function Home() {
               and automation products, and uses the same stack to strengthen
               the processes your team already runs.
             </p>
+            <div className="rise-in rise-in-delay-3 mt-8">
+              <Link
+                href="/#contact"
+                className="inline-block rounded-sm bg-signal px-8 py-3 font-mono text-label uppercase text-panel shadow-glow transition-all duration-200 hover:bg-signal-bright"
+              >
+                Get in touch
+              </Link>
+            </div>
             <ul className="rise-in rise-in-delay-3 mt-10 flex flex-wrap gap-3">
               {["FOUNDER RUN", "CUSTOM BUILT", "PROCESS ENHANCING"].map((f) => (
                 <li
@@ -117,7 +128,7 @@ export default function Home() {
         </section>
 
         {/* The slab film: full-bleed, logo over the moving theme */}
-        <section aria-hidden className="relative h-[42vh] overflow-hidden bg-ink lg:h-[52vh]">
+        <section aria-hidden className="relative h-[42vh] overflow-hidden bg-night lg:h-[52vh]">
           <div className="absolute inset-x-0 top-0 z-10 h-[2px] bg-signal shadow-glow" />
           <video
             autoPlay
@@ -151,7 +162,7 @@ export default function Home() {
         </section>
 
         {/* SEC.01: Ventures. The black slab band. No names, ever. */}
-        <section id="ventures" className="relative scroll-mt-24 overflow-hidden bg-ink">
+        <section id="ventures" className="relative scroll-mt-24 overflow-hidden bg-night">
           <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
           <div className="absolute inset-0 opacity-70">
             <SystemMap variant="dark" />
@@ -160,20 +171,25 @@ export default function Home() {
             <SectionRule sec="SEC.01" title="The company" dark />
             <div className="mt-14 grid gap-12 lg:grid-cols-[1.1fr_1fr]">
               <h2 className="type-semi-extended max-w-[19ch] text-h2 uppercase text-void">
-                We build software companies.
+                Run like a startup.
                 <br />
-                Then we keep them.
+                Held like a holdco.
               </h2>
               <div className="flex flex-col gap-5 text-void/70">
                 <p>
-                  BZ Systems is a holding company. Under it sits a small set
-                  of software ventures, and all of them are ours: we designed
-                  them, we build them, and we run them, with no investors and
-                  no plan to sell.
+                  BZ Systems is a holding company. It builds and runs a small
+                  set of its own software ventures. The same stack and the
+                  same habits go into client work: small, targeted fixes to
+                  the processes a team already runs.
                 </p>
                 <p>
-                  Each one gets listed on the ventures page as it goes live.
-                  The registry is still in build.
+                  The focus runs from small businesses to regulated teams in
+                  finance.
+                </p>
+                <p>
+                  Each venture gets listed on the ventures page as it goes
+                  live. For now that page is locked, open to clients and
+                  partners on request.
                 </p>
               </div>
             </div>
@@ -182,7 +198,7 @@ export default function Home() {
         </section>
 
         {/* SEC.02: How we build */}
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden bg-wash">
           <Image
             src="/tex/blueprint.webp"
             alt=""
@@ -246,7 +262,7 @@ export default function Home() {
         </section>
 
         {/* The thesis slab */}
-        <section className="relative overflow-hidden bg-ink">
+        <section className="relative overflow-hidden bg-night">
           <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
           <Reveal className="mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-32">
             <p className="type-extended max-w-[22ch] text-display uppercase text-void">

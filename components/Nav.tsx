@@ -7,12 +7,12 @@ export default function Nav() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
         <Link href="/" aria-label="BZ Systems home">
           <Image
-            src="/logo.png"
+            src="/logo-mark.png"
             alt="BZ Systems logo"
-            width={64}
+            width={56}
             height={48}
             priority
-            className="h-12 w-auto mix-blend-multiply"
+            className="h-12 w-auto"
           />
         </Link>
         <div className="flex items-center gap-6 font-mono text-label uppercase sm:gap-8">

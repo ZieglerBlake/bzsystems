@@ -68,7 +68,7 @@ export default function About() {
         <div className="mx-auto max-w-7xl px-6 pt-40 pb-24 lg:px-12 lg:pb-32">
           {/* Nameplate: white knockout mark on an ink plate, centered */}
           <div className="rise-in flex justify-center">
-            <div className="rounded-sm bg-ink px-4 py-2">
+            <div className="rounded-sm bg-night px-4 py-2">
               <Image
                 src="/logo-dark.png"
                 alt="BZ Systems logo, white mark on a black plate"
@@ -101,7 +101,7 @@ export default function About() {
             {/* Founder sign-off: the page is written in his voice, so it ends with him */}
             <Reveal>
               <div aria-hidden className="my-14 h-px bg-line-soft" />
-              <figure className="mx-auto max-w-xs overflow-hidden rounded-md bg-ink">
+              <figure className="mx-auto max-w-xs overflow-hidden rounded-md bg-night">
                 <Image
                   src="/ziegler.webp"
                   alt="Blake Ziegler, founder of BZ Systems"

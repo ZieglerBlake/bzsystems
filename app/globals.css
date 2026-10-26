@@ -8,12 +8,14 @@
   --color-void: #f7f8f6; /* the field — name kept for stable class names */
   --color-panel: #ffffff;
   --color-ink: #101312;
-  --color-ink-dim: rgb(16 19 18 / 0.64);
+  --color-ink-dim: rgb(16 19 18 / 0.72);
   --color-ink-faint: rgb(16 19 18 / 0.4);
   --color-line: rgb(16 19 18 / 0.16);
   --color-line-soft: rgb(16 19 18 / 0.08);
   --color-signal: #1e70cd;
   --color-signal-bright: #15529e; /* signal tuned for text on the light field */
+  --color-night: #0b1220; /* deep navy for the dark bands, tied to the signal blue */
+  --color-wash: #eef3fa; /* faint blueprint tint for the How we build band */
 
   --radius-*: initial;
   --radius-sm: 2px;
