@@ -35,24 +35,35 @@ export const metadata: Metadata = {
 const LINK =
   "text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal";
 
-/* What we build: the same two halves as the home headline. */
+/* What we build: the same two halves as the home headline, each with
+   the kinds of work that fall under it. */
 const WORK = [
   {
     label: "Your idea, built",
-    body: "You have an idea and maybe a sketch. We take it from there: what version one needs, the product itself, and the infrastructure it runs on, until it is live and in use.",
+    title: "From a sketch to a live product",
+    body: [
+      "You bring the idea, even if it is only a page of notes and a rough sketch. We work out what version one actually needs, cut what can wait, and build the whole thing: the screens your users see, the systems behind them, and the infrastructure it runs on.",
+      "You see it working early, not at the end. It ships when it is ready for real users, and it keeps improving from there.",
+    ],
+    items: [
+      { title: "Web apps & platforms", body: "Customer-facing products, portals, and dashboards, built from the first screen up." },
+      { title: "AI products", body: "Assistants and tools built on current AI models, wired into real data and real work." },
+      { title: "APIs & integrations", body: "Connect the systems you already use so they finally talk to each other." },
+    ],
   },
   {
     label: "Your process, upgraded",
-    body: "Your team runs on handoffs, spreadsheets, and inboxes. We find the steps that slow it down and automate them one at a time, so the work gets faster without starting over.",
+    title: "The same work, minus the busywork",
+    body: [
+      "Most teams do not need a new system. They need the one they have to stop leaking time. We map how the work actually moves today and find the manual steps, handoffs, and rework that slow it down.",
+      "Then we automate them one at a time. Nothing gets ripped out, your team keeps working while it improves, and every fix builds on the last.",
+    ],
+    items: [
+      { title: "Workflow automation", body: "Intake, approvals, and handoffs that run themselves instead of living in inboxes." },
+      { title: "Data & reporting", body: "Data lands where it is needed, and the reports build themselves." },
+      { title: "Infrastructure", body: "Hosting, security, and monitoring set up to stay up." },
+    ],
   },
-];
-
-/* How we work: fixed rules, short enough to hold us to. */
-const RULES = [
-  { title: "You talk to the founder", body: "The person who scopes your project runs it start to finish. No account managers, no game of telephone." },
-  { title: "Small first, then compound", body: "The smallest version that works ships first. You see it running early, and every step builds on the last." },
-  { title: "Built in America", body: "Every line of code is written in the United States, by employees or U.S.-based contractors we hire and manage directly. No offshore teams, no offshore tools, no offshore handoffs." },
-  { title: "Nothing announced before it exists", body: "No roadmaps sold as products. If it is on this site, it is real." },
 ];
 
 export default function About() {
@@ -62,32 +73,43 @@ export default function About() {
       <main>
         {/* Intro: the founder's photo up top beside the company line */}
         <section className="mx-auto max-w-7xl px-6 pt-36 pb-20 lg:px-12 lg:pt-44 lg:pb-28">
-          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-20">
-            <figure className="rise-in mx-auto w-full max-w-[260px] overflow-hidden lg:max-w-[360px] rounded-md bg-night">
-              <Image
-                src="/ziegler.webp"
-                alt="Blake Ziegler, founder of BZ Systems"
-                width={427}
-                height={513}
-                priority
-                className="w-full"
-              />
-              <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
-              <figcaption className="px-4 py-3 font-mono text-legal uppercase text-void/60">
-                Blake Ziegler / Founder, Principal
-                <br />
-                <span className="text-void/85">Formerly Morgan Stanley</span>
-              </figcaption>
-            </figure>
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-20">
+            {/* Founder card: the BZ mark sits with the photo, on a navy plate
+                with an offset signal-blue frame behind it */}
+            <div className="rise-in relative mx-auto w-full max-w-[280px] lg:max-w-[380px]">
+              <div aria-hidden className="absolute inset-0 translate-x-3 translate-y-3 rounded-md border border-signal/50" />
+              <figure className="relative overflow-hidden rounded-md bg-night p-3 shadow-glow">
+                <div className="flex items-center justify-between px-1 pb-3">
+                  <Image src="/logo-dark.png" alt="BZ Systems logo" width={1448} height={1086} className="-my-2 -ml-2 h-16 w-auto lg:h-20" />
+                  <span className="font-mono text-legal uppercase text-void/50">Columbus, OH</span>
+                </div>
+                <div className="overflow-hidden rounded-sm">
+                  <Image
+                    src="/ziegler.webp"
+                    alt="Blake Ziegler, founder of BZ Systems"
+                    width={427}
+                    height={513}
+                    priority
+                    className="w-full"
+                  />
+                </div>
+                <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
+                <figcaption className="px-1 pt-3 font-mono text-legal uppercase text-void/60">
+                  Blake Ziegler / Founder, Principal
+                  <br />
+                  <span className="text-void/85">Formerly Morgan Stanley</span>
+                </figcaption>
+              </figure>
+            </div>
             <div>
               <p className="rise-in font-mono text-label uppercase text-signal-bright">About</p>
               <h1
                 className="rise-in rise-in-delay-1 type-extended mt-4 text-display uppercase"
-                style={{ fontSize: "clamp(1.3rem, 4vw, 3.25rem)" }}
+                style={{ fontSize: "clamp(1.3rem, 3.3vw, 2.7rem)" }}
               >
-                Built right.
+                Built from Columbus.
                 <br />
-                <span className="text-signal-bright">Backed for good.</span>
+                <span className="text-signal-bright">Built in America.</span>
               </h1>
               <p className="rise-in rise-in-delay-2 mt-8 max-w-[56ch] text-body text-ink-dim">
                 BZ Systems is a software company based in Columbus, Ohio,
@@ -121,57 +143,26 @@ export default function About() {
             <SectionRule sec="01" title="What we build" />
             <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line lg:grid-cols-2">
               {WORK.map((w) => (
-                <div key={w.label} className="bg-panel p-8 lg:p-10">
-                  <p className="type-semi-extended text-h2 uppercase">{w.label}</p>
-                  <p className="mt-4 text-ink-dim">{w.body}</p>
+                <div key={w.label} className="flex flex-col bg-panel p-8 lg:p-12">
+                  <p className="font-mono text-label uppercase text-signal-bright">{w.label}</p>
+                  <h2 className="type-semi-extended mt-4 text-h2 uppercase">{w.title}</h2>
+                  <div className="mt-6 flex flex-col gap-4 text-ink-dim">
+                    {w.body.map((p) => (
+                      <p key={p.slice(0, 24)}>{p}</p>
+                    ))}
+                  </div>
+                  <ul className="mt-10 flex flex-col">
+                    {w.items.map((it) => (
+                      <li key={it.title} className="border-t border-line py-5">
+                        <p className="type-semi-extended text-h3 uppercase">{it.title}</p>
+                        <p className="mt-1 text-ink-dim">{it.body}</p>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
           </Reveal>
-        </section>
-
-        {/* How we work */}
-        <section className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
-          <Reveal>
-            <SectionRule sec="02" title="How we work" />
-            <ol className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
-              {RULES.map((r, i) => (
-                <li key={r.title} className="border-t border-line pt-6">
-                  <p className="font-mono text-label text-signal-bright">{String(i + 1).padStart(2, "0")}</p>
-                  <p className="type-semi-extended mt-3 text-h3 uppercase">{r.title}</p>
-                  <p className="mt-2 text-ink-dim">{r.body}</p>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-        </section>
-
-        {/* The company */}
-        <section className="relative overflow-hidden bg-night">
-          <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
-          <Reveal className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
-            <SectionRule sec="03" title="The company" dark />
-            <div className="mt-12 grid gap-12 lg:grid-cols-[1.1fr_1fr]">
-              <h2 className="type-semi-extended max-w-[19ch] text-h2 uppercase text-void">
-                Run like a startup.
-                <br />
-                Held like a holdco.
-              </h2>
-              <div className="flex flex-col gap-5 text-void/70">
-                <p>
-                  BZ Systems is a holding company. It owns a small set of its
-                  own software ventures, each under its own brand, and the
-                  client work runs on the same stack and the same habits.
-                </p>
-                <p>
-                  Each venture gets listed on the ventures page as it goes
-                  live. For now that page is locked, open to clients and
-                  partners on request.
-                </p>
-              </div>
-            </div>
-          </Reveal>
-          <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
         </section>
 
         {/* Close: point at the contact form */}
