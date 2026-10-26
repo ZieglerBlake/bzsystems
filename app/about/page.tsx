@@ -56,7 +56,7 @@ const WORK = [
     title: "The same work, minus the busywork",
     body: [
       "Most teams do not need a new system. They need the one they have to stop leaking time. We start by mapping your process exactly as it runs today, every step, every handoff, and identify the inefficiencies: the manual work, the waiting, and the rework that slow it down.",
-      "From that map, we fix them one at a time. Nothing gets ripped out and nobody gets replaced. The fixes take the busywork off your team, so their time goes to the work that actually needs them. Every fix builds on the last.",
+      "From that map, we fix them one at a time. Nothing gets ripped out, your team gets its time back, and every fix builds on the last.",
     ],
     items: [
       { title: "Workflow automation", body: "Intake, approvals, and handoffs that run themselves instead of living in inboxes." },
