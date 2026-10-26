@@ -135,10 +135,6 @@ export default function About() {
                   LinkedIn ↗
                 </a>
                 <span className="text-ink-faint">&ensp;/&ensp;</span>
-                <a href="https://blakeziegler.app" target="_blank" rel="noreferrer" className={LINK}>
-                  blakeziegler.app ↗
-                </a>
-                <span className="text-ink-faint">&ensp;/&ensp;</span>
                 <a href="mailto:blake@bzsystems.io" className={LINK}>
                   blake@bzsystems.io
                 </a>

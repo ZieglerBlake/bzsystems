@@ -94,8 +94,8 @@ read it fully before changing anything. Resume incantation for any session:
   Blake approved naming the firm; plain text only, never a logo) beside h1
   "BUILT FROM COLUMBUS. / BUILT IN AMERICA." (Blake's pick) + intro (Columbus, founded on
   investment banking and software engineering backgrounds, "institutional
-  standards and the speed of an agile team") + LinkedIn / blakeziegler.app
-  / email → 01 WHAT WE BUILD (two long panels, idea / process, each with
+  standards and the speed of an agile team") + LinkedIn / email (blakeziegler.app link removed 2026-10-25: personal
+  site, keep it off the company site) → 01 WHAT WE BUILD (two long panels, idea / process, each with
   two paragraphs and three capability items) → closer "HAVE AN IDEA?
   LET'S BUILD IT." + Start something. Blake found the longer version "WAY
   too much": How we work and the company band were cut 2026-10-25; keep
@@ -103,7 +103,9 @@ read it fully before changing anything. Resume incantation for any session:
 - Work is done by Blake, employees, or U.S.-based contractors (Blake,
   2026-10-25); home card 03 "Built in America" and the About rule say so.
   Do not reintroduce "I write all of it" / one-builder claims.
-- `/ventures` — light theme, live map, label "Registry", "THE REGISTRY IS
+- `/ventures` — STAYS LOCKED by Blake's decision 2026-10-25. Never list personal
+  projects from blakeziegler.app; only ForkBrain / Reticle are venture candidates.
+   light theme, live map, label "Registry", "THE REGISTRY IS
   IN BUILD.", decorative password gate (`components/RegistryLock.tsx`, NOT
   real auth; copy "LOCKED WHILE IN BUILD. NO PUBLIC KEYS YET." / "▸ NO
   MATCH. THE REGISTRY IS STILL IN BUILD."), BACK TO HOME + SEND AN
