@@ -18,10 +18,10 @@ const ZIG = [0.16, -0.14, 0.12, -0.16, 0.14, -0.1];
 // Rework loops: items leaving step [from] get sent back to step [to].
 const REWORK = [[2, 1], [4, 3]];
 // The story loops while on screen: lead-in, six fixes, hold, quick reset.
-const LEAD_MS = 400;
-const FIX_MS = 420; // one fix lands every 420ms
-const HOLD_MS = 2200; // admire the fixed pipeline
-const RESET_MS = 450; // everything fades back to manual
+const LEAD_MS = 1600; // sit in the current state first
+const FIX_MS = 650; // one fix lands every 650ms
+const HOLD_MS = 3200; // hold on the future state
+const RESET_MS = 600; // everything fades back to manual
 const CYCLE = LEAD_MS + FIX_MS * 6 + HOLD_MS + RESET_MS;
 
 const INK = "rgb(16, 19, 18)";
@@ -243,7 +243,7 @@ export default function ProcessStory() {
   const caption = stage.done
     ? "Every step automated"
     : stage.fixed === 0
-      ? "Today: manual handoffs, rework, waiting"
+      ? "Handoffs, rework, waiting"
       : `Fix ${String(stage.fixed).padStart(2, "0")} / ${STEPS[stage.fixed - 1]} automated`;
 
   return (
@@ -252,10 +252,33 @@ export default function ProcessStory() {
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-24">
         <div>
           <p className="font-mono text-label uppercase text-signal-bright">The process, fixed</p>
-          <h2 className="type-semi-extended mt-4 max-w-[22ch] text-h2 uppercase">
-            The manual work is gone.
-          </h2>
-          <p className="mt-3 font-mono text-label uppercase text-ink-dim" aria-live="polite">
+          {/* Current state and future state share one cell and crossfade. */}
+          <div className="mt-5 grid">
+            {[
+              { on: !stage.done, tag: "Current state", line: ["Manual", "and siloed."], tone: "text-ink", tagTone: "text-ink-dim" },
+              { on: stage.done, tag: "Future state", line: ["Automated", "and efficient."], tone: "text-signal", tagTone: "text-signal-bright" },
+            ].map((s) => (
+              <div
+                key={s.tag}
+                aria-hidden={!s.on}
+                className="transition-opacity duration-700 [grid-area:1/1]"
+                style={{ opacity: s.on ? 1 : 0 }}
+              >
+                <p className={`font-mono text-label uppercase ${s.tagTone}`}>
+                  {s.tag}
+                </p>
+                <h2
+                  className={`type-extended mt-2 text-display uppercase ${s.tone}`}
+                  style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
+                >
+                  {s.line[0]}
+                  <br />
+                  {s.line[1]}
+                </h2>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 font-mono text-label uppercase text-ink-dim" aria-live="polite">
             {caption}
           </p>
         </div>

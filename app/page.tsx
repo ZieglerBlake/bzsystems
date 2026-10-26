@@ -21,7 +21,7 @@ const ORG_JSONLD = {
   url: "https://bzsystems.io",
   logo: "https://bzsystems.io/logo.png",
   description:
-    "An independent studio that builds and keeps its own AI, data, and automation products, and uses the same stack to strengthen the processes your team already runs.",
+    "An independent studio that builds software from the idea up: for our own ventures, for people with an idea worth building, and for teams whose processes need fixing.",
   foundingDate: "2026",
   email: "blake@bzsystems.io",
   address: {
@@ -94,18 +94,18 @@ export default function Home() {
             <p className="rise-in caret font-mono text-label uppercase text-ink-dim">
               BZ SYSTEMS LLC / INDEPENDENT SOFTWARE STUDIO / COLUMBUS, OH
             </p>
-            <h1 className="rise-in rise-in-delay-1 type-extended mt-6 max-w-5xl text-display uppercase">
-              FIX THE PROCESS.
+            <h1
+              className="rise-in rise-in-delay-1 type-extended mt-6 text-display uppercase"
+              style={{ fontSize: "clamp(1.75rem, 5.4vw, 4.25rem)" }}
+            >
+              YOUR IDEA, BUILT.
               <br />
-              ENRICH THE WORK.
+              YOUR PROCESS, FIXED.
             </h1>
-            <p className="rise-in rise-in-delay-2 type-semi-extended mt-6 text-h2 uppercase text-signal-bright">
-              Small fixes that compound.
-            </p>
             <p className="rise-in rise-in-delay-2 mt-8 max-w-[52ch] text-body text-ink-dim">
-              An independent studio that builds and keeps its own AI, data,
-              and automation products, and uses the same stack to strengthen
-              the processes your team already runs.
+              An independent studio that builds software from the idea up:
+              for our own ventures, for people with an idea worth building,
+              and for teams whose processes need fixing.
             </p>
             <div className="rise-in rise-in-delay-3 mt-8">
               <Link
@@ -241,9 +241,9 @@ export default function Home() {
                   Get in touch.
                 </h2>
                 <p className="mt-6 max-w-[44ch] text-ink-dim">
-                  Working on vendor risk, AI governance, or an operations
-                  problem that software should be solving? Email me directly.
-                  You'll hear back within one business day.
+                  Have an idea you want built, or a process software should be
+                  fixing? Email me directly. You'll hear back within one
+                  business day.
                 </p>
                 <p className="mt-6 font-mono text-label">
                   <a
