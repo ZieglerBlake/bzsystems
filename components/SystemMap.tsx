@@ -229,6 +229,11 @@ export default function SystemMap({
     }
 
     function loop(t: number) {
+      if (document.documentElement.dataset.intro) {
+        // Covered by the entrance; skip the work until it clears.
+        raf = requestAnimationFrame(loop);
+        return;
+      }
       for (const p of packets) {
         p.t += p.speed;
         if (p.t > 1.05) p.t = -0.05;

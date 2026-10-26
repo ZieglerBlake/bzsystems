@@ -126,7 +126,7 @@ export default function WaterSurface() {
     let nextDrop = 0;
     const loop = (now: number) => {
       raf = requestAnimationFrame(loop);
-      if (!visible || document.hidden) return;
+      if (!visible || document.hidden || document.documentElement.dataset.intro) return;
       if (now >= nextDrop) {
         drop(Math.random() * cols, Math.random() * rows, 3, 85);
         nextDrop = now + 1600 + Math.random() * 2600;
