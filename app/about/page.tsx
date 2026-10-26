@@ -4,18 +4,19 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
+import SectionRule from "@/components/SectionRule";
 
 const LINKEDIN = "https://www.linkedin.com/in/blakerobertziegler/";
 
 export const metadata: Metadata = {
   title: "About us / BZ Systems",
   description:
-    "I started BZ Systems in 2026, in Columbus, Ohio, to do one thing: build software products worth owning, and then own them.",
+    "I'm Blake Ziegler. I started BZ Systems in 2026 in Columbus, Ohio, and I build software from the idea up: my own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About us / BZ Systems",
     description:
-      "I started BZ Systems in 2026, in Columbus, Ohio, to do one thing: build software products worth owning, and then own them.",
+      "I'm Blake Ziegler. I started BZ Systems in 2026 in Columbus, Ohio, and I build software from the idea up: my own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
     url: "/about",
     siteName: "BZ Systems",
     locale: "en_US",
@@ -27,37 +28,31 @@ export const metadata: Metadata = {
     images: ["/opengraph-image.png"],
     title: "About us / BZ Systems",
     description:
-      "I started BZ Systems in 2026, in Columbus, Ohio, to do one thing: build software products worth owning, and then own them.",
+      "I'm Blake Ziegler. I started BZ Systems in 2026 in Columbus, Ohio, and I build software from the idea up: my own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
   },
 };
 
-const sections = [
+const LINK =
+  "text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal";
+
+/* What I build: the same two halves as the home headline. */
+const WORK = [
   {
-    label: "The company",
-    paragraphs: [
-      "I started BZ Systems in 2026, in Columbus, Ohio, to do one thing: build software products worth owning, and then own them.",
-      "It runs as a holding company. Under it sits a small set of customer-facing ventures, each with its own name and its own books, and all of it built, operated, and supported by me. Nothing is acquired, nothing is outsourced, and nothing ships that I wouldn't run myself.",
-    ],
+    label: "Your idea, built",
+    body: "You have an idea and maybe a sketch. I take it from there: what version one needs, the product itself, and the infrastructure it runs on, until it is live and in use.",
   },
   {
-    label: "The thesis",
-    paragraphs: [
-      "Most software companies are built to be sold. BZ Systems is built to be kept.",
-      "Durable products come from durable structure: full ownership, no outside capital, and no exit plan driving the roadmap. When a company answers only to its customers and its own standard, accountability is structural, not aspirational. The system is the strategy. The products will be the proof.",
-    ],
+    label: "Your process, upgraded",
+    body: "Your team runs on handoffs, spreadsheets, and inboxes. I find the steps that slow it down and automate them one at a time, so the work gets faster without starting over.",
   },
-  {
-    label: "What I build",
-    paragraphs: [
-      "I build software businesses from nothing: idea, product, infrastructure, revenue. Some ventures are customer-facing applications, some are APIs and data systems other software depends on. All of them are built to earn their keep and built to last.",
-    ],
-  },
-  {
-    label: "How I operate",
-    paragraphs: [
-      "The company runs on a few fixed rules. Everything that ships stays owned and stays run, for years. Nothing gets announced before it exists. Growth comes from what the products earn, not from raised money. None of this is philosophy. It is just how the company is built, and that part does not change.",
-    ],
-  },
+];
+
+/* How I work: fixed rules, short enough to hold me to. */
+const RULES = [
+  { title: "You talk to the builder", body: "The person who scopes your project is the person who builds it. No account managers, no handoffs." },
+  { title: "Small first, then compound", body: "The smallest version that works ships first. You see it running early, and every step builds on the last." },
+  { title: "The whole stack, in-house", body: "I write all of it, from the first screen to the servers, so I can explain any part of it and stand behind it." },
+  { title: "Nothing announced before it exists", body: "No roadmaps sold as products. If it is on this site, it is real." },
 ];
 
 export default function About() {
@@ -65,86 +60,133 @@ export default function About() {
     <>
       <Nav />
       <main>
-        <div className="mx-auto max-w-7xl px-6 pt-40 pb-24 lg:px-12 lg:pb-32">
-          {/* Nameplate: white knockout mark on an ink plate, centered */}
-          <div className="rise-in flex justify-center">
-            <div className="rounded-sm bg-night px-4 py-2">
+        {/* Intro: the founder up top, the page is in his voice */}
+        <section className="mx-auto max-w-7xl px-6 pt-36 pb-20 lg:px-12 lg:pt-44 lg:pb-28">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-20">
+            <figure className="rise-in mx-auto w-full max-w-[260px] overflow-hidden lg:max-w-[360px] rounded-md bg-night">
               <Image
-                src="/logo-dark.png"
-                alt="BZ Systems logo, white mark on a black plate"
-                width={1448}
-                height={1086}
+                src="/ziegler.webp"
+                alt="Blake Ziegler, founder of BZ Systems"
+                width={427}
+                height={513}
                 priority
-                className="h-40 w-auto"
+                className="w-full"
               />
-            </div>
-          </div>
-
-          {/* Sections: centered under the nameplate */}
-          <div className="mx-auto mt-20 max-w-3xl text-center">
-            {sections.map((s, i) => (
-              <Reveal key={s.label}>
-                {i > 0 && <div aria-hidden className="my-14 h-px bg-line-soft" />}
-                <section>
-                  <p className="font-mono text-label uppercase text-signal-bright">
-                    {s.label}
-                  </p>
-                  <div className="mt-6 flex flex-col gap-5 text-ink-dim">
-                    {s.paragraphs.map((p) => (
-                      <p key={p.slice(0, 24)}>{p}</p>
-                    ))}
-                  </div>
-                </section>
-              </Reveal>
-            ))}
-
-            {/* Founder sign-off: the page is written in his voice, so it ends with him */}
-            <Reveal>
-              <div aria-hidden className="my-14 h-px bg-line-soft" />
-              <figure className="mx-auto max-w-xs overflow-hidden rounded-md bg-night">
-                <Image
-                  src="/ziegler.webp"
-                  alt="Blake Ziegler, founder of BZ Systems"
-                  width={427}
-                  height={513}
-                  className="w-full"
-                />
-                <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
-                <figcaption className="px-4 py-3 font-mono text-legal uppercase text-void/60">
-                  Ziegler / Founder, Principal
-                </figcaption>
-              </figure>
-              <p className="mt-6 font-mono text-label uppercase">
-                <a
-                  href={LINKEDIN}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal"
-                >
+              <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
+              <figcaption className="px-4 py-3 font-mono text-legal uppercase text-void/60">
+                Ziegler / Founder, Principal
+              </figcaption>
+            </figure>
+            <div>
+              <p className="rise-in font-mono text-label uppercase text-signal-bright">About</p>
+              <h1
+                className="rise-in rise-in-delay-1 type-extended mt-4 text-display uppercase"
+                style={{ fontSize: "clamp(1.6rem, 4vw, 3.25rem)" }}
+              >
+                One builder.
+                <br />
+                <span className="text-signal-bright">The whole stack.</span>
+              </h1>
+              <p className="rise-in rise-in-delay-2 mt-8 max-w-[56ch] text-body text-ink-dim">
+                I&apos;m Blake Ziegler. I started BZ Systems in 2026 in
+                Columbus, Ohio, and I build software from the idea up: my own
+                ventures, products for people with an idea worth building, and
+                upgrades for teams whose processes need one.
+              </p>
+              <p className="rise-in rise-in-delay-3 mt-8 font-mono text-label uppercase">
+                <a href={LINKEDIN} target="_blank" rel="noreferrer" className={LINK}>
                   LinkedIn ↗
                 </a>
                 <span className="text-ink-faint">&ensp;/&ensp;</span>
-                <a
-                  href="https://blakeziegler.app"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-ink-dim underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-signal"
-                >
+                <a href="https://blakeziegler.app" target="_blank" rel="noreferrer" className={LINK}>
                   blakeziegler.app ↗
                 </a>
+                <span className="text-ink-faint">&ensp;/&ensp;</span>
+                <a href="mailto:blake@bzsystems.io" className={LINK}>
+                  blake@bzsystems.io
+                </a>
               </p>
-            </Reveal>
-
-            <div className="mt-16 flex justify-center">
-              <Link
-                href="/"
-                className="rounded-sm border border-line px-8 py-3 font-mono text-label uppercase text-ink transition-all duration-200 hover:border-signal hover:shadow-glow"
-              >
-                Back to home
-              </Link>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* What I build */}
+        <section className="bg-wash">
+          <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
+          <Reveal className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
+            <SectionRule sec="01" title="What I build" />
+            <div className="mt-12 grid gap-px overflow-hidden rounded-md border border-line bg-line lg:grid-cols-2">
+              {WORK.map((w) => (
+                <div key={w.label} className="bg-panel p-8 lg:p-10">
+                  <p className="type-semi-extended text-h2 uppercase">{w.label}</p>
+                  <p className="mt-4 text-ink-dim">{w.body}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </section>
+
+        {/* How I work */}
+        <section className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
+          <Reveal>
+            <SectionRule sec="02" title="How I work" />
+            <ol className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+              {RULES.map((r, i) => (
+                <li key={r.title} className="border-t border-line pt-6">
+                  <p className="font-mono text-label text-signal-bright">{String(i + 1).padStart(2, "0")}</p>
+                  <p className="type-semi-extended mt-3 text-h3 uppercase">{r.title}</p>
+                  <p className="mt-2 text-ink-dim">{r.body}</p>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+        </section>
+
+        {/* The company */}
+        <section className="relative overflow-hidden bg-night">
+          <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
+          <Reveal className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
+            <SectionRule sec="03" title="The company" dark />
+            <div className="mt-12 grid gap-12 lg:grid-cols-[1.1fr_1fr]">
+              <h2 className="type-semi-extended max-w-[19ch] text-h2 uppercase text-void">
+                Run like a startup.
+                <br />
+                Held like a holdco.
+              </h2>
+              <div className="flex flex-col gap-5 text-void/70">
+                <p>
+                  BZ Systems is a holding company. It owns a small set of my
+                  own software ventures, each under its own brand, and the
+                  client work runs on the same stack and the same habits.
+                </p>
+                <p>
+                  Each venture gets listed on the ventures page as it goes
+                  live. For now that page is locked, open to clients and
+                  partners on request.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+          <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
+        </section>
+
+        {/* Close: point at the contact form */}
+        <section className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
+          <div className="flex flex-wrap items-center justify-between gap-8">
+            <p
+              className="type-extended text-display uppercase"
+              style={{ fontSize: "clamp(1.75rem, 4.5vw, 3.5rem)" }}
+            >
+              Have an idea? <span className="text-signal-bright">Let&apos;s build it.</span>
+            </p>
+            <Link
+              href="/#contact"
+              className="rounded-sm bg-signal px-8 py-3 font-mono text-label uppercase text-panel shadow-glow transition-all duration-200 hover:bg-signal-bright"
+            >
+              Start something
+            </Link>
+          </div>
+        </section>
       </main>
       <Footer />
     </>
