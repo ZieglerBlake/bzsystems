@@ -231,21 +231,6 @@ export default function Home() {
           </Reveal>
         </section>
 
-        {/* The thesis slab */}
-        <section className="relative overflow-hidden bg-night">
-          <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
-          <Reveal className="mx-auto max-w-7xl px-6 py-24 lg:px-12 lg:py-32">
-            <p className="type-extended max-w-[22ch] text-display uppercase text-void">
-              Most software companies are built to be sold.{" "}
-              <span className="text-[#5B9BE8]">This one is built to be kept.</span>
-            </p>
-            <p className="mt-8 font-mono text-label uppercase text-void/40">
-              BZ Systems LLC
-            </p>
-          </Reveal>
-          <div aria-hidden className="h-[2px] bg-signal shadow-glow" />
-        </section>
-
         {/* SEC.03: Contact */}
         <section id="contact" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24 lg:px-12 lg:py-36">
           <Reveal>
