@@ -89,11 +89,20 @@ read it fully before changing anything. Resume incantation for any session:
   OPERATES UNDER ITS OWN BRAND AND IS OWNED BY BZ SYSTEMS LLC OR ITS
   AFFILIATES."). Removed 2026-10-25: film band, thesis slab, OWNERSHIP
   panel (photo moved to /about).
-- `/about` — centered dark-mark nameplate, then four centered sections in
-  Blake's FIRST-PERSON voice: THE COMPANY ("I started BZ Systems in
-  2026...") / THE THESIS / WHAT I BUILD / HOW I OPERATE, then a founder
-  sign-off (ziegler.webp, "Ziegler / Founder, Principal", LinkedIn and
-  blakeziegler.app links), then BACK TO HOME. No h1 by Blake's choice.
+- `/about` (rebuilt 2026-10-25, company "we" voice) — photo (ziegler.webp,
+  caption "BLAKE ZIEGLER / FOUNDER, PRINCIPAL / FORMERLY MORGAN STANLEY",
+  Blake approved naming the firm; plain text only, never a logo) beside h1
+  "BUILT RIGHT. / BACKED FOR GOOD." + intro (Columbus, founded on
+  investment banking and software engineering backgrounds, "institutional
+  standards and the speed of an agile team") + LinkedIn / blakeziegler.app
+  / email → 01 WHAT WE BUILD (idea / process) → 02 HOW WE WORK (You talk
+  to the founder; Small first, then compound; Built in America; Nothing
+  announced before it exists) → 03 THE COMPANY (navy, holdco) → closer
+  "HAVE AN IDEA? LET'S BUILD IT." + Start something. The old thesis copy
+  ("built to be kept", "no outside capital") was dropped.
+- Work is done by Blake, employees, or U.S.-based contractors (Blake,
+  2026-10-25); home card 03 "Built in America" and the About rule say so.
+  Do not reintroduce "I write all of it" / one-builder claims.
 - `/ventures` — light theme, live map, label "Registry", "THE REGISTRY IS
   IN BUILD.", decorative password gate (`components/RegistryLock.tsx`, NOT
   real auth; copy "LOCKED WHILE IN BUILD. NO PUBLIC KEYS YET." / "▸ NO

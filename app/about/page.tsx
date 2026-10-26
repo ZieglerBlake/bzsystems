@@ -85,9 +85,9 @@ export default function About() {
                 className="rise-in rise-in-delay-1 type-extended mt-4 text-display uppercase"
                 style={{ fontSize: "clamp(1.3rem, 4vw, 3.25rem)" }}
               >
-                We build it.
+                Built right.
                 <br />
-                <span className="text-signal-bright">We stand behind it.</span>
+                <span className="text-signal-bright">Backed for good.</span>
               </h1>
               <p className="rise-in rise-in-delay-2 mt-8 max-w-[56ch] text-body text-ink-dim">
                 BZ Systems is a software company based in Columbus, Ohio,
