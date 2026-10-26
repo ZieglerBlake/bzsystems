@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import BandLab from "@/components/BandLab";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
@@ -127,39 +128,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* The slab film: full-bleed, logo over the moving theme */}
-        <section aria-hidden className="relative h-[42vh] overflow-hidden bg-night lg:h-[52vh]">
-          <div className="absolute inset-x-0 top-0 z-10 h-[2px] bg-signal shadow-glow" />
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster="/hero-poster.webp"
-            className="absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/hero.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 z-10 grid place-items-center">
-            <div className="relative grid place-items-center">
-              <div
-                aria-hidden
-                className="absolute h-[340px] w-[560px] rounded-full"
-                style={{
-                  background:
-                    "radial-gradient(closest-side, rgb(1 3 8 / 0.62), transparent)",
-                }}
-              />
-              <Image
-                src="/logo-dark.png"
-                alt=""
-                width={341}
-                height={256}
-                className="relative h-32 w-auto drop-shadow-[0_6px_32px_rgba(1,3,8,0.75)] lg:h-44"
-              />
-            </div>
-          </div>
-        </section>
+        {/* PROTOTYPE: band options with a live switcher (see BandLab.tsx) */}
+        <BandLab />
 
         {/* SEC.01: Ventures. The black slab band. No names, ever. */}
         <section id="ventures" className="relative scroll-mt-24 overflow-hidden bg-night">
