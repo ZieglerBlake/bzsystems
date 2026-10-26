@@ -3,20 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 
 /* How we work: two stories in one band that auto-alternate (tabs switch).
-   YOUR IDEA, BUILT: a spark at the first stage builds the line stage by
-   stage until the product is live and work flows through it.
+   YOUR IDEA, BUILT: loose sticky notes and scribbled arrows (an idea in
+   pieces) straighten into a dashed wireframe (the notes that do not make
+   version one fall away), a browser window forms, each box fills in as a
+   real interface, and the product goes LIVE with a moving chart.
    YOUR PROCESS, UPGRADED: a manual, siloed six-step process (queues, rework
    loops) gets fixed one step at a time, straightens, then folds from six
    steps to three. Both loop while on screen and never pin the scroll.
-   Illustrative, not claims about any client. Canvas 2D for the flow, HTML
-   for type. Reduced motion: each story's finished state, static. */
+   Illustrative, not claims about any client. Canvas 2D for the motion,
+   HTML for type. Reduced motion: each story's finished state, static. */
 
 type Mode = "idea" | "process";
 
-const STEPS: Record<Mode, string[]> = {
-  idea: ["Idea", "Sketch", "Prototype", "Build", "Launch", "Run"],
-  process: ["Request", "Review", "Approve", "Execute", "Record", "Report"],
-};
+/* ---------- Process story ---------- */
+const STEPS = ["Request", "Review", "Approve", "Execute", "Record", "Report"];
 const LAST = 5;
 // Gentle zigzag that straightens as fixes land (offsets as a share of height).
 const ZIG = [0.16, -0.14, 0.12, -0.16, 0.14, -0.1];
@@ -25,17 +25,47 @@ const REWORK = [[2, 1], [4, 3]];
 // After automation, each step folds into its surviving parent.
 const MERGE_INTO = [0, 0, 3, 3, 5, 5];
 const KEPT = [0, 3, 5];
-
-// Each story loops: lead-in, six steps, hold, quick reset.
-const LEAD_MS = 2600; // sit in the starting state first
-const STEP_MS = 650; // one step lands every 650ms
-const HOLD_MS = 4200; // hold on the finished state
+const LEAD_MS = 2600; // sit in the current state first
+const STEP_MS = 650; // one fix lands every 650ms
+const HOLD_MS = 4200; // hold on the future state
 const RESET_MS = 600; // fade back to the start
-const CYCLE = LEAD_MS + STEP_MS * 6 + HOLD_MS + RESET_MS;
+const PROCESS_CYCLE = LEAD_MS + STEP_MS * 6 + HOLD_MS + RESET_MS;
 const ALL_DONE = LEAD_MS + STEP_MS * 5 + STEP_MS * 0.7;
 const STRAIGHTEN_MS = 800;
 const MERGE_MS = 900;
 
+/* ---------- Idea story ---------- */
+const PHASES = ["Idea", "Sketch", "Build", "Live"];
+const I_LEAD = 2600; // the idea, in pieces
+const I_SKETCH = 1600; // notes snap into a wireframe
+const I_BUILD = 1800; // boxes fill in, one after another
+const I_HOLD = 4200; // live
+const I_FADE = 600;
+const IDEA_CYCLE = I_LEAD + I_SKETCH + I_BUILD + I_HOLD + I_FADE;
+type Kind = "nav" | "side" | "stat" | "chart" | "cut";
+// Each note and where it lands in the app (x, y, w, h as shares of the
+// window's content area). "cut" notes do not make version one.
+const NOTES: { text: string; kind: Kind; slot?: [number, number, number, number]; value?: string }[] = [
+  { text: "sign up", kind: "nav", slot: [0, 0, 1, 0.13] },
+  { text: "dashboard", kind: "side", slot: [0.02, 0.2, 0.17, 0.12] },
+  { text: "reports", kind: "side", slot: [0.02, 0.36, 0.17, 0.12] },
+  { text: "alerts", kind: "side", slot: [0.02, 0.52, 0.17, 0.12] },
+  { text: "users?", kind: "stat", slot: [0.22, 0.2, 0.245, 0.25], value: "2,418" },
+  { text: "payments", kind: "stat", slot: [0.485, 0.2, 0.245, 0.25], value: "$18.2K" },
+  { text: "AI helper", kind: "stat", slot: [0.75, 0.2, 0.23, 0.25], value: "312" },
+  { text: "the data", kind: "chart", slot: [0.22, 0.5, 0.76, 0.44] },
+  { text: "pricing?", kind: "cut" },
+  { text: "mobile app?", kind: "cut" },
+];
+// Fixed scatter (x, y as shares of the canvas, rotation in radians).
+const SCATTER: [number, number, number][] = [
+  [0.14, 0.2, -0.16], [0.4, 0.12, 0.1], [0.66, 0.24, -0.08], [0.88, 0.14, 0.15],
+  [0.24, 0.62, 0.12], [0.52, 0.5, -0.14], [0.8, 0.66, 0.07], [0.1, 0.84, -0.06],
+  [0.44, 0.86, 0.17], [0.7, 0.9, -0.12],
+];
+const SCRIBBLES: [number, number][] = [[0, 4], [1, 5], [2, 6], [5, 8], [3, 9], [4, 7]];
+
+/* ---------- Shared ---------- */
 const INK = "rgb(16, 19, 18)";
 const FAINT = "rgba(16, 19, 18, 0.32)";
 const BLUE = "rgb(30, 112, 205)"; // signal
@@ -46,7 +76,7 @@ const ease = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 type Item = { u: number; wait: number };
-type Stage = { mode: Mode; done: number; finished: boolean; merged: boolean };
+type Stage = { mode: Mode; step: number; finished: boolean; merged: boolean };
 
 const COPY: Record<Mode, {
   tab: string;
@@ -55,7 +85,7 @@ const COPY: Record<Mode, {
 }> = {
   idea: {
     tab: "Your idea, built",
-    start: { tag: "Day one", line: ["An idea", "and a sketch."] },
+    start: { tag: "Day one", line: ["An idea", "in pieces."] },
     end: { tag: "Launch day", line: ["Built", "and running."] },
   },
   process: {
@@ -69,7 +99,7 @@ export default function ProcessStory() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const switchRef = useRef<(m: Mode) => void>(() => {});
-  const [stage, setStage] = useState<Stage>({ mode: "idea", done: 0, finished: false, merged: false });
+  const [stage, setStage] = useState<Stage>({ mode: "idea", step: 0, finished: false, merged: false });
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -94,7 +124,236 @@ export default function ProcessStory() {
     };
     resize();
 
-    // Positions: evenly spaced line, zigzag offset, and the 3-slot merge.
+    let mode: Mode = "idea";
+    let start = -1; // set when the section first comes into view
+    let last = performance.now();
+    let shown = "";
+    const report = (next: Stage) => {
+      const key = JSON.stringify(next);
+      if (key !== shown) {
+        shown = key;
+        setStage(next);
+      }
+    };
+
+    // Labels sit on a small band-colored backdrop so lines and moving
+    // items pass behind the text instead of through it.
+    const label = (text: string, x: number, y: number, size: number, color: string) => {
+      ctx.font = `600 ${size}px ${mono}`;
+      const w = ctx.measureText(text).width;
+      ctx.fillStyle = WASH;
+      ctx.fillRect((tall ? x : x - w / 2) - 4, y - size, w + 8, size + 5);
+      ctx.fillStyle = color;
+      ctx.fillText(text, x, y);
+    };
+
+    /* ===================== Idea story ===================== */
+    const drawIdea = (t: number, now: number, finished: boolean) => {
+      // Phase progress.
+      const s = finished ? 1 : ease(clamp01((t - I_LEAD) / I_SKETCH)); // sketch
+      const buildT = finished ? I_BUILD : t - I_LEAD - I_SKETCH;
+      const frameIn = finished ? 1 : ease(clamp01((t - I_LEAD - I_SKETCH * 0.6) / 600));
+      const liveT = finished ? 1 : clamp01((t - I_LEAD - I_SKETCH - I_BUILD) / 400);
+      const fadeOut = finished ? 1 : 1 - clamp01((t - (IDEA_CYCLE - I_FADE)) / I_FADE);
+      const fadeIn = finished ? 1 : clamp01(t / 400);
+      const alpha = Math.min(fadeOut, fadeIn);
+      const phase = finished ? 3 : t < I_LEAD ? 0 : t < I_LEAD + I_SKETCH ? 1 : liveT < 1 ? 2 : 3;
+      report({ mode, step: phase, finished: phase === 3, merged: false });
+
+      // The app window the idea becomes.
+      const fw = Math.min(tall ? W * 0.94 : W * 0.62, 780);
+      const fh = Math.min(H * 0.92, tall ? fw * 1.25 : fw * 0.5);
+      const fx = (W - fw) / 2, fy = (H - fh) / 2;
+      const bar = 22; // browser chrome
+      const cx0 = fx, cy0 = fy + bar, cw = fw, ch = fh - bar;
+      const fs = Math.max(9, Math.min(12, fw * 0.016));
+
+      ctx.clearRect(0, 0, W, H);
+      ctx.globalAlpha = alpha;
+
+      // Scribbled arrows between notes while the idea is still in pieces.
+      if (s < 1) {
+        ctx.strokeStyle = INK;
+        ctx.lineWidth = 1.2;
+        ctx.setLineDash([3, 5]);
+        for (const [a, b] of SCRIBBLES) {
+          const [ax, ay] = SCATTER[a], [bx, by] = SCATTER[b];
+          const x1 = ax * W, y1 = ay * H, x2 = bx * W, y2 = by * H;
+          const wob = Math.sin(now / 900 + a) * 10;
+          ctx.globalAlpha = alpha * 0.28 * (1 - s);
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.quadraticCurveTo((x1 + x2) / 2 + wob + 30, (y1 + y2) / 2 - 30, x2, y2);
+          ctx.stroke();
+        }
+        ctx.setLineDash([]);
+      }
+
+      // Browser window: chrome bar, three dots, LIVE badge once launched.
+      if (frameIn > 0) {
+        ctx.globalAlpha = alpha * frameIn;
+        ctx.fillStyle = PANEL;
+        ctx.fillRect(fx, fy, fw, fh);
+        ctx.strokeStyle = FAINT;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(fx + 0.5, fy + 0.5, fw - 1, fh - 1);
+        ctx.fillStyle = "rgba(238, 243, 250, 1)";
+        ctx.fillRect(fx + 1, fy + 1, fw - 2, bar - 1);
+        for (let d = 0; d < 3; d++) {
+          ctx.fillStyle = FAINT;
+          ctx.beginPath();
+          ctx.arc(fx + 12 + d * 11, fy + bar / 2, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        if (liveT > 0) {
+          ctx.globalAlpha = alpha * liveT;
+          const pulse = 0.5 + 0.5 * Math.sin(now / 260);
+          ctx.fillStyle = BLUE;
+          ctx.beginPath();
+          ctx.arc(fx + fw - 52, fy + bar / 2, 3.5 + pulse * 1.2, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.font = `700 ${fs}px ${mono}`;
+          ctx.textAlign = "left";
+          ctx.fillText("LIVE", fx + fw - 44, fy + bar / 2 + fs * 0.36);
+        }
+      }
+
+      // Notes: scattered sticky notes -> dashed wireframe -> built UI.
+      ctx.textAlign = "left";
+      NOTES.forEach((note, i) => {
+        const [sxn, syn, rot] = SCATTER[i];
+        const nw = Math.max(76, Math.min(124, W * 0.1)), nh = 38;
+        const bob = finished ? 0 : Math.sin(now / 1100 + i * 1.7) * 5 * (1 - s);
+        let x: number, y: number, w: number, h: number, r: number;
+        if (note.slot) {
+          const [ux, uy, uw, uh] = note.slot;
+          x = lerp(Math.min(Math.max(sxn * W - nw / 2, 4), W - nw - 4), cx0 + ux * cw, s);
+          y = lerp(syn * H - nh / 2 + bob, cy0 + uy * ch, s);
+          w = lerp(nw, uw * cw, s);
+          h = lerp(nh, uh * ch, s);
+          r = rot * (1 - s);
+        } else {
+          // Not in version one: drifts down and fades during the sketch.
+          x = Math.min(Math.max(sxn * W - nw / 2, 4), W - nw - 4);
+          y = syn * H - nh / 2 + bob + s * 30;
+          w = nw;
+          h = nh;
+          r = rot;
+        }
+        // Built boxes fill in one after another, in note order.
+        const k = NOTES.slice(0, i).filter((n) => n.slot).length;
+        const b = note.slot ? (finished ? 1 : ease(clamp01((buildT - k * 180) / 500))) : 0;
+        // Note fades out before the wireframe label fades in, so text never doubles up.
+        const noteA = clamp01(1 - s * 2);
+        const wireA = note.slot ? clamp01(s * 2 - 1) * (1 - b) : 0;
+
+        ctx.save();
+        ctx.translate(x + w / 2, y + h / 2);
+        ctx.rotate(r);
+        const lx = -w / 2, ly = -h / 2;
+
+        if (noteA > 0.01) {
+          ctx.globalAlpha = alpha * noteA;
+          ctx.fillStyle = "rgba(255, 255, 255, 0.95)";
+          ctx.fillRect(lx, ly, w, h);
+          ctx.strokeStyle = "rgba(16, 19, 18, 0.22)";
+          ctx.lineWidth = 1;
+          ctx.strokeRect(lx + 0.5, ly + 0.5, w - 1, h - 1);
+          ctx.fillStyle = "rgba(30, 112, 205, 0.55)";
+          ctx.fillRect(lx, ly, 4, h);
+          ctx.font = `600 ${fs + 1}px ${mono}`;
+          ctx.fillStyle = "rgba(16, 19, 18, 0.75)";
+          ctx.fillText(note.text, lx + 12, ly + h / 2 + fs * 0.38);
+        }
+        if (wireA > 0.01) {
+          ctx.globalAlpha = alpha * wireA;
+          ctx.setLineDash([5, 4]);
+          ctx.strokeStyle = "rgba(16, 19, 18, 0.4)";
+          ctx.lineWidth = 1.2;
+          ctx.strokeRect(lx + 2, ly + 2, w - 4, h - 4);
+          ctx.setLineDash([]);
+          ctx.font = `600 ${fs}px ${mono}`;
+          ctx.fillStyle = "rgba(16, 19, 18, 0.5)";
+          ctx.fillText(note.text.replace("?", "").toUpperCase(), lx + 8, ly + fs + 6);
+        }
+        if (b > 0.01) {
+          ctx.globalAlpha = alpha * b;
+          const name = note.text.replace("?", "").toUpperCase();
+          if (note.kind === "nav") {
+            ctx.fillStyle = PANEL;
+            ctx.fillRect(lx, ly, w, h);
+            ctx.fillStyle = "rgba(16, 19, 18, 0.08)";
+            ctx.fillRect(lx, ly + h - 1, w, 1);
+            ctx.fillStyle = BLUE;
+            ctx.fillRect(lx + 12, ly + h / 2 - 5, 10, 10);
+            ctx.fillStyle = "rgba(16, 19, 18, 0.18)";
+            ctx.fillRect(lx + 30, ly + h / 2 - 3, Math.min(90, w * 0.15), 6);
+            const pw = Math.min(84, w * 0.18);
+            ctx.fillStyle = BLUE;
+            ctx.fillRect(lx + w - pw - 10, ly + h / 2 - 9, pw, 18);
+            ctx.font = `700 ${fs}px ${mono}`;
+            ctx.fillStyle = PANEL;
+            ctx.textAlign = "center";
+            ctx.fillText(name, lx + w - pw / 2 - 10, ly + h / 2 + fs * 0.36);
+            ctx.textAlign = "left";
+          } else if (note.kind === "side") {
+            ctx.fillStyle = "rgba(30, 112, 205, 0.08)";
+            ctx.fillRect(lx, ly, w, h);
+            ctx.fillStyle = BLUE;
+            ctx.fillRect(lx + 6, ly + h / 2 - 4, 8, 8);
+            ctx.font = `600 ${fs}px ${mono}`;
+            ctx.fillStyle = INK;
+            if (ctx.measureText(name).width < w - 24) ctx.fillText(name, lx + 20, ly + h / 2 + fs * 0.36);
+          } else if (note.kind === "stat") {
+            ctx.fillStyle = PANEL;
+            ctx.fillRect(lx, ly, w, h);
+            ctx.strokeStyle = "rgba(16, 19, 18, 0.12)";
+            ctx.lineWidth = 1;
+            ctx.strokeRect(lx + 0.5, ly + 0.5, w - 1, h - 1);
+            ctx.font = `600 ${fs}px ${mono}`;
+            ctx.fillStyle = "rgba(16, 19, 18, 0.55)";
+            ctx.fillText(name, lx + 10, ly + fs + 8);
+            ctx.font = `700 ${Math.round(Math.min(h * 0.3, fs * 1.9))}px ${mono}`;
+            ctx.fillStyle = INK;
+            ctx.fillText(note.value ?? "", lx + 10, ly + h * 0.7);
+            const grow = liveT > 0 ? 0.55 + 0.35 * (0.5 + 0.5 * Math.sin(now / 900 + i)) : 0.55;
+            ctx.fillStyle = BLUE;
+            ctx.fillRect(lx + 10, ly + h - 12, (w - 20) * grow, 4);
+          } else if (note.kind === "chart") {
+            ctx.fillStyle = PANEL;
+            ctx.fillRect(lx, ly, w, h);
+            ctx.strokeStyle = "rgba(16, 19, 18, 0.12)";
+            ctx.lineWidth = 1;
+            ctx.strokeRect(lx + 0.5, ly + 0.5, w - 1, h - 1);
+            ctx.font = `600 ${fs}px ${mono}`;
+            ctx.fillStyle = "rgba(16, 19, 18, 0.55)";
+            ctx.fillText("ACTIVITY", lx + 10, ly + fs + 8);
+            const shift = liveT > 0 ? now / 700 : 0;
+            const gx = lx + 10, gw = w - 20, gy = ly + fs + 18, gh = h - fs - 28;
+            ctx.beginPath();
+            for (let p = 0; p <= 40; p++) {
+              const px = gx + (p / 40) * gw;
+              const v = 0.5 + 0.22 * Math.sin(p * 0.45 + shift) + 0.12 * Math.sin(p * 1.3 + shift * 1.7) + (p / 40) * 0.18;
+              const py = gy + gh - v * gh;
+              if (p === 0) ctx.moveTo(px, py);
+              else ctx.lineTo(px, py);
+            }
+            ctx.strokeStyle = BLUE;
+            ctx.lineWidth = 2.2;
+            ctx.stroke();
+            ctx.lineTo(gx + gw, gy + gh);
+            ctx.lineTo(gx, gy + gh);
+            ctx.closePath();
+            ctx.fillStyle = "rgba(30, 112, 205, 0.08)";
+            ctx.fill();
+          }
+        }
+        ctx.restore();
+      });
+      ctx.globalAlpha = 1;
+    };
+
+    /* ===================== Process story ===================== */
     const slot = (i: number, of: number) =>
       tall
         ? ([W * 0.42, H * (0.07 + (i * 0.86) / of)] as const)
@@ -111,45 +370,8 @@ export default function ProcessStory() {
         return [lerp(zx, mx, m), lerp(zy, my, m)] as const;
       });
 
-    let mode: Mode = "idea";
     const items: Item[] = Array.from({ length: 12 }, (_, i) => ({ u: (i / 12) * LAST, wait: 0 }));
     const resetItems = () => items.forEach((it, i) => ((it.u = (i / 12) * LAST), (it.wait = 0)));
-    let start = -1; // set when the section first comes into view
-    let last = performance.now();
-    let shown = "";
-
-    const stateAt = (t: number, finished: boolean) => {
-      if (finished) return { done: STEPS[mode].map(() => 1), straight: 1, merge: mode === "process" ? 1 : 0, head: LAST, settled: 1 };
-      if (t > CYCLE - RESET_MS) {
-        const r = (t - (CYCLE - RESET_MS)) / RESET_MS;
-        return {
-          done: STEPS[mode].map(() => 1 - r),
-          merge: mode === "process" ? 1 - clamp01(r * 2) : 0,
-          straight: mode === "process" ? 1 - clamp01((r - 0.5) * 2) : 1,
-          head: LAST * (1 - r),
-          settled: 1 - r,
-        };
-      }
-      const soft = mode === "process" ? 0.7 : 0.4;
-      return {
-        done: STEPS[mode].map((_, k) => clamp01((t - LEAD_MS - k * STEP_MS) / (STEP_MS * soft))),
-        straight: mode === "process" ? clamp01((t - ALL_DONE) / STRAIGHTEN_MS) : 1,
-        merge: mode === "process" ? clamp01((t - ALL_DONE - STRAIGHTEN_MS) / MERGE_MS) : 0,
-        head: Math.min(LAST, Math.max(0, (t - LEAD_MS) / STEP_MS)),
-        settled: clamp01((t - ALL_DONE) / 400),
-      };
-    };
-
-    // Labels sit on a small band-colored backdrop so lines and moving
-    // items pass behind the text instead of through it.
-    const label = (text: string, x: number, y: number, size: number, color: string) => {
-      ctx.font = `600 ${size}px ${mono}`;
-      const w = ctx.measureText(text).width;
-      ctx.fillStyle = WASH;
-      ctx.fillRect((tall ? x : x - w / 2) - 4, y - size, w + 8, size + 5);
-      ctx.fillStyle = color;
-      ctx.fillText(text, x, y);
-    };
 
     // Point at a fraction s (0..1) of the polyline's length.
     const along = (pts: readonly (readonly [number, number])[], s: number) => {
@@ -171,75 +393,65 @@ export default function ProcessStory() {
       return pts[LAST];
     };
 
-    const frame = (now: number, finished = false) => {
-      const dt = Math.min(50, now - last);
-      last = now;
-      const t = start < 0 ? 0 : now - start;
-      const { done, straight, merge, head, settled } = stateAt(t, finished);
-      const steps = STEPS[mode];
+    const processState = (t: number, finished: boolean) => {
+      if (finished) return { done: STEPS.map(() => 1), straight: 1, merge: 1 };
+      if (t > PROCESS_CYCLE - RESET_MS) {
+        const r = (t - (PROCESS_CYCLE - RESET_MS)) / RESET_MS;
+        return {
+          done: STEPS.map(() => 1 - r),
+          merge: 1 - clamp01(r * 2),
+          straight: 1 - clamp01((r - 0.5) * 2),
+        };
+      }
+      return {
+        done: STEPS.map((_, k) => clamp01((t - LEAD_MS - k * STEP_MS) / (STEP_MS * 0.7))),
+        straight: clamp01((t - ALL_DONE) / STRAIGHTEN_MS),
+        merge: clamp01((t - ALL_DONE - STRAIGHTEN_MS) / MERGE_MS),
+      };
+    };
+
+    const drawProcess = (t: number, dt: number, finished: boolean) => {
+      const { done, straight, merge } = processState(t, finished);
       const auto = done.reduce((a, b) => a + b, 0) / 6;
       const pts = nodes(straight, merge);
-
       const doneCount = done.filter((f) => f >= 0.5).length;
-      const next: Stage = { mode, done: doneCount, finished: doneCount === 6, merged: merge >= 0.5 };
-      const key = JSON.stringify(next);
-      if (key !== shown) {
-        shown = key;
-        setStage(next);
-      }
+      report({ mode, step: doneCount, finished: doneCount === 6, merged: merge >= 0.5 });
 
       ctx.clearRect(0, 0, W, H);
 
-      if (mode === "process") {
-        // Rework loops: dashed arcs that fade as their step gets fixed.
-        ctx.setLineDash([5, 7]);
-        ctx.lineWidth = 1.5;
-        ctx.strokeStyle = INK;
-        for (const [from, to] of REWORK) {
-          const a = 0.35 * (1 - done[from]);
-          if (a <= 0.01) continue;
-          const [x1, y1] = pts[from], [x2, y2] = pts[to];
-          ctx.globalAlpha = a;
-          ctx.beginPath();
-          ctx.moveTo(x1, y1);
-          if (tall) ctx.quadraticCurveTo(Math.max(x1, x2) + 80, (y1 + y2) / 2, x2, y2);
-          else ctx.quadraticCurveTo((x1 + x2) / 2, Math.max(y1, y2) + 80, x2, y2);
-          ctx.stroke();
-        }
-        ctx.globalAlpha = 1;
+      // Rework loops: dashed arcs that fade as their step gets fixed.
+      ctx.setLineDash([5, 7]);
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = INK;
+      for (const [from, to] of REWORK) {
+        const a = 0.35 * (1 - done[from]);
+        if (a <= 0.01) continue;
+        const [x1, y1] = pts[from], [x2, y2] = pts[to];
+        ctx.globalAlpha = a;
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        if (tall) ctx.quadraticCurveTo(Math.max(x1, x2) + 80, (y1 + y2) / 2, x2, y2);
+        else ctx.quadraticCurveTo((x1 + x2) / 2, Math.max(y1, y2) + 80, x2, y2);
+        ctx.stroke();
       }
+      ctx.globalAlpha = 1;
 
-      // Segments: dashed and faint until done; in the idea story the solid
-      // line grows with the build head.
+      // Segments: faint and dashed while manual, solid signal blue once fixed.
       for (let k = 0; k < LAST; k++) {
-        const [x1, y1] = pts[k], [x2, y2] = pts[k + 1];
-        const built = mode === "idea" ? clamp01(head - k) : Math.min(done[k], done[k + 1]) > 0.5 ? 1 : 0;
-        const bx = lerp(x1, x2, built), by = lerp(y1, y2, built);
-        if (built > 0) {
-          ctx.setLineDash([]);
-          ctx.strokeStyle = BLUE;
-          ctx.lineWidth = 3;
-          ctx.beginPath();
-          ctx.moveTo(x1, y1);
-          ctx.lineTo(bx, by);
-          ctx.stroke();
-        }
-        if (built < 1) {
-          ctx.setLineDash([8, 6]);
-          ctx.strokeStyle = FAINT;
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          ctx.moveTo(bx, by);
-          ctx.lineTo(x2, y2);
-          ctx.stroke();
-        }
+        const f = Math.min(done[k], done[k + 1]);
+        ctx.strokeStyle = f > 0.5 ? BLUE : FAINT;
+        ctx.lineWidth = f > 0.5 ? 3 : 2;
+        ctx.setLineDash(f > 0.5 ? [] : [8, 6]);
+        ctx.beginPath();
+        ctx.moveTo(pts[k][0], pts[k][1]);
+        ctx.lineTo(pts[k + 1][0], pts[k + 1][1]);
+        ctx.stroke();
       }
       ctx.setLineDash([]);
 
-      // Work items. Process: queue at manual steps, stream through fixed
-      // ones. Idea: appear once the product is running.
+      // Work items: queue at manual steps, stream through fixed ones.
       if (!reduced && !finished) {
-        const speed = mode === "idea" ? 0.0013 : 0.0004 + auto * 0.0009;
+        const speed = 0.0004 + auto * 0.0009;
         for (const it of items) {
           if (it.wait > 0) {
             it.wait -= dt;
@@ -248,7 +460,7 @@ export default function ProcessStory() {
           const before = Math.floor(it.u);
           it.u += speed * dt;
           const after = Math.floor(it.u);
-          if (mode === "process" && after !== before && after <= LAST) {
+          if (after !== before && after <= LAST) {
             const fx = done[after];
             it.wait = 900 * (1 - fx);
             const loop = REWORK.find(([from]) => from === after);
@@ -257,49 +469,34 @@ export default function ProcessStory() {
           if (it.u >= LAST) it.u = 0;
         }
       }
-      const itemAlpha = mode === "idea" ? settled : 1;
-      if (itemAlpha > 0.01) {
-        const queued = new Array(6).fill(0);
-        for (const it of items) {
-          const k = Math.min(Math.floor(it.u), LAST);
-          let x: number, y: number;
-          if (mode === "idea" || merge > 0) {
-            [x, y] = along(pts, it.u / LAST);
-          } else if (it.wait > 0 || k >= LAST) {
-            const q = queued[k]++;
-            const [nx, ny] = pts[k];
-            x = tall ? nx - 26 - q * 10 : nx - 10 + q * 10;
-            y = tall ? ny : ny + 58;
-          } else {
-            const fr = it.u - k;
-            x = lerp(pts[k][0], pts[k + 1][0], fr);
-            y = lerp(pts[k][1], pts[k + 1][1], fr);
-          }
-          const on = mode === "idea" || done[k] > 0.5;
-          ctx.fillStyle = on ? BLUE : INK;
-          ctx.globalAlpha = (on ? 0.9 : 0.4) * itemAlpha;
-          ctx.fillRect(x - 3.5, y - 3.5, 7, 7);
+      const queued = new Array(6).fill(0);
+      for (const it of items) {
+        const k = Math.min(Math.floor(it.u), LAST);
+        let x: number, y: number;
+        if (merge > 0) {
+          [x, y] = along(pts, it.u / LAST);
+        } else if (it.wait > 0 || k >= LAST) {
+          const q = queued[k]++;
+          const [nx, ny] = pts[k];
+          x = tall ? nx - 26 - q * 10 : nx - 10 + q * 10;
+          y = tall ? ny : ny + 58;
+        } else {
+          const fr = it.u - k;
+          x = lerp(pts[k][0], pts[k + 1][0], fr);
+          y = lerp(pts[k][1], pts[k + 1][1], fr);
         }
-        ctx.globalAlpha = 1;
+        ctx.fillStyle = done[k] > 0.5 ? BLUE : INK;
+        ctx.globalAlpha = done[k] > 0.5 ? 0.9 : 0.4;
+        ctx.fillRect(x - 3.5, y - 3.5, 7, 7);
       }
+      ctx.globalAlpha = 1;
 
-      // The idea spark: glows at the build head while the product is built.
-      if (mode === "idea" && settled < 1) {
-        const [sx, sy] = along(pts, head / LAST);
-        const pulse = 0.75 + 0.25 * Math.sin(now / 180);
-        const g = ctx.createRadialGradient(sx, sy, 0, sx, sy, 26);
-        g.addColorStop(0, `rgba(30, 112, 205, ${0.45 * pulse * (1 - settled)})`);
-        g.addColorStop(1, "rgba(30, 112, 205, 0)");
-        ctx.fillStyle = g;
-        ctx.fillRect(sx - 26, sy - 26, 52, 52);
-      }
-
-      // Steps: hollow while pending, filled signal blue once done. Process
-      // steps that fold away during the merge fade out with their labels.
+      // Steps: hollow while manual, filled signal blue once fixed. Steps that
+      // fold away during the merge fade out with their labels.
       for (let k = 0; k <= LAST; k++) {
         const [x, y] = pts[k];
         const f = done[k];
-        const fold = mode === "process" && !KEPT.includes(k) ? 1 - ease(merge) : 1;
+        const fold = KEPT.includes(k) ? 1 : 1 - ease(merge);
         if (fold <= 0.01) continue;
         ctx.globalAlpha = fold;
         ctx.beginPath();
@@ -308,21 +505,15 @@ export default function ProcessStory() {
         ctx.fill();
         ctx.lineWidth = 2;
         ctx.strokeStyle = f > 0.5 ? BLUE : FAINT;
-        if (mode === "idea" && f <= 0.5) ctx.setLineDash([3, 3]);
         ctx.stroke();
-        ctx.setLineDash([]);
         ctx.textAlign = tall ? "left" : "center";
         const lx = tall ? x + 24 : x;
-        const status =
-          mode === "process"
-            ? f > 0.5 ? "AUTOMATED" : "MANUAL"
-            : f > 0.5 ? (k === LAST ? "LIVE" : "DONE") : "PLANNED";
-        label(steps[k].toUpperCase(), lx, tall ? y - 2 : y - 24, 13, f > 0.5 ? INK : "rgba(16, 19, 18, 0.62)");
-        label(status, lx, tall ? y + 14 : y + 36, 11, f > 0.5 ? BLUE : "rgba(16, 19, 18, 0.5)");
+        label(STEPS[k].toUpperCase(), lx, tall ? y - 2 : y - 24, 13, f > 0.5 ? INK : "rgba(16, 19, 18, 0.62)");
+        label(f > 0.5 ? "AUTOMATED" : "MANUAL", lx, tall ? y + 14 : y + 36, 11, f > 0.5 ? BLUE : "rgba(16, 19, 18, 0.5)");
         ctx.globalAlpha = 1;
       }
 
-      // Rings: the moment a step lands, plus a heartbeat on a live product.
+      // The moment of a fix: an expanding ring, drawn last so labels never clip it.
       ctx.strokeStyle = BLUE;
       ctx.lineWidth = 2;
       for (let k = 0; k <= LAST; k++) {
@@ -333,14 +524,16 @@ export default function ProcessStory() {
         ctx.arc(pts[k][0], pts[k][1], 14 + f * 26, 0, Math.PI * 2);
         ctx.stroke();
       }
-      if (mode === "idea" && settled > 0 && !finished) {
-        const beat = (now % 1400) / 1400;
-        ctx.globalAlpha = 0.5 * (1 - beat) * settled;
-        ctx.beginPath();
-        ctx.arc(pts[LAST][0], pts[LAST][1], 13 + beat * 28, 0, Math.PI * 2);
-        ctx.stroke();
-      }
       ctx.globalAlpha = 1;
+    };
+
+    const cycleOf = (m: Mode) => (m === "idea" ? IDEA_CYCLE : PROCESS_CYCLE);
+    const frame = (now: number, finished = false) => {
+      const dt = Math.min(50, now - last);
+      last = now;
+      const t = start < 0 ? 0 : now - start;
+      if (mode === "idea") drawIdea(t, now, finished);
+      else drawProcess(t, dt, finished);
     };
 
     if (reduced) {
@@ -372,7 +565,7 @@ export default function ProcessStory() {
         return;
       }
       // One full story, then hand off to the other one.
-      if (start >= 0 && now - start >= CYCLE) {
+      if (start >= 0 && now - start >= cycleOf(mode)) {
         mode = mode === "idea" ? "process" : "idea";
         start = now;
         resetItems();
@@ -397,7 +590,6 @@ export default function ProcessStory() {
     };
   }, []);
 
-  const steps = STEPS[stage.mode];
   const copy = COPY[stage.mode];
   const caption =
     stage.mode === "process"
@@ -405,26 +597,10 @@ export default function ProcessStory() {
         ? "Six steps became three"
         : stage.finished
           ? "Every step automated"
-          : stage.done === 0
+          : stage.step === 0
             ? "Handoffs, rework, waiting"
-            : `Fix ${String(stage.done).padStart(2, "0")} / ${steps[stage.done - 1]} automated`
-      : stage.finished
-        ? "Shipped and live"
-        : stage.done === 0
-          ? "Where every product starts"
-          : `Stage ${String(stage.done).padStart(2, "0")} / ${steps[stage.done - 1]} done`;
-
-  const counters =
-    stage.mode === "process"
-      ? [
-          { big: String(6 - stage.done), small: "Manual steps" },
-          { big: String(REWORK.filter(([from]) => from >= stage.done).length), small: "Rework loops" },
-          { big: stage.merged ? "3" : "6", small: "Steps" },
-        ]
-      : [
-          { big: `${stage.done}/6`, small: "Stages done" },
-          { big: stage.finished ? "Live" : "In build", small: "Status" },
-        ];
+            : `Fix ${String(stage.step).padStart(2, "0")} / ${STEPS[stage.step - 1]} automated`
+      : ["Scattered notes and a hunch", "Sketch: the shape comes together", "Build: the first real version", "Live: shipped and in use"][stage.step];
 
   return (
     <section ref={sectionRef} aria-label="How we work" className="relative overflow-hidden bg-wash">
@@ -480,15 +656,42 @@ export default function ProcessStory() {
           {caption}
         </p>
 
-        <canvas ref={canvasRef} aria-hidden className="mt-6 h-[520px] w-full sm:h-[260px] lg:h-[280px]" />
-        <div className="mt-4 flex flex-wrap items-end gap-x-10 gap-y-6 font-mono uppercase">
-          {counters.map((c) => (
-            <div key={c.small}>
-              <p className="type-extended text-[clamp(1.75rem,3.5vw,3rem)] leading-none">{c.big}</p>
-              <p className="mt-2 text-label text-ink-dim">{c.small}</p>
-            </div>
-          ))}
-        </div>
+        <canvas ref={canvasRef} aria-hidden className="mt-6 h-[520px] w-full sm:h-[300px] lg:h-[320px]" />
+
+        {stage.mode === "process" ? (
+          <div className="mt-4 flex flex-wrap items-end gap-x-10 gap-y-6 font-mono uppercase">
+            {[
+              { big: String(6 - stage.step), small: "Manual steps" },
+              { big: String(REWORK.filter(([from]) => from >= stage.step).length), small: "Rework loops" },
+              { big: stage.merged ? "3" : "6", small: "Steps" },
+            ].map((c) => (
+              <div key={c.small}>
+                <p className="type-extended text-[clamp(1.75rem,3.5vw,3rem)] leading-none">{c.big}</p>
+                <p className="mt-2 text-label text-ink-dim">{c.small}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          /* Phase tracker: Idea, Sketch, Build, Live. */
+          <ol className="mt-6 grid grid-cols-4 gap-2 font-mono text-label uppercase">
+            {PHASES.map((p, i) => (
+              <li key={p} className="flex flex-col gap-2">
+                <span
+                  className={`h-1 rounded-full transition-colors duration-500 ${
+                    i <= stage.step ? "bg-signal" : "bg-line"
+                  }`}
+                />
+                <span
+                  className={`transition-colors duration-500 ${
+                    i === stage.step ? "text-signal-bright" : i < stage.step ? "text-ink" : "text-ink-faint"
+                  }`}
+                >
+                  {String(i + 1).padStart(2, "0")} {p}
+                </span>
+              </li>
+            ))}
+          </ol>
+        )}
       </div>
     </section>
   );
