@@ -213,8 +213,8 @@ export default function Home() {
                 },
                 {
                   n: "03",
-                  title: "One builder, no handoffs",
-                  body: "The person who scopes your project is the person who builds it. No relay team, no game of telephone, and one person who answers for all of it.",
+                  title: "Built in America",
+                  body: "Every line is written in the United States, by us or by U.S.-based contractors we hire and manage directly. Nothing gets shipped offshore, and one person answers for all of it.",
                 },
               ].map((p, i) => (
                 <div key={p.n} className="flex flex-col gap-4 border-t border-line pt-6">
