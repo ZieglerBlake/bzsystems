@@ -51,7 +51,7 @@ const WORK = [
 const RULES = [
   { title: "You talk to me", body: "The person who scopes your project runs it start to finish. No account managers, no game of telephone." },
   { title: "Small first, then compound", body: "The smallest version that works ships first. You see it running early, and every step builds on the last." },
-  { title: "Built in America", body: "Every line is written in the U.S., by me or by U.S.-based contractors I hire and manage myself. Nothing gets shipped offshore." },
+  { title: "Built in America", body: "Every line of code is written in the United States, by employees or U.S.-based contractors I hire and manage directly. No offshore teams, no offshore tools, no offshore handoffs." },
   { title: "Nothing announced before it exists", body: "No roadmaps sold as products. If it is on this site, it is real." },
 ];
 
