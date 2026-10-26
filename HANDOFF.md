@@ -1,6 +1,6 @@
 # HANDOFF — bzsystems.io
 
-Last updated: 2026-07-18. **THE SITE IS LIVE at https://bzsystems.io** (www
+Last updated: 2026-10-25. **THE SITE IS LIVE at https://bzsystems.io** (www
 is the primary host; apex 308s to it). This doc is the authoritative state;
 read it fully before changing anything. Resume incantation for any session:
 "read HANDOFF.md in the bzsystems repo and pick up."
@@ -56,31 +56,39 @@ read it fully before changing anything. Resume incantation for any session:
 
 ## Pages (all verified desktop + 375px, live)
 
-- `/` (as of 2026-10-25, six panels) — PhasedBuildIntro (fresh loads only,
-  skippable, SSR so no flash) → hero (live SystemMap canvas with `components/WaterSurface.tsx` ripples over it:
-  2D wave sim, soft ambient drops + cursor wakes, off for reduced motion;
-  headline
-  "FIX THE PROCESS. / ENRICH THE WORK." (static; replaced DESIGNED / BUILT /
-  OWNED BY US on 2026-10-25 at Blake's request) with a smaller signal-blue
-  kicker "SMALL FIXES THAT COMPOUND."; subline
-  "An independent studio that builds and keeps its own AI, data, and
-  automation products, and uses the same stack to strengthen the processes
-  your team already runs." which the meta/OG/Twitter/JSON-LD descriptions
-  mirror; badges FOUNDER RUN / CUSTOM BUILT / PROCESS ENHANCING, no
-  hyphens by Blake's choice; solid "Get in touch" button) → film band (hero.mp4 + centered logo-dark) →
-  SEC.01 THE COMPANY (navy band; headline "RUN LIKE A STARTUP. / HELD LIKE A
-  HOLDCO." (Blake: the HOLDCO half stays no matter what); copy: holding
-  company + same stack in client work, "The focus runs from small businesses
-  to regulated teams in finance.", ventures page "locked, open to clients
-  and partners on request" (Blake's wording; the lock is still decorative,
-  see Still open)) → SEC.02 HOW WE BUILD (3 cards + 7
-  chips; card 02 "Stands on its own", card 03 "Accountable by structure")
-  → thesis slab ("Most software companies are built to be sold. This one is
-  built to be kept." / BZ SYSTEMS LLC) → SEC.03 CONTACT ("Get in touch.",
-  "Email me directly. You'll hear back within one business day." + form) →
-  footer ("EACH VENTURE WILL SHIP UNDER ITS OWN NAME. THIS IS THE HOLDING
-  COMPANY."). The old SEC.02 OWNERSHIP panel was removed from home
-  2026-10-25 at Blake's request; the photo moved to /about.
+- `/` (as of 2026-10-25, five panels) — PhasedBuildIntro (fresh loads only,
+  ~3.8s canvas: drops + floor ripples, particles assemble logo-dark.png,
+  dash ignition + scan, ripple wipe; sets `html[data-intro]` so hero and
+  story canvases pause while it plays) → hero (SystemMap `still` + 
+  `components/WaterSurface.tsx` ripples; headline "YOUR IDEA, BUILT. /
+  YOUR PROCESS, UPGRADED." with the two "YOUR ..." halves in signal blue;
+  subline "An independent studio that builds software from the idea up:
+  for our own ventures, for people with an idea worth building, and for
+  teams whose processes need upgrading." which meta/OG/Twitter/JSON-LD
+  mirror; solid "Get in touch"; badges FOUNDER RUN / CUSTOM BUILT /
+  PROCESS ENHANCING, no hyphens by Blake's choice) → HOW WE WORK
+  (`components/ProcessStory.tsx`, wash band, two canvas stories that
+  auto-alternate with tabs, never pin the scroll: "Your idea, built" =
+  sticky notes -> wireframe -> browser UI -> LIVE, DAY ONE / AN IDEA IN
+  PIECES. -> LAUNCH DAY / BUILT AND RUNNING., 01 IDEA..04 LIVE tracker;
+  "Your process, upgraded" = six manual steps fixed one by one then
+  folded to three, CURRENT STATE / MANUAL AND SILOED. -> FUTURE STATE /
+  AUTOMATED AND EFFICIENT. Stat numbers in the idea UI are illustrative) →
+  SEC.01 THE COMPANY (navy band; "RUN LIKE A STARTUP. / HELD LIKE A
+  HOLDCO." (Blake: the HOLDCO half stays no matter what); holding company
+  + same stack in client work, "The focus runs from small businesses to
+  regulated teams in finance.", ventures page "locked, open to clients
+  and partners on request") → SEC.02 HOW WE BUILD (cards 01 Built
+  in-house, end to end / 02 Small first, then compound / 03 One builder,
+  no handoffs; capability groups "Your idea, built" and "Your process,
+  upgraded", three items each; closer "LESS PITCH. MORE PRODUCT." + Start
+  something) → SEC.03 CONTACT ("Have an idea you want built, or a process
+  that needs an upgrade? Email me directly..." + form) → footer (centered
+  logo-mark; "© 2026 BZ SYSTEMS LLC, OHIO, USA. ALL RIGHTS RESERVED." /
+  "BZ SYSTEMS LLC IS A PRIVATELY HELD HOLDING COMPANY. EACH VENTURE
+  OPERATES UNDER ITS OWN BRAND AND IS OWNED BY BZ SYSTEMS LLC OR ITS
+  AFFILIATES."). Removed 2026-10-25: film band, thesis slab, OWNERSHIP
+  panel (photo moved to /about).
 - `/about` — centered dark-mark nameplate, then four centered sections in
   Blake's FIRST-PERSON voice: THE COMPANY ("I started BZ Systems in
   2026...") / THE THESIS / WHAT I BUILD / HOW I OPERATE, then a founder
@@ -116,11 +124,11 @@ recompositing, the recipe is in git history commit bfb28b2). Favicon set:
 B-Z mark on ink plate — favicon.ico 16/32/48 + icon.png 512 +
 apple-icon.png 180, all generated from logo-dark.png.
 
-Assets in /public: logo.png, logo-dark.png (white knockout), hero.mp4 +
-hero-poster.webp, ziegler.webp, tex/blueprint.webp (SEC.03 backdrop),
+Assets in /public: logo.png, logo-dark.png (white knockout; the intro samples it), ziegler.webp, tex/blueprint.webp (SEC.03 backdrop),
 assets/logo-sig.png (522x447 BZ mark for email signatures, hosted at
 /assets/logo-sig.png; added 2026-08-20).
-UNUSED (safe to delete or reuse): blake.webp, tex/titleblock.webp,
+UNUSED (safe to delete or reuse): hero.mp4, hero-poster.webp, build-hero.webp
+(film band removed 2026-10-25; OG image recipe still references hero.mp4), blake.webp, tex/titleblock.webp,
 tex/contour.webp.
 
 ## Infrastructure map (who does what)
@@ -139,11 +147,8 @@ tex/contour.webp.
 1. Ventures registry content: names, one-liners, statuses, links. When it
    lands: build the registry, consider real auth for the gate, re-add
    /ventures to sitemap.ts and drop the robots disallow.
-2. Footer line "VENTURES SHIP ON THEIR OWN DOMAINS. THIS IS THE PARENT." is
-   factually wrong until something ships; awaiting his replacement copy.
-   (The metadata half of this flag was resolved 2026-07-18.) NOTE: /about
-   now says "holding company" while this footer still says "THE PARENT" —
-   reconcile the term when Blake gives footer copy.
+2. Do clients own the code they pay for? Is investor interest an audience?
+   Both unanswered; copy avoids claiming either.
 3. Home SEC.02 vs /about duplication: awaiting slim/re-point go-ahead.
 
 ## Dev workflow (follow exactly; each step earned its place)
