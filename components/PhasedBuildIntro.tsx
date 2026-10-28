@@ -228,15 +228,19 @@ export default function PhasedBuildIntro() {
     const ripples: Ripple[] = [];
     let landed = 0;
 
-    // Timeline control.
-    const t0 = performance.now();
+    // Timeline control. The clock advances by at most ~2 frames per frame,
+    // so a hitch while the page is still loading delays the intro instead
+    // of making the drops jump. A wall-clock guard still ends it on time.
+    let vt = 0;
+    let lastNow = -1;
+    const wall0 = performance.now();
+    root.style.animationDelay = "6s"; // JS is driving; push back the CSS fallback exit
     let exitStart = T.exit;
     let exitDur = T.exitDur;
     let exiting = false;
     const skip = () => {
-      const t = performance.now() - t0;
-      if (t < exitStart) {
-        exitStart = t;
+      if (vt < exitStart) {
+        exitStart = vt;
         exitDur = T.skipDur;
       }
     };
@@ -247,7 +251,10 @@ export default function PhasedBuildIntro() {
 
     let raf = 0;
     const frame = (now: number) => {
-      const t = now - t0;
+      vt += lastNow < 0 ? 0 : Math.min(now - lastNow, 34);
+      lastNow = now;
+      if (now - wall0 > 5000) skip();
+      const t = vt;
       const e = clamp01((t - exitStart) / exitDur);
       const ee = easeInOutCubic(e);
 
@@ -267,11 +274,14 @@ export default function PhasedBuildIntro() {
         if (t < drop.at) {
           const p = (t - start) / T.fall;
           const y = -30 + (drop.y + 30) * p * p;
-          const g = ctx.createLinearGradient(drop.x, y - 46, drop.x, y);
+          // Streak grows with speed (about one frame of travel) so the
+          // drop reads as a continuous fall, not a series of jumps.
+          const len = Math.max(46, ((2 * (drop.y + 30) * p) / T.fall) * 20);
+          const g = ctx.createLinearGradient(drop.x, y - len, drop.x, y);
           g.addColorStop(0, BLUE_A(0));
           g.addColorStop(1, ICE_A(0.9 * drop.strength));
           ctx.fillStyle = g;
-          ctx.fillRect(drop.x - 1, y - 46, 2, 46);
+          ctx.fillRect(drop.x - 1, y - len, 2, len);
         } else if (d >= landed) {
           ripples.push({ x: drop.x, y: drop.y, t0: drop.at, strength: drop.strength });
           landed = d + 1;
