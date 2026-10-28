@@ -159,8 +159,8 @@ export default function Home() {
                 </p>
                 <p>
                   Each venture gets listed on the ventures page as it goes
-                  live. For now that page is locked, open to clients and
-                  partners on request.
+                  live. For now that page is locked until the first venture
+                  launches.
                 </p>
               </div>
             </div>

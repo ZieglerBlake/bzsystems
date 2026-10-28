@@ -77,8 +77,9 @@ read it fully before changing anything. Resume incantation for any session:
   SEC.01 THE COMPANY (navy band; "RUN LIKE A STARTUP. / HELD LIKE A
   HOLDCO." (Blake: the HOLDCO half stays no matter what); holding company
   + same stack in client work, "The focus runs from small businesses to
-  regulated teams in finance.", ventures page "locked, open to clients
-  and partners on request") → SEC.02 HOW WE BUILD (cards 01 Built
+  regulated teams in finance.", ventures page "locked until the first
+  venture launches" (2026-10-28; the old "open on request" promised keys
+  that do not exist)) → SEC.02 HOW WE BUILD (cards 01 Built
   in-house, end to end / 02 Small first, then compound / 03 One builder,
   no handoffs; capability groups "Your idea, built" and "Your process,
   upgraded" moved to /about only (home links "See what we build"); closer "LESS PITCH. MORE PRODUCT." + Start

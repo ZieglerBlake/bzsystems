@@ -55,20 +55,17 @@ export default function Ventures() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 href="/"
-                className="rounded-sm border border-line px-8 py-3 font-mono text-label uppercase text-ink transition-all duration-200 hover:border-signal hover:shadow-glow"
+                className="rounded-sm border border-line bg-void px-8 py-3 font-mono text-label uppercase text-ink transition-all duration-200 hover:border-signal hover:shadow-glow"
               >
                 Back to home
               </Link>
               <Link
                 href="/#contact"
-                className="rounded-sm border border-signal px-8 py-3 font-mono text-label uppercase text-signal-bright transition-all duration-200 hover:bg-signal hover:text-panel hover:shadow-glow"
+                className="rounded-sm border border-signal bg-void px-8 py-3 font-mono text-label uppercase text-signal-bright transition-all duration-200 hover:bg-signal hover:text-panel hover:shadow-glow"
               >
                 Send an inquiry
               </Link>
             </div>
-            <p className="mt-8 font-mono text-label uppercase text-ink-faint">
-              Entries appear as ventures go live.
-            </p>
           </div>
         </section>
       </main>
