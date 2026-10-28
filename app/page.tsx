@@ -195,7 +195,7 @@ export default function Home() {
                 {
                   n: "03",
                   title: "Built in America",
-                  body: "Every line of code is written in the United States, by employees or U.S.-based contractors we hire and manage directly. No offshore teams, no offshore tools, no offshore handoffs.",
+                  body: "Every line of code is written in the United States, by U.S.-based contractors we hire and manage directly. No offshore teams, no offshore tools, no offshore handoffs.",
                 },
               ].map((p, i) => (
                 <div key={p.n} className="flex flex-col gap-4 border-t border-line pt-6">

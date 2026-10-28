@@ -93,15 +93,17 @@ read it fully before changing anything. Resume incantation for any session:
   caption "BLAKE ZIEGLER / FOUNDER, PRINCIPAL / FORMERLY MORGAN STANLEY",
   Blake approved naming the firm; plain text only, never a logo) beside h1
   "BUILT FROM COLUMBUS. / BUILT IN AMERICA." (Blake's pick) + intro (Columbus, founded on
-  investment banking and software engineering backgrounds, "institutional
-  standards and the speed of an agile team") + LinkedIn / email (blakeziegler.app link removed 2026-10-25: personal
+  10+ years across finance, enterprise analytics, and software engineering,
+  "institutional standards with the speed of an agile team"; NOT "investment
+  banking": the Morgan Stanley role was Global Stock & Equity Analytics) + LinkedIn / email (blakeziegler.app link removed 2026-10-25: personal
   site, keep it off the company site) → 01 WHAT WE BUILD (two long panels, idea / process, each with
-  two paragraphs and three capability items) → closer "GOT AN IDEA OR A
-  PROCESS? / LET'S TALK." + Start something. Blake found the longer version "WAY
+  two paragraphs and three capability items) → closer "LET'S TALK SHOP."
+  + Start something. Blake found the longer version "WAY
   too much": How we work and the company band were cut 2026-10-25; keep
   this page short.
-- Work is done by Blake, employees, or U.S.-based contractors (Blake,
-  2026-10-25); home card 03 "Built in America" and the About rule say so.
+- Work is done by Blake and U.S.-based contractors (no W-2 employees as of
+  2026-10-28; LinkedIn lists BZ Systems as self-employed). Home card 03
+  "Built in America" says contractors only; add employees back only if hired.
   Do not reintroduce "I write all of it" / one-builder claims.
 - `/ventures` — STAYS LOCKED by Blake's decision 2026-10-25. Never list personal
   projects from blakeziegler.app; only ForkBrain / Reticle are venture candidates.

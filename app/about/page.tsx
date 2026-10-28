@@ -11,12 +11,12 @@ const LINKEDIN = "https://www.linkedin.com/in/blakerobertziegler/";
 export const metadata: Metadata = {
   title: "About us / BZ Systems",
   description:
-    "BZ Systems is a software company based in Columbus, Ohio, founded on two backgrounds: investment banking and software engineering. We build software from the idea up: our own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
+    "BZ Systems is a software company based in Columbus, Ohio, founded on 10+ years across finance, enterprise analytics, and software engineering. We build software from the idea up: our own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About us / BZ Systems",
     description:
-      "BZ Systems is a software company based in Columbus, Ohio, founded on two backgrounds: investment banking and software engineering. We build software from the idea up: our own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
+      "BZ Systems is a software company based in Columbus, Ohio, founded on 10+ years across finance, enterprise analytics, and software engineering. We build software from the idea up: our own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
     url: "/about",
     siteName: "BZ Systems",
     locale: "en_US",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     images: ["/opengraph-image.png"],
     title: "About us / BZ Systems",
     description:
-      "BZ Systems is a software company based in Columbus, Ohio, founded on two backgrounds: investment banking and software engineering. We build software from the idea up: our own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
+      "BZ Systems is a software company based in Columbus, Ohio, founded on 10+ years across finance, enterprise analytics, and software engineering. We build software from the idea up: our own ventures, products for people with an idea worth building, and upgrades for teams whose processes need one.",
   },
 };
 
@@ -124,9 +124,9 @@ export default function About() {
               </h1>
               <p className="rise-in rise-in-delay-2 mt-8 max-w-[56ch] text-body text-ink-dim">
                 BZ Systems is a software company based in Columbus, Ohio,
-                founded on two backgrounds: investment banking and software
-                engineering. The company runs on both: institutional standards
-                and the speed of an agile team. We build software from the
+                founded on 10+ years across finance, enterprise analytics, and
+                software engineering. That means institutional standards with
+                the speed of an agile team. We build software from the
                 idea up: our own ventures, products for people with an idea
                 worth building, and upgrades for teams whose processes need one.
               </p>
@@ -180,9 +180,7 @@ export default function About() {
               className="type-extended text-display uppercase"
               style={{ fontSize: "clamp(1.75rem, 4.5vw, 3.5rem)" }}
             >
-              Got an idea or a process?
-              <br />
-              <span className="text-signal-bright">Let&apos;s talk.</span>
+              Let&apos;s talk <span className="text-signal-bright">shop.</span>
             </p>
             <Link
               href="/#contact"
