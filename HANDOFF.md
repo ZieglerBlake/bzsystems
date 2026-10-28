@@ -96,8 +96,8 @@ read it fully before changing anything. Resume incantation for any session:
   investment banking and software engineering backgrounds, "institutional
   standards and the speed of an agile team") + LinkedIn / email (blakeziegler.app link removed 2026-10-25: personal
   site, keep it off the company site) → 01 WHAT WE BUILD (two long panels, idea / process, each with
-  two paragraphs and three capability items) → closer "HAVE AN IDEA?
-  LET'S BUILD IT." + Start something. Blake found the longer version "WAY
+  two paragraphs and three capability items) → closer "GOT AN IDEA OR A
+  PROCESS? / LET'S TALK." + Start something. Blake found the longer version "WAY
   too much": How we work and the company band were cut 2026-10-25; keep
   this page short.
 - Work is done by Blake, employees, or U.S.-based contractors (Blake,

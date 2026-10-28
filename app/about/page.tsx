@@ -180,7 +180,9 @@ export default function About() {
               className="type-extended text-display uppercase"
               style={{ fontSize: "clamp(1.75rem, 4.5vw, 3.5rem)" }}
             >
-              Have an idea? <span className="text-signal-bright">Let&apos;s build it.</span>
+              Got an idea or a process?
+              <br />
+              <span className="text-signal-bright">Let&apos;s talk.</span>
             </p>
             <Link
               href="/#contact"
